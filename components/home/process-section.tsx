@@ -20,7 +20,7 @@ export const ProcessSection = () => {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   return (
-    <Section className="py-32 md:py-48 bg-surface relative overflow-hidden">
+    <Section className="bg-surface relative overflow-hidden">
       <Container>
         <div className="text-center max-w-4xl mx-auto mb-24 md:mb-40">
           <Reveal direction="up" duration={0.8}>
@@ -86,3 +86,4 @@ export const ProcessSection = () => {
     </Section>
   )
 }
+

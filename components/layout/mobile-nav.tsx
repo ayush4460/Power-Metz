@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
+import { createPortal } from "react-dom"
 import { X, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SocialIcons } from "@/components/shared/utilities"
@@ -45,7 +46,8 @@ export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
         <Menu className="h-6 w-6" />
       </Button>
 
-      <AnimatePresence>
+      {typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
         {isOpen && (
           <>
             <motion.div
@@ -116,7 +118,9 @@ export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
             </motion.div>
           </>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   )
 }

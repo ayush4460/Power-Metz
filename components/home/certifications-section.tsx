@@ -8,7 +8,7 @@ export const CertificationsSection = () => {
   const { items } = homeContent.certifications
 
   return (
-    <Section className="py-16 md:py-24 bg-background border-t border-border/10">
+    <Section className="bg-background border-t border-border/10">
       <Container>
         <Stagger staggerChildren={0.1}>
           <div className="flex flex-wrap items-center justify-center md:justify-between gap-10 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-700">
@@ -24,3 +24,4 @@ export const CertificationsSection = () => {
     </Section>
   )
 }
+

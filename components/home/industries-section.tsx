@@ -14,7 +14,7 @@ export const IndustriesSection = () => {
   const regular = items.filter(item => !item.isFeatured)
 
   return (
-    <Section className="py-32 md:py-48 bg-surface">
+    <Section className="bg-surface">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 md:mb-28">
           <div className="max-w-2xl">
@@ -90,3 +90,4 @@ export const IndustriesSection = () => {
     </Section>
   )
 }
+

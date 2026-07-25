@@ -10,7 +10,7 @@ export const InsightsSection = () => {
   const { headline, items } = homeContent.insights
 
   return (
-    <Section className="py-32 md:py-48 bg-surface">
+    <Section className="bg-surface">
       <Container className="max-w-7xl">
         <Reveal direction="up" duration={0.8} className="mb-20 md:mb-28 flex justify-between items-end border-b border-border/50 pb-8">
           <H2 className="text-4xl md:text-5xl tracking-tight leading-none">{headline}</H2>
@@ -56,3 +56,4 @@ export const InsightsSection = () => {
     </Section>
   )
 }
+

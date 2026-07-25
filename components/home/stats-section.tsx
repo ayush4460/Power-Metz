@@ -7,7 +7,7 @@ export const StatsSection = () => {
   const { headline, items } = homeContent.statistics
 
   return (
-    <Section className="py-32 md:py-48 bg-surface relative overflow-hidden">
+    <Section className="bg-surface relative overflow-hidden">
       {/* Subtle ambient light from bottom */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[300px] bg-primary/5 blur-[150px] rounded-t-[100%] pointer-events-none -z-10" />
 
@@ -37,3 +37,4 @@ export const StatsSection = () => {
     </Section>
   )
 }
+

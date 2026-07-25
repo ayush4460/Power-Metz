@@ -14,7 +14,7 @@ export const TechnologySection = () => {
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null)
 
   return (
-    <Section className="py-32 md:py-48 bg-surface relative overflow-hidden rounded-t-3xl md:rounded-t-[3rem] -mt-8 z-30 shadow-[0_-20px_40px_rgba(0,0,0,0.2)]">
+    <Section className="bg-surface relative overflow-hidden rounded-t-3xl md:rounded-t-[3rem] -mt-8 z-30 shadow-[0_-20px_40px_rgba(0,0,0,0.2)]">
       {/* Noise Texture Background */}
       <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("/images/noise.png")' }} />
 
@@ -90,3 +90,4 @@ export const TechnologySection = () => {
     </Section>
   )
 }
+

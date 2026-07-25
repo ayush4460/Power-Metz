@@ -8,7 +8,7 @@ export const TestimonialsSection = () => {
   const { headline, items } = homeContent.testimonials
 
   return (
-    <Section className="py-32 md:py-48 bg-background border-t border-border/10">
+    <Section className="bg-background border-t border-border/10">
       <Container>
         <Reveal direction="up" duration={0.8} className="mb-24 md:mb-32">
           <H2 className="text-center font-headings text-4xl md:text-5xl leading-tight tracking-tight">{headline}</H2>
@@ -39,3 +39,4 @@ export const TestimonialsSection = () => {
     </Section>
   )
 }
+

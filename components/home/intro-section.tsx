@@ -11,7 +11,7 @@ export const IntroSection = () => {
   const { headline, paragraph1, paragraph2, image } = homeContent.intro
 
   return (
-    <Section className="py-24 md:py-32 bg-background relative z-20">
+    <Section className="bg-background relative z-20">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-16 lg:gap-24">
           {/* Left Typography (50% on Desktop) */}
@@ -54,3 +54,4 @@ export const IntroSection = () => {
     </Section>
   )
 }
+

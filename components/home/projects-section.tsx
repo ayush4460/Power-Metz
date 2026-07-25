@@ -11,7 +11,7 @@ export const ProjectsSection = () => {
   const { headline, subheadline, items } = homeContent.projects
 
   return (
-    <Section className="py-32 md:py-48 bg-background border-t border-border/10">
+    <Section className="bg-background border-t border-border/10">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 md:mb-28">
           <div className="max-w-2xl">
@@ -66,3 +66,4 @@ export const ProjectsSection = () => {
     </Section>
   )
 }
+

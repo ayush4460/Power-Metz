@@ -11,7 +11,7 @@ export const ProductsSection = () => {
   const { products } = homeContent.products
 
   return (
-    <Section className="py-24 md:py-32 bg-[#F6F5F2] border-t border-border/5">
+    <Section className="bg-[#F6F5F2] border-t border-border/5">
       <Container>
         {/* Header Area */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
@@ -93,3 +93,4 @@ export const ProductsSection = () => {
     </Section>
   )
 }
+

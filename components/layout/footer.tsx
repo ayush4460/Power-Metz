@@ -13,10 +13,10 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <CompanyLogo />
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
               PowerMetz Energy delivers premium engineering and sustainable energy solutions for a rapidly changing world.
             </p>
-            <div className="space-y-2 text-sm text-foreground">
+            <div className="space-y-2 text-base md:text-lg text-foreground">
               <p>{companyConfig.address}</p>
               <p>{companyConfig.phone}</p>
               <p>{companyConfig.email}</p>
@@ -25,21 +25,21 @@ export const Footer = () => {
 
           {/* Solutions Column */}
           <div className="space-y-6">
-            <h4 className="font-headings font-semibold text-lg text-foreground">Solutions</h4>
+            <h4 className="font-headings font-semibold text-xl md:text-2xl text-foreground tracking-tight">Solutions</h4>
             <Stack spacing="sm">
-              <a href="/solutions/solar" className="text-sm text-muted-foreground hover:text-primary transition-colors">Solar Integration</a>
-              <a href="/solutions/storage" className="text-sm text-muted-foreground hover:text-primary transition-colors">Energy Storage</a>
-              <a href="/solutions/grid" className="text-sm text-muted-foreground hover:text-primary transition-colors">Grid Modernization</a>
-              <a href="/solutions/consulting" className="text-sm text-muted-foreground hover:text-primary transition-colors">Energy Consulting</a>
+              <a href="/solutions/solar" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors">Solar Integration</a>
+              <a href="/solutions/storage" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors">Energy Storage</a>
+              <a href="/solutions/grid" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors">Grid Modernization</a>
+              <a href="/solutions/consulting" className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors">Energy Consulting</a>
             </Stack>
           </div>
 
           {/* Quick Links Column */}
           <div className="space-y-6">
-            <h4 className="font-headings font-semibold text-lg text-foreground">Quick Links</h4>
+            <h4 className="font-headings font-semibold text-xl md:text-2xl text-foreground tracking-tight">Quick Links</h4>
             <Stack spacing="sm">
               {navigationConfig.mainNav.map(item => (
-                <a key={item.title} href={item.href || "#"} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a key={item.title} href={item.href || "#"} className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors">
                   {item.title}
                 </a>
               ))}
@@ -48,24 +48,24 @@ export const Footer = () => {
 
           {/* CTA Column */}
           <div className="space-y-6">
-            <h4 className="font-headings font-semibold text-lg text-foreground">Stay Updated</h4>
-            <p className="text-sm text-muted-foreground">Subscribe to our newsletter for the latest engineering insights.</p>
+            <h4 className="font-headings font-semibold text-xl md:text-2xl text-foreground tracking-tight">Stay Updated</h4>
+            <p className="text-base md:text-lg text-muted-foreground">Subscribe to our newsletter for the latest engineering insights.</p>
             <div className="flex gap-2">
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                className="flex h-12 w-full rounded-md border border-input bg-background px-4 py-2 text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-ring"
                 aria-label="Email address"
               />
-              <Button size="sm" className="h-10 px-4">Subscribe</Button>
+              <Button size="lg" className="h-12 px-6 text-base">Subscribe</Button>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-border/50 text-sm text-muted-foreground">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-border/50 text-base md:text-lg text-muted-foreground">
           <p>© {new Date().getFullYear()} PowerMetz Energy. All rights reserved.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
             <a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a>
             {/* Empty array placeholder for social links, to be configured later */}

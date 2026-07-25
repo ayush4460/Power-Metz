@@ -10,7 +10,7 @@ export const CTASection = () => {
   const { headline, subheadline, primaryBtn, secondaryBtn } = homeContent.cta
 
   return (
-    <Section className="py-32 md:py-48 bg-background relative overflow-hidden text-center z-10">
+    <Section className="bg-background relative overflow-hidden text-center z-10">
       {/* Deep space glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[600px] bg-primary/10 blur-[150px] rounded-full pointer-events-none -z-10 mix-blend-screen" />
 
@@ -40,3 +40,4 @@ export const CTASection = () => {
     </Section>
   )
 }
+
