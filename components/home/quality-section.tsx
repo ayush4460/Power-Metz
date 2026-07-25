@@ -10,10 +10,10 @@ export const QualitySection = () => {
   return (
     <Section className="py-32 md:py-48 bg-background relative overflow-hidden">
       <Container className="relative z-10">
-        <Grid cols={12} className="gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           
           {/* Left: Sticky Typography */}
-          <div className="col-span-12 lg:col-span-5 relative">
+          <div className="lg:col-span-5 relative">
             <div className="sticky top-40">
               <Reveal direction="right" duration={0.8}>
                 <H2 className="mb-8 leading-tight tracking-tight text-5xl md:text-6xl">{headline}</H2>
@@ -30,7 +30,7 @@ export const QualitySection = () => {
           </div>
 
           {/* Right: Editorial List */}
-          <div className="col-span-12 lg:col-span-7 mt-8 lg:mt-0">
+          <div className="lg:col-span-7 mt-8 lg:mt-0">
             <Stagger staggerChildren={0.15}>
               <div className="space-y-16 md:space-y-24">
                 {pillars.map((pillar, index) => (
@@ -53,7 +53,7 @@ export const QualitySection = () => {
               </div>
             </Stagger>
           </div>
-        </Grid>
+        </div>
       </Container>
     </Section>
   )

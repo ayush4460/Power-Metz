@@ -48,8 +48,8 @@ export const HeroSection = () => {
       </motion.div>
 
       <Container className="relative z-20 h-full flex flex-col justify-center">
-        <Grid cols={12} className="items-center gap-12 lg:gap-8 h-full">
-          <div className="col-span-12 lg:col-span-8 flex flex-col justify-center mt-12 lg:mt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-8 h-full">
+          <div className="lg:col-span-8 flex flex-col justify-center mt-12 lg:mt-0">
             <Reveal direction="up" duration={0.8}>
               <H1 className="mb-6 max-w-[18ch] leading-[1.05] tracking-tighter text-white font-bold text-5xl md:text-7xl lg:text-[5.5rem]">
                 {headline}
@@ -91,7 +91,7 @@ export const HeroSection = () => {
               </div>
             </FadeIn>
           </div>
-        </Grid>
+        </div>
       </Container>
       
       {/* Scroll Indicator */}
