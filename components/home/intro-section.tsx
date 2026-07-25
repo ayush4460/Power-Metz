@@ -13,9 +13,9 @@ export const IntroSection = () => {
   return (
     <Section className="py-24 md:py-32 bg-background relative z-20">
       <Container>
-        <Grid className="items-stretch gap-16 lg:gap-24" cols={12}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-16 lg:gap-24">
           {/* Left Typography (50% on Desktop) */}
-          <div className="col-span-12 lg:col-span-6 flex flex-col justify-center">
+          <div className="flex flex-col justify-center">
             <Reveal direction="up" duration={0.8}>
               <H2 className="mb-10 max-w-[18ch] leading-[1.1] tracking-tighter text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground">{headline}</H2>
             </Reveal>
@@ -38,8 +38,8 @@ export const IntroSection = () => {
           </div>
 
           {/* Right Image (50% on Desktop) */}
-          <div className="col-span-12 lg:col-span-6 flex">
-            <Reveal direction="up" duration={1} delay={0.2} className="relative w-full h-full min-h-[300px] rounded-2xl overflow-hidden bg-muted flex-1">
+          <div className="flex">
+            <Reveal direction="up" duration={1} delay={0.2} className="relative w-full h-full min-h-[300px] md:min-h-[400px] rounded-2xl overflow-hidden bg-muted flex-1">
               <ResponsiveImage
                 src={image.src}
                 alt={image.alt}
@@ -49,7 +49,7 @@ export const IntroSection = () => {
               <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10 rounded-2xl pointer-events-none" />
             </Reveal>
           </div>
-        </Grid>
+        </div>
       </Container>
     </Section>
   )

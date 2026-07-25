@@ -48,8 +48,8 @@ export const HeroSection = () => {
       </motion.div>
 
       <Container className="relative z-20 h-full flex flex-col justify-center">
-        <Grid className="items-center gap-12 lg:gap-8 h-full">
-          <div className="col-span-1 lg:col-span-8 flex flex-col justify-center mt-12 lg:mt-0">
+        <Grid cols={12} className="items-center gap-12 lg:gap-8 h-full">
+          <div className="col-span-12 lg:col-span-8 flex flex-col justify-center mt-12 lg:mt-0">
             <Reveal direction="up" duration={0.8}>
               <H1 className="mb-6 max-w-[18ch] leading-[1.05] tracking-tighter text-white font-bold text-5xl md:text-7xl lg:text-[5.5rem]">
                 {headline}
@@ -67,11 +67,11 @@ export const HeroSection = () => {
             
             <FadeIn delay={0.2} duration={0.8}>
               <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 md:mb-24">
-                <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base group bg-primary hover:bg-primary/90 text-white border-0 transition-all duration-300">
+                <Button size="lg" className="w-full sm:w-auto h-auto py-4 px-8 text-base group bg-primary hover:bg-primary/90 text-white border-0 transition-all duration-300 whitespace-normal text-center">
                   {primaryCta}
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform inline-block" />
                 </Button>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-base border-white/30 bg-black/20 backdrop-blur text-white hover:bg-white/10 hover:text-white transition-colors duration-300">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto h-auto py-4 px-8 text-base border-white/30 bg-black/20 backdrop-blur text-white hover:bg-white/10 hover:text-white transition-colors duration-300 whitespace-normal text-center">
                   {secondaryCta}
                 </Button>
               </div>

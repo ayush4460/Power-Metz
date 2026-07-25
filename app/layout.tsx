@@ -47,8 +47,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} font-sans antialiased bg-background text-foreground`}>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth overflow-x-hidden">
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden`}>
         <Providers>
           <Background noise />
           <ScrollProgress />

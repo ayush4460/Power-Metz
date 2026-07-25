@@ -32,10 +32,10 @@ export const ProcessSection = () => {
         </div>
 
         <div className="relative max-w-6xl mx-auto" ref={containerRef}>
-          {/* Central Timeline Line (Desktop) / Left Line (Mobile) */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border/50 -translate-x-1/2" />
+          {/* Central Timeline Line (Desktop only) */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border/50 -translate-x-1/2" />
           <motion.div 
-            className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-primary -translate-x-1/2 origin-top"
+            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-primary -translate-x-1/2 origin-top"
             style={{ scaleY }}
           />
 
@@ -45,27 +45,27 @@ export const ProcessSection = () => {
 
               return (
                 <div key={step.id} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center group">
-                  {/* Timeline Dot */}
-                  <div className="absolute left-6 md:left-1/2 top-1/2 w-4 h-4 bg-surface border-4 border-primary rounded-full -translate-x-1/2 -translate-y-1/2 z-10 transition-transform duration-500 group-hover:scale-[1.7]" />
+                  {/* Timeline Dot (Desktop only) */}
+                  <div className="hidden md:block absolute left-1/2 top-1/2 w-4 h-4 bg-surface border-4 border-primary rounded-full -translate-x-1/2 -translate-y-1/2 z-10 transition-transform duration-500 group-hover:scale-[1.7]" />
 
                   {/* Content (Alternating) */}
-                  <div className={`pl-16 md:pl-0 ${isEven ? 'md:order-2 md:text-left' : 'md:order-1 md:text-right'}`}>
-                    <Reveal direction={isEven ? "left" : "right"} duration={0.8} delay={0.1}>
-                      <span className="flex items-center gap-4 text-primary font-mono text-sm tracking-widest mb-6 uppercase">
+                  <div className={`${isEven ? 'md:order-2 md:text-left' : 'md:order-1 md:text-right'}`}>
+                    <Reveal direction="up" duration={0.8} delay={0.1}>
+                      <span className="flex flex-wrap items-center gap-4 text-primary font-mono text-sm tracking-widest mb-6 uppercase">
                         {!isEven && <span className="hidden md:block w-8 h-px bg-primary ml-auto" />}
                         Step 0{step.id}
                         {isEven && <span className="hidden md:block w-8 h-px bg-primary" />}
                       </span>
                       <H3 className="mb-6 text-3xl tracking-tight">{step.title}</H3>
-                      <Paragraph className={`text-muted-foreground text-lg leading-relaxed max-w-md ${isEven ? '' : 'ml-auto md:ml-0'}`}>
+                      <Paragraph className={`text-muted-foreground text-lg leading-relaxed max-w-md ${isEven ? '' : 'md:ml-auto'}`}>
                         {step.description}
                       </Paragraph>
                     </Reveal>
                   </div>
 
                   {/* Image (Alternating) */}
-                  <div className={`pl-16 md:pl-0 ${isEven ? 'md:order-1' : 'md:order-2'}`}>
-                    <Reveal direction={isEven ? "right" : "left"} duration={0.8} delay={0.2}>
+                  <div className={`${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                    <Reveal direction="up" duration={0.8} delay={0.2}>
                       <div className="relative w-full aspect-[16/9] md:aspect-[3/2] rounded-3xl overflow-hidden shadow-2xl">
                         <ResponsiveImage
                           src={step.image.src}
