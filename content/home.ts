@@ -19,14 +19,30 @@ export const homeContent = {
     ]
   },
   intro: {
-    headline: "Engineering the infrastructure of tomorrow.",
-    paragraph1: "At PowerMetz, we don't just assemble batteries; we engineer comprehensive energy solutions. For over two decades, our relentless pursuit of quality has made us the trusted partner for critical industries worldwide.",
-    paragraph2: "From telecommunications to grid-scale energy storage, our systems are built to withstand the harshest environments while delivering uncompromising performance. We believe that true power lies in absolute reliability.",
+    label: "ABOUT POWERMETZ",
+    headline: "Building the Next Generation of Battery Energy Solutions.",
+    paragraph1: "PowerMetz Energy Private Limited is a next-generation Lithium-Ion battery manufacturing and Battery Energy Storage Systems (BESS) company. Backed by Mercury EV-Tech Limited, we combine advanced engineering, intelligent Battery Management Systems (BMS), and large-scale manufacturing to deliver reliable energy solutions for electric mobility, residential, commercial, industrial, and utility-scale applications.",
+    paragraph2: "Operating from our state-of-the-art 3.2 GWh manufacturing facility in Vadodara, Gujarat, we engineer high-performance battery systems using premium LFP and NMC technologies. Every solution is designed for maximum safety, efficiency, and long-term reliability while supporting India's clean energy transition.",
     image: {
-      src: "/images/placeholders/manufacturing.webp",
+      src: "/images/Engineering_Flow.JPG",
       alt: "PowerMetz Engineering Facility"
     },
-    cta: "Learn About Our Philosophy"
+    cta: "Discover Our Story",
+    card: {
+      title: "Manufacturing Excellence",
+      items: [
+        "3.2 GWh Annual Capacity",
+        "Premium LFP & NMC Cells",
+        "Advanced Smart BMS",
+        "AIS 156 Phase 2 Compliance"
+      ]
+    },
+    metrics: [
+      { value: "3.2 GWh", label: "Manufacturing Capacity" },
+      { value: "2022", label: "Established" },
+      { value: "LFP & NMC", label: "Battery Technologies" },
+      { value: "Made in India", label: "Global Vision" }
+    ]
   },
   technology: {
     headline: "Inside PowerMetz Technology.",

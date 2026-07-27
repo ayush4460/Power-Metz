@@ -2,7 +2,7 @@ import React from "react"
 import Image from "next/image"
 import { cn } from "@/lib/cn"
 
-export const ResponsiveImage = ({ src, alt, width, height, fill, className, priority, objectFit = "cover" }: { src: string, alt: string, width?: number, height?: number, fill?: boolean, className?: string, priority?: boolean, objectFit?: "cover" | "contain" | "fill" }) => {
+export const ResponsiveImage = ({ src, alt, width, height, fill, className, priority, objectFit = "cover", quality = 100, unoptimized = false }: { src: string, alt: string, width?: number, height?: number, fill?: boolean, className?: string, priority?: boolean, objectFit?: "cover" | "contain" | "fill", quality?: number, unoptimized?: boolean }) => {
   // If cloud image via cloudinary, you'd use a custom loader. This assumes standard next/image functionality.
   return (
     <div className={cn("relative overflow-hidden", fill ? "w-full h-full" : "", className)}>
@@ -13,6 +13,8 @@ export const ResponsiveImage = ({ src, alt, width, height, fill, className, prio
         height={!fill ? height || 600 : undefined}
         fill={fill}
         priority={priority}
+        quality={quality}
+        unoptimized={unoptimized}
         className={cn("transition-opacity duration-500", objectFit === "cover" ? "object-cover" : objectFit === "contain" ? "object-contain" : "object-fill")}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
