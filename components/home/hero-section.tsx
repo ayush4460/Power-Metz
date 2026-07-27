@@ -333,7 +333,7 @@ export const HeroSection = () => {
           color: rgba(255, 255, 255, 0.55);
           line-height: 1.35;
           margin-top: 0.12rem;
-          white-space: pre-line;
+          white-space: pre; /* strictly obey \n, don't auto wrap */
         }
 
         /* ════════════════════════════
