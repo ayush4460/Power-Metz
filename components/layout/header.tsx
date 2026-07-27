@@ -60,18 +60,18 @@ export const Header = () => {
         </div>
 
         {/* Center: Navigation */}
-        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex justify-center z-10">
+        <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex justify-center z-10">
           <NavigationMenu items={navItems} variant={scrollState === "transparent" ? "transparent" : "default"} />
         </div>
         
         {/* Right: CTA & Mobile Nav */}
         <div className="flex-1 flex items-center justify-end gap-2 z-10">
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Button className="bg-primary text-white hover:bg-primary/90 border-0 text-base px-6">
               Get a Quote
             </Button>
           </div>
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <MobileNav items={navItems} />
           </div>
         </div>

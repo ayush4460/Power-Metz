@@ -41,7 +41,7 @@ export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
   }, [])
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <Button variant="ghost" size="icon" onClick={() => setIsOpen(true)} aria-label="Open menu">
         <Menu className="h-6 w-6" />
       </Button>
