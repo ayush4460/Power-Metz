@@ -2,8 +2,24 @@ import React from "react"
 import Image from "next/image"
 import { cn } from "@/lib/cn"
 
-export const ResponsiveImage = ({ src, alt, width, height, fill, className, priority, objectFit = "cover", quality = 100, unoptimized = false }: { src: string, alt: string, width?: number, height?: number, fill?: boolean, className?: string, priority?: boolean, objectFit?: "cover" | "contain" | "fill", quality?: number, unoptimized?: boolean }) => {
-  // If cloud image via cloudinary, you'd use a custom loader. This assumes standard next/image functionality.
+export const ResponsiveImage = ({ src, alt, width, height, fill, className, priority, objectFit = "cover", quality = 100, unoptimized = true }: { src: string, alt: string, width?: number, height?: number, fill?: boolean, className?: string, priority?: boolean, objectFit?: "cover" | "contain" | "fill", quality?: number, unoptimized?: boolean }) => {
+  if (unoptimized) {
+    return (
+      <div className={cn("relative overflow-hidden flex items-center justify-center", fill ? "w-full h-full" : "", className)}>
+        <img
+          src={src}
+          alt={alt}
+          style={{
+            width: fill ? "100%" : (width || 800),
+            height: fill ? "100%" : (height || 600),
+            objectFit: objectFit
+          }}
+          className={cn("transition-opacity duration-500")}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className={cn("relative overflow-hidden", fill ? "w-full h-full" : "", className)}>
       <Image
@@ -14,7 +30,6 @@ export const ResponsiveImage = ({ src, alt, width, height, fill, className, prio
         fill={fill}
         priority={priority}
         quality={quality}
-        unoptimized={unoptimized}
         className={cn("transition-opacity duration-500", objectFit === "cover" ? "object-cover" : objectFit === "contain" ? "object-contain" : "object-fill")}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />

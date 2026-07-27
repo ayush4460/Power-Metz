@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { usePathname } from "next/navigation"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { cn } from "@/lib/cn"
 import { CompanyLogo } from "@/components/shared/utilities"
@@ -11,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Container } from "./index" // Assuming we can import layout components here
 
 export const Header = () => {
+  const pathname = usePathname()
+  const isHome = pathname === "/"
   const { scrollY } = useScroll()
   const [scrollState, setScrollState] = useState<"transparent" | "glass" | "solid">("transparent")
 
@@ -43,7 +46,7 @@ export const Header = () => {
     <motion.header
       className={cn(
         "fixed top-0 left-0 right-0 z-[80] h-[var(--header-height)] flex items-center transition-all duration-500",
-        scrollState === "transparent" ? "bg-transparent text-white" : "bg-background/80 backdrop-blur-md border-b border-border text-foreground shadow-sm",
+        scrollState === "transparent" ? (isHome ? "bg-transparent text-white" : "bg-transparent text-foreground") : "bg-background/80 backdrop-blur-md border-b border-border text-foreground shadow-sm",
       )}
     >
       {/* Skip Navigation */}
@@ -61,7 +64,7 @@ export const Header = () => {
 
         {/* Center: Navigation */}
         <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex justify-center z-10">
-          <NavigationMenu items={navItems} variant={scrollState === "transparent" ? "transparent" : "default"} />
+          <NavigationMenu items={navItems} variant={scrollState === "transparent" && isHome ? "transparent" : "default"} />
         </div>
         
         {/* Right: CTA & Mobile Nav */}

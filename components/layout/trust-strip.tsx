@@ -1,6 +1,6 @@
 import React from "react"
 import { Container, Grid } from "./index"
-import { ShieldCheck, MapPin, Award, Factory } from "lucide-react"
+import { ShieldCheck, MapPin, Clock, Cpu } from "lucide-react"
 
 export const TrustStrip = () => {
   const items = [
@@ -13,12 +13,12 @@ export const TrustStrip = () => {
       label: "Made in India"
     },
     {
-      icon: <Award className="h-6 w-6 text-primary" />,
-      label: "25+ Years Experience"
+      icon: <Clock className="h-6 w-6 text-primary" />,
+      label: "10+ Years Design Life"
     },
     {
-      icon: <Factory className="h-6 w-6 text-primary" />,
-      label: "500+ Projects"
+      icon: <Cpu className="h-6 w-6 text-primary" />,
+      label: "Advanced BMS Tech"
     }
   ]
 
