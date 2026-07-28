@@ -24,7 +24,7 @@ export const homeContent = {
     paragraph1: "PowerMetz Energy Private Limited is a next-generation Lithium-Ion battery manufacturing and Battery Energy Storage Systems (BESS) company. Backed by Mercury EV-Tech Limited, we combine advanced engineering, intelligent Battery Management Systems (BMS), and large-scale manufacturing to deliver reliable energy solutions for electric mobility, residential, commercial, industrial, and utility-scale applications.",
     paragraph2: "Operating from our state-of-the-art 3.2 GWh manufacturing facility in Vadodara, Gujarat, we engineer high-performance battery systems using premium LFP and NMC technologies. Every solution is designed for maximum safety, efficiency, and long-term reliability while supporting India's clean energy transition.",
     image: {
-      src: "/images/Engineering_Flow.JPG",
+      src: "/images/Engineering_Flow_Web.jpg",
       alt: "PowerMetz Engineering Facility"
     },
     cta: "Discover Our Story",
