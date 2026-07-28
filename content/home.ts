@@ -355,13 +355,42 @@ export const homeContent = {
       }
     ]
   },
-  statistics: {
-    headline: "The Scale of Our Impact",
+  whyChoosePowerMetz: {
+    headline: "Why Businesses Choose PowerMetz",
+    subheadline: "PowerMetz designs reliable Battery Energy Storage Systems for industries, businesses and renewable energy projects. Every system is built for safety, long life and dependable performance.",
     items: [
-      { label: "Years Experience", value: 25, suffix: "+" },
-      { label: "MWh Deployed", value: 500, suffix: "+" },
-      { label: "Global Partners", value: 120, suffix: "" },
-      { label: "Uptime Reliability", value: 99, suffix: ".9%" }
+      {
+        title: "Safe Lithium Battery Technology",
+        description: "Designed for long cycle life, thermal stability and dependable energy storage using premium Lithium Iron Phosphate Batteries."
+      },
+      {
+        title: "Smart Battery Monitoring",
+        description: "Monitor battery health in real time with our intelligent Battery Management System (BMS), designed to improve safety and performance. Intelligent battery balancing helps improve battery life."
+      },
+      {
+        title: "Flexible Energy Storage Solutions",
+        description: "Scalable architecture and expandable capacity for Commercial Energy Storage and Industrial Energy Storage."
+      },
+      {
+        title: "Built with Precision",
+        description: "Factory-tested systems built with quality components by a leading Energy Storage Manufacturer."
+      },
+      {
+        title: "Designed for Your Business",
+        description: "Every energy storage system is designed according to your power requirement and future expansion needs."
+      },
+      {
+        title: "Advanced Safety Protection",
+        description: "Multiple protection layers including thermal management and electrical protection for reliable operation."
+      },
+      {
+        title: "Works with Solar & Grid Power",
+        description: "Easy integration for Renewable Energy Storage, Solar Energy Storage, and hybrid grid systems."
+      },
+      {
+        title: "Installation & Technical Support",
+        description: "Complete lifecycle support, commissioning, and technical assistance for your Battery Storage Solutions India."
+      }
     ]
   },
   testimonials: {

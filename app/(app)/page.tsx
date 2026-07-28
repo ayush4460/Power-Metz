@@ -5,7 +5,7 @@ import { ProcessSection } from "@/components/home/process-section";
 import { QualitySection } from "@/components/home/quality-section";
 import { IndustriesSection } from "@/components/home/industries-section";
 import { ProjectsSection } from "@/components/home/projects-section";
-import { StatsSection } from "@/components/home/stats-section";
+import { WhyChooseSection } from "@/components/home/why-choose-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { InsightsSection } from "@/components/home/insights-section";
 import { CertificationsSection } from "@/components/home/certifications-section";
@@ -20,11 +20,9 @@ export default function HomePage() {
       <ProcessSection />
       <QualitySection />
       <IndustriesSection />
-      {/* <ProjectsSection /> */}
-      <StatsSection />
-      {/* <TestimonialsSection /> */}
+      <WhyChooseSection />
       {/* <InsightsSection /> */}
-      <CertificationsSection />
+      {/* <CertificationsSection /> */}
       <CTASection />
     </div>
   );

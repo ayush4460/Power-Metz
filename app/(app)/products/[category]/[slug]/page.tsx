@@ -301,9 +301,11 @@ export default async function ProductDetailPage({ params }: Props) {
             <p className="text-lg text-white/80 mb-10">
               Our engineering team is ready to help you size and integrate the right energy storage solution for your specific requirements.
             </p>
-            <Button size="lg" variant="default" className="bg-primary hover:bg-primary-hover text-white text-lg px-8 h-14 rounded-full">
-              <Mail className="w-5 h-5 mr-3" /> Contact Engineering Team
-            </Button>
+            <a href="mailto:support@metzbattery.in">
+              <Button size="lg" variant="default" className="bg-primary hover:bg-primary-hover text-white text-lg px-8 h-14 rounded-full">
+                <Mail className="w-5 h-5 mr-3" /> Contact Engineering Team
+              </Button>
+            </a>
           </div>
         </Container>
       </Section>

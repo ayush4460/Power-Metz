@@ -76,7 +76,7 @@ export const HeroSection = () => {
             animate={a ? { opacity: 1, y: 0  } : false}
             transition={{ duration: 0.6, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a href="#contact"   className="pm-btn pm-btn--primary">
+            <a href="mailto:support@metzbattery.in"   className="pm-btn pm-btn--primary">
               Get a Quote <ArrowRight className="pm-btn__icon" aria-hidden="true" />
             </a>
             <a href="#solutions" className="pm-btn pm-btn--ghost">
