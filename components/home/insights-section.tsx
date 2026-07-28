@@ -5,6 +5,7 @@ import { H2 } from "@/components/ui/typography"
 import { Reveal, Stagger, FadeIn } from "@/components/motion"
 import { homeContent } from "@/content/home"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export const InsightsSection = () => {
   const { headline, items } = homeContent.insights
@@ -12,13 +13,25 @@ export const InsightsSection = () => {
   return (
     <Section className="bg-surface">
       <Container className="max-w-7xl">
-        <Reveal direction="up" duration={0.8} className="mb-20 md:mb-28 flex justify-between items-end border-b border-border/50 pb-8">
-          <H2 className="text-4xl md:text-5xl tracking-tight leading-none">{headline}</H2>
-          <Link href="/insights" className="hidden md:flex items-center gap-2 text-foreground hover:text-primary transition-colors font-medium">
-            View All
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </Reveal>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 md:mb-28 border-b border-border/50 pb-8">
+          <div className="max-w-2xl">
+            <Reveal direction="up" duration={0.8}>
+              <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">
+                INSIGHTS & NEWS
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6 font-headings">{headline}</h2>
+            </Reveal>
+          </div>
+          
+          <Reveal direction="up" delay={0.2} duration={0.8} className="hidden md:block">
+            <Link href="/insights">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base md:text-lg px-8 h-14 rounded-full transition-all duration-300 w-fit group">
+                View All Insights
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </Link>
+          </Reveal>
+        </div>
 
         <Stagger staggerChildren={0.15}>
           <Grid cols={1} className="md:grid-cols-3 gap-12 md:gap-16">
@@ -47,13 +60,16 @@ export const InsightsSection = () => {
               </FadeIn>
             ))}
           </Grid>
-          <Link href="/insights" className="md:hidden mt-16 flex items-center justify-center gap-2 text-foreground hover:text-primary transition-colors font-medium border border-border/50 rounded-full py-4 px-8">
-            View All Insights
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <Reveal direction="up" delay={0.3} duration={0.8} className="md:hidden mt-12 flex justify-center">
+            <Link href="/insights" className="w-full">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base md:text-lg px-8 h-14 rounded-full transition-all duration-300 w-full group">
+                View All Insights
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </Link>
+          </Reveal>
         </Stagger>
       </Container>
     </Section>
   )
 }
-

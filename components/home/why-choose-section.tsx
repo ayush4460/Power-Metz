@@ -17,13 +17,13 @@ export const WhyChooseSection = () => {
       <Container>
         {/* Header Rhythm */}
         <Reveal direction="up" duration={0.8} className="flex flex-col items-center text-center w-full mb-16 md:mb-24">
-          <div className="text-primary font-semibold text-sm tracking-widest uppercase text-center mb-6">
+          <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase text-center mb-4">
             WHY CHOOSE POWERMETZ
           </div>
-          <H2 className="mb-6 leading-tight tracking-tight text-4xl md:text-5xl lg:text-6xl text-slate-900 w-full">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 mb-6 text-center w-full font-headings">
             {headline}
-          </H2>
-          <p className="text-slate-600 text-lg md:text-xl w-full font-light leading-relaxed">
+          </h2>
+          <p className="text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed font-light w-full text-center max-w-3xl mx-auto">
             {subheadline}
           </p>
         </Reveal>

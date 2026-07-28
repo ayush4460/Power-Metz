@@ -6,6 +6,7 @@ import { Reveal, FadeIn } from "@/components/motion"
 import { ResponsiveImage } from "@/components/shared/media"
 import { homeContent } from "@/content/home"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export const ProductsSection = () => {
   const { products } = homeContent.products
@@ -17,29 +18,28 @@ export const ProductsSection = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="max-w-2xl">
             <Reveal direction="up" duration={0.8}>
-              <div className="text-primary font-bold text-xs tracking-widest uppercase mb-4">
+              <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">
                 Powering Every Need
               </div>
             </Reveal>
             <Reveal direction="up" delay={0.1} duration={0.8}>
-              <H2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6 font-headings">
                 Engineered for Every Application
-              </H2>
+              </h2>
             </Reveal>
             <Reveal direction="up" delay={0.2} duration={0.8}>
-              <p className="text-muted-foreground mt-4 text-base md:text-lg">
+              <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light">
                 High-performance battery systems designed for industrial, commercial, and critical applications.
               </p>
             </Reveal>
           </div>
           
           <Reveal direction="up" delay={0.3} duration={0.8}>
-            <Link 
-              href="/solutions" 
-              className="inline-flex items-center gap-2 text-foreground font-semibold hover:text-primary transition-colors whitespace-nowrap text-sm"
-            >
-              View All Products
-              <ArrowRight className="w-4 h-4 text-primary" />
+            <Link href="/products">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base md:text-lg px-8 h-14 rounded-full transition-all duration-300 w-fit group mt-4 md:mt-0">
+                View All Products
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
             </Link>
           </Reveal>
         </div>

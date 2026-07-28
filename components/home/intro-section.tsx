@@ -19,27 +19,27 @@ export const IntroSection = () => {
           {/* Left: Text Content */}
           <div className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 w-full max-w-155 mx-auto lg:mx-0 py-4">
             <Reveal direction="up" duration={0.8}>
-              <div className="text-primary text-sm font-semibold tracking-widest uppercase mb-4">
+              <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">
                 {label}
               </div>
-              <H2 className="mb-8 leading-tight tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6 font-headings leading-tight">
                 {headline}
-              </H2>
+              </h2>
             </Reveal>
             
             <div className="space-y-6 mb-10">
               <Reveal direction="up" delay={0.1} duration={0.8}>
-                <Paragraph className="text-muted-foreground text-lg mx-auto lg:mx-0">{paragraph1}</Paragraph>
+                <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light mx-auto lg:mx-0">{paragraph1}</p>
               </Reveal>
               <Reveal direction="up" delay={0.2} duration={0.8}>
-                <Paragraph className="text-muted-foreground text-lg mx-auto lg:mx-0">{paragraph2}</Paragraph>
+                <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light mx-auto lg:mx-0">{paragraph2}</p>
               </Reveal>
             </div>
 
             <Reveal direction="up" delay={0.3} duration={0.8} className="flex justify-center lg:justify-start">
-              <Button variant="ghost" size="lg" className="w-fit p-0 h-auto hover:bg-transparent text-primary hover:text-primary/80 group text-base md:text-lg font-semibold underline-offset-8 hover:underline">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base md:text-lg px-8 h-14 rounded-full transition-all duration-300 w-fit group">
                 {cta}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Reveal>
           </div>

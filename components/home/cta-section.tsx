@@ -16,13 +16,16 @@ export const CTASection = () => {
       
       <Container className="relative z-10">
         <Reveal direction="up" duration={0.8}>
-          <h2 className="mb-6 text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight text-white font-semibold max-w-4xl mx-auto">
+          <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase text-center mb-4">
+            GET IN TOUCH
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6 font-headings max-w-4xl mx-auto text-center">
             {headline}
           </h2>
         </Reveal>
         
         <Reveal direction="up" delay={0.1} duration={0.8}>
-          <p className="text-slate-400 mb-12 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-slate-400 leading-relaxed font-light text-center max-w-2xl mx-auto mb-12">
             {subheadline}
           </p>
         </Reveal>

@@ -16,10 +16,13 @@ export const ProjectsSection = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 md:mb-28">
           <div className="max-w-2xl">
             <Reveal direction="up" duration={0.8}>
-              <H2 className="mb-6 leading-tight tracking-tight">{headline}</H2>
+              <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">
+                OUR PROJECTS
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6 font-headings">{headline}</h2>
             </Reveal>
             <Reveal direction="up" delay={0.1} duration={0.8}>
-              <Lead className="text-muted-foreground">{subheadline}</Lead>
+              <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light">{subheadline}</p>
             </Reveal>
           </div>
         </div>

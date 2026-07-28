@@ -1,16 +1,10 @@
 "use client"
 
 import React, { useRef } from "react"
-import { ArrowRight, Zap, Cpu, ShieldCheck, Factory, Zap as ZapIcon } from "lucide-react"
+import { ArrowRight, Zap as ZapIcon } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
+import Link from "next/link"
 
-/* ─── Data ─── */
-const METRICS = [
-  { icon: Factory,     value: "3.2 GWh",   label: "Annual Manufacturing\nCapacity" },
-  { icon: Zap,         value: "LFP & NMC", label: "Battery\nTechnologies" },
-  { icon: Cpu,         value: "Smart BMS", label: "Engineering" },
-  { icon: ShieldCheck, value: "AIS 156",   label: "Safety\nCompliance" },
-]
 
 /* ─── Component ─── */
 export const HeroSection = () => {
@@ -52,8 +46,8 @@ export const HeroSection = () => {
             animate={a ? { opacity: 1, y: 0  } : false}
             transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           >
-            Engineering Advanced{" "}
-            <span className="pm-hero__accent">Battery Energy</span>{" "}
+            <span style={{ whiteSpace: "nowrap" }}>Engineering Advanced</span><br />
+            <span className="pm-hero__accent">Battery Energy</span><br />
             Storage Systems
           </motion.h1>
 
@@ -76,39 +70,14 @@ export const HeroSection = () => {
             animate={a ? { opacity: 1, y: 0  } : false}
             transition={{ duration: 0.6, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a href="mailto:support@metzbattery.in"   className="pm-btn pm-btn--primary">
+            <a href="tel:+918511000944" className="pm-btn pm-btn--primary">
               Get a Quote <ArrowRight className="pm-btn__icon" aria-hidden="true" />
             </a>
-            <a href="#solutions" className="pm-btn pm-btn--ghost">
+            <Link href="/products" className="pm-btn pm-btn--ghost">
               Explore Solutions <ArrowRight className="pm-btn__icon" aria-hidden="true" />
-            </a>
+            </Link>
           </motion.div>
 
-          {/* Trust Metrics */}
-          <motion.div
-            className="pm-hero__metrics"
-            initial={a ? { opacity: 0 } : false}
-            animate={a ? { opacity: 1 } : false}
-            transition={{ duration: 0.6, delay: 0.36 }}
-          >
-            {METRICS.map((m, i) => (
-              <motion.div
-                key={m.value}
-                className="pm-metric"
-                initial={a ? { opacity: 0, y: 10 } : false}
-                animate={a ? { opacity: 1, y: 0  } : false}
-                transition={{ duration: 0.4, delay: 0.40 + i * 0.07 }}
-              >
-                <div className="pm-metric__icon-box" aria-hidden="true">
-                  <m.icon className="pm-metric__icon" strokeWidth={1.8} />
-                </div>
-                <div className="pm-metric__text">
-                  <p className="pm-metric__value">{m.value}</p>
-                  <p className="pm-metric__label">{m.label}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
 
         </div>
       </div>
@@ -221,7 +190,7 @@ export const HeroSection = () => {
         .pm-hero__h1 {
           font-family: var(--font-headings, var(--font-sans));
           /* Fluid: small phone → huge desktop */
-          font-size: clamp(2rem, 4.5vw, 4.5rem);
+          font-size: clamp(1.65rem, 8.5vw, 4.5rem);
           font-weight: 800;
           line-height: 1.08;
           letter-spacing: -0.025em;
@@ -236,7 +205,7 @@ export const HeroSection = () => {
            SUB-HEADLINE
         ════════════════════════════ */
         .pm-hero__sub {
-          font-size: clamp(0.82rem, 1.1vw, 0.98rem);
+          font-size: clamp(1rem, 1.3vw, 1.15rem);
           color: rgba(255, 255, 255, 0.78);
           line-height: 1.70;
           max-width: none;
@@ -255,13 +224,13 @@ export const HeroSection = () => {
         .pm-btn {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.5rem;
           border-radius: 6px;
-          font-size: clamp(0.80rem, 0.95vw, 0.88rem);
+          font-size: clamp(0.9rem, 1.1vw, 1.05rem);
           font-weight: 600;
           text-decoration: none;
           white-space: nowrap;
-          padding: clamp(0.55rem, 1vw, 0.70rem) clamp(1.1rem, 1.8vw, 1.5rem);
+          padding: clamp(0.7rem, 1.2vw, 0.85rem) clamp(1.4rem, 2vw, 2rem);
           transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
           cursor: pointer;
         }
@@ -306,16 +275,16 @@ export const HeroSection = () => {
 
         /* Icon: just the icon without the box */
         .pm-metric__icon-box {
-          width: 3rem;
-          height: 3rem;
+          width: 3.5rem;
+          height: 3.5rem;
           flex-shrink: 0;
           display: flex;
           align-items: center;
           justify-content: center;
         }
         .pm-metric__icon {
-          width: 2rem;
-          height: 2rem;
+          width: 2.2rem;
+          height: 2.2rem;
           color: #FF8A1C;
           stroke-width: 1.5;
         }
@@ -323,16 +292,17 @@ export const HeroSection = () => {
         /* Metric text */
         .pm-metric__text { display: flex; flex-direction: column; }
         .pm-metric__value {
-          font-size: 0.90rem;
+          font-size: clamp(1.1rem, 1.3vw, 1.25rem);
           font-weight: 700;
           color: #fff;
           line-height: 1.2;
+          white-space: nowrap;
         }
         .pm-metric__label {
-          font-size: 0.64rem;
+          font-size: clamp(0.75rem, 0.9vw, 0.85rem);
           color: rgba(255, 255, 255, 0.55);
           line-height: 1.35;
-          margin-top: 0.12rem;
+          margin-top: 0.2rem;
           white-space: pre; /* strictly obey \n, don't auto wrap */
         }
 
@@ -359,6 +329,15 @@ export const HeroSection = () => {
         }
 
         /* ════════════════════════════
+           SMALL MOBILE — < 480px
+        ════════════════════════════ */
+        @media (max-width: 480px) {
+          .pm-hero__btns { flex-direction: column; }
+          .pm-btn { width: 100%; justify-content: center; }
+          .pm-hero__metrics { grid-template-columns: 1fr; gap: 1.25rem; }
+        }
+
+        /* ════════════════════════════
            TABLET — 768px
         ════════════════════════════ */
         @media (min-width: 768px) and (max-width: 1023px) {
@@ -374,8 +353,8 @@ export const HeroSection = () => {
           .pm-hero__btns    { margin-bottom: 3rem; }
         }
         @media (min-width: 768px) {
-          .pm-hero__metrics { grid-template-columns: repeat(4, 1fr); }
-          .pm-hero__inner   { max-width: 70%; }
+          .pm-hero__metrics { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+          .pm-hero__inner   { max-width: 85%; }
         }
 
         /* ════════════════════════════

@@ -40,7 +40,7 @@ export default function ProductsPage() {
       />
       
       {/* Hero Section */}
-      <Section className="bg-background pt-24 pb-4 lg:pt-32 lg:pb-8 border-b border-border/5">
+      <Section className="bg-background pt-32 pb-8 md:pt-36 lg:pt-40 lg:pb-12 border-b border-border/5">
         <Container>
           <div className="w-full">
 

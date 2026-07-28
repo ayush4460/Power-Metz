@@ -19,15 +19,18 @@ export const QualitySection = () => {
         {/* Top Header Section */}
         <div className="flex flex-col items-center text-center w-full mb-8 md:mb-12">
           <Reveal direction="up" duration={0.8}>
-            <H2 className="mb-6 leading-tight tracking-tight text-4xl md:text-5xl lg:text-6xl text-slate-900 w-full">
+            <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase text-center mb-4">
+              QUALITY & RELIABILITY
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 mb-6 font-headings text-center w-full">
               {headline}
-            </H2>
+            </h2>
           </Reveal>
           
           <Reveal direction="up" delay={0.1} duration={0.8}>
-            <Paragraph className="text-muted-foreground text-lg md:text-xl leading-relaxed w-full mb-4">
+            <p className="text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed font-light text-center max-w-3xl mx-auto">
               {subheadline}
-            </Paragraph>
+            </p>
           </Reveal>
         </div>
 

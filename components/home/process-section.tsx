@@ -17,10 +17,13 @@ export const ProcessSection = () => {
       <Container>
         <div className="text-center max-w-4xl mx-auto mb-16 md:mb-24">
           <Reveal direction="up" duration={0.8}>
-            <H2 className="mb-8 leading-tight tracking-tight">{headline}</H2>
+            <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase text-center mb-4">
+              OUR PROCESS
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6 text-center font-headings">{headline}</h2>
           </Reveal>
           <Reveal direction="up" delay={0.1} duration={0.8}>
-            <Lead className="text-muted-foreground max-w-prose mx-auto">{subheadline}</Lead>
+            <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light text-center max-w-3xl mx-auto">{subheadline}</p>
           </Reveal>
         </div>
 

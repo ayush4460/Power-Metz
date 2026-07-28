@@ -17,17 +17,17 @@ export const SolutionsSection = () => {
         <div className="flex flex-col mb-12 lg:mb-16">
           <div className="w-full">
             <Reveal direction="up" duration={0.8}>
-              <div className="text-primary font-semibold text-sm tracking-widest uppercase mb-4 text-center md:text-left">
+              <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase mb-4 text-center md:text-left">
                 POWERMETZ SOLUTIONS
               </div>
             </Reveal>
             <Reveal direction="up" delay={0.1} duration={0.8}>
-              <H2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6 text-center md:text-left font-headings">
                 Energy Storage Solutions for Every Application
-              </H2>
+              </h2>
             </Reveal>
             <Reveal direction="up" delay={0.2} duration={0.8}>
-              <p className="text-muted-foreground mt-4 text-base md:text-lg text-center md:text-left max-w-4xl mx-auto md:mx-0">
+              <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light text-center md:text-left max-w-4xl mx-auto md:mx-0">
                 PowerMetz develops advanced Lithium Iron Phosphate battery systems engineered for residential, commercial, industrial, telecom, UPS and utility-scale applications.
               </p>
             </Reveal>
