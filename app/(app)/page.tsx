@@ -20,10 +20,10 @@ export default function HomePage() {
       <ProcessSection />
       <QualitySection />
       <IndustriesSection />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       <StatsSection />
-      <TestimonialsSection />
-      <InsightsSection />
+      {/* <TestimonialsSection /> */}
+      {/* <InsightsSection /> */}
       <CertificationsSection />
       <CTASection />
     </div>

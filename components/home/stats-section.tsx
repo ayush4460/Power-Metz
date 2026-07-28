@@ -12,12 +12,10 @@ export const StatsSection = () => {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[300px] bg-primary/5 blur-[150px] rounded-t-[100%] pointer-events-none -z-10" />
 
       <Container>
-        <Reveal direction="up" duration={0.8} className="text-center mb-24 md:mb-32">
-          <h2 className="font-headings text-sm md:text-base text-primary font-mono tracking-widest uppercase flex items-center justify-center gap-4">
-            <span className="w-8 h-px bg-primary" />
+        <Reveal direction="up" duration={0.8} className="flex flex-col items-center text-center w-full mb-16 md:mb-24">
+          <div className="text-primary font-semibold text-sm tracking-widest uppercase text-center">
             {headline}
-            <span className="w-8 h-px bg-primary" />
-          </h2>
+          </div>
         </Reveal>
 
         <Stagger staggerChildren={0.15}>

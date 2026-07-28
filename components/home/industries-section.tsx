@@ -16,15 +16,17 @@ export const IndustriesSection = () => {
   return (
     <Section className="bg-surface">
       <Container>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 md:mb-28">
-          <div className="max-w-2xl">
-            <Reveal direction="up" duration={0.8}>
-              <H2 className="mb-6 leading-tight tracking-tight">{headline}</H2>
-            </Reveal>
-            <Reveal direction="up" delay={0.1} duration={0.8}>
-              <Lead className="text-muted-foreground">{subheadline}</Lead>
-            </Reveal>
-          </div>
+        <div className="flex flex-col items-center text-center w-full mb-16 md:mb-20">
+          <Reveal direction="up" duration={0.8}>
+            <H2 className="mb-6 leading-tight tracking-tight text-4xl md:text-5xl lg:text-6xl text-slate-900 w-full">
+              {headline}
+            </H2>
+          </Reveal>
+          <Reveal direction="up" delay={0.1} duration={0.8}>
+            <Lead className="text-muted-foreground text-lg md:text-xl w-full">
+              {subheadline}
+            </Lead>
+          </Reveal>
         </div>
 
         <Stagger staggerChildren={0.1}>
@@ -32,7 +34,7 @@ export const IndustriesSection = () => {
             {/* Featured Tile */}
             {featured && (
               <FadeIn className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 group">
-                <Link href={`/solutions/${featured.id}`} className="relative block w-full h-full rounded-3xl overflow-hidden shadow-2xl">
+                <Link href="/products" className="relative block w-full h-full rounded-3xl overflow-hidden shadow-2xl">
                   {/* Subtle Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
                   
@@ -45,7 +47,7 @@ export const IndustriesSection = () => {
                   
                   <div className="absolute inset-0 z-20 p-8 md:p-16 flex flex-col justify-end">
                     <div className="flex items-end justify-between mb-6">
-                      <H3 className="text-white text-4xl md:text-5xl font-medium tracking-tight max-w-sm leading-[1.1]">{featured.title}</H3>
+                      <h3 className="text-white text-4xl md:text-5xl font-medium tracking-tight max-w-sm leading-[1.1]">{featured.title}</h3>
                       <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 -translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 border border-white/20">
                         <ArrowRight className="w-5 h-5 text-white" />
                       </div>
@@ -61,7 +63,7 @@ export const IndustriesSection = () => {
             {/* Regular Tiles */}
             {regular.map((item) => (
               <FadeIn key={item.id} className="col-span-1 row-span-1 group">
-                <Link href={`/solutions/${item.id}`} className="relative block w-full h-full rounded-3xl overflow-hidden shadow-xl">
+                <Link href="/products" className="relative block w-full h-full rounded-3xl overflow-hidden shadow-xl">
                   {/* Subtle Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
                   

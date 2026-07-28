@@ -211,25 +211,49 @@ export const homeContent = {
       }
     ]
   },
-  quality: {
-    headline: "Engineered for Reliability",
-    subheadline: "In critical infrastructure, failure is not an option. We build our battery systems to exceed the world's most stringent safety and performance standards.",
+  reliability: {
+    headline: "Engineered for Absolute Reliability",
+    subheadline: "In critical infrastructure, failure is not an option. We engineer every PowerMetz battery system with premium LFP/NMC cells, intelligent management, and industrial-grade architecture to guarantee long-term performance.",
+    badges: [
+      "✓ Intelligent Battery Management",
+      "✓ Engineered for Critical Infrastructure"
+    ],
     pillars: [
       {
-        title: "Precision Manufacturing",
-        description: "Sub-millimeter assembly tolerances ensure absolute consistency across every single cell."
+        title: "Intelligent Battery Management",
+        description: "Our Smart BMS provides microsecond fault-detection and seamless integration for maximum safety.",
+        highlights: [
+          "Active cell balancing",
+          "Real-time thermal monitoring",
+          "CAN / RS485 communication"
+        ]
       },
       {
-        title: "Advanced Testing",
-        description: "Simulated 20-year lifecycle testing under extreme thermal and mechanical stress."
+        title: "Industrial Grade Architecture",
+        description: "Built for extreme environments with rigorous thermal design and heavy-duty enclosures.",
+        highlights: [
+          "Premium LFP & NMC cell chemistry",
+          "Optimized thermal management",
+          "High-quality electrical integration"
+        ]
       },
       {
-        title: "Long Service Life",
-        description: "Proprietary active balancing extends operational life up to 15 years."
+        title: "Quality Assurance & Safety",
+        description: "Every unit undergoes comprehensive electrical verification and performance testing at our 3.2 GWh facility.",
+        highlights: [
+          "ISO & AIS 156 Phase 2 compliance",
+          "Rigorous performance testing",
+          "Comprehensive safety inspections"
+        ]
       },
       {
-        title: "Safety Standards",
-        description: "Certified to UL 1973, UL 9540A, and IEC 62619 for peace of mind."
+        title: "Application-Specific Design",
+        description: "From telecom racks to utility-scale storage, we customize voltage, sizing, and capacity for your exact needs.",
+        highlights: [
+          "Custom voltage configuration",
+          "Scalable energy capacity",
+          "Seamless grid integration"
+        ]
       }
     ]
   },
