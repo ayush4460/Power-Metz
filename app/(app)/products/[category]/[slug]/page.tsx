@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowRight, Check, Download, Info, Mail } from "lucide-react"
+import { ArrowRight, Check, Download, Info, Mail, Phone } from "lucide-react"
 import { categories } from "@/content/categories"
 import { products } from "@/content/products"
 import { productSpecifications } from "@/content/specifications"
@@ -138,12 +138,14 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="flex-1 text-base font-semibold">
+                <Button size="lg" className="w-full sm:flex-1 text-base font-semibold">
                   Request a Quote
                 </Button>
-                <Button variant="outline" size="lg" className="flex-1 text-base font-semibold">
-                  <Download className="w-4 h-4 mr-2" /> Download Datasheet
-                </Button>
+                <a href="/powermetz%20products.pdf" download="powermetz products.pdf" target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1">
+                  <Button variant="outline" size="lg" className="w-full text-base font-semibold">
+                    <Download className="w-4 h-4 mr-2" /> Download Datasheet
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -153,9 +155,17 @@ export default async function ProductDetailPage({ params }: Props) {
       {/* Compact Info Section */}
       <Section className="bg-[#F6F5F2] py-12 lg:py-16 border-y border-border/5">
         <Container>
+          {/* System Overview - Moved to top for better balance */}
+          <div className="w-full mb-12 lg:mb-16">
+            <H2 className="mb-4">System Overview</H2>
+            <Paragraph className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              {product.overview}
+            </Paragraph>
+          </div>
+
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-16">
             
-            {/* Left Column: Specs & Overview */}
+            {/* Left Column: Specs */}
             <div className="space-y-12">
               {/* Technical Specifications */}
               {specs.length > 0 && (
@@ -181,26 +191,13 @@ export default async function ProductDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
-
-              {/* System Overview */}
-              <div>
-                <H2 className="mb-4">System Overview</H2>
-                <Paragraph className="text-base md:text-lg text-muted-foreground">
-                  {product.overview}
-                </Paragraph>
-              </div>
             </div>
 
             {/* Right Column: Features, Advantages, Applications */}
             <div className="space-y-12">
               {/* Advantages */}
               <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-primary text-white p-1.5 rounded-md">
-                    <Info className="w-5 h-5" />
-                  </div>
-                  <H2 className="!mb-0">Key Advantages</H2>
-                </div>
+                <H2 className="mb-6">Key Advantages</H2>
                 <ul className="space-y-4">
                   {product.advantages.map((adv, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -217,17 +214,12 @@ export default async function ProductDetailPage({ params }: Props) {
               
               {/* Engineering Features */}
               <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-primary text-white p-1.5 rounded-md">
-                    <Check className="w-5 h-5" />
-                  </div>
-                  <H2 className="!mb-0">Engineering Features</H2>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <H2 className="mb-6">Engineering Features</H2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                   {product.features.map((feat, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-black/5 shadow-sm">
+                    <div key={index} className="flex items-start gap-3">
                       <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-muted-foreground font-medium">{feat}</span>
+                      <span className="text-sm text-muted-foreground">{feat}</span>
                     </div>
                   ))}
                 </div>
@@ -236,16 +228,29 @@ export default async function ProductDetailPage({ params }: Props) {
               {/* Ideal Applications */}
               <div>
                 <H2 className="mb-6">Ideal Applications</H2>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2.5">
                   {product.applications.map((app) => (
-                    <div key={app} className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-black/5 shadow-sm">
-                      <div className="bg-primary/10 p-1 rounded">
-                        <Check className="w-3 h-3 text-primary" />
-                      </div>
-                      <span className="font-semibold text-sm text-foreground capitalize">{app.replace('-', ' ')}</span>
-                    </div>
+                    <span key={app} className="bg-primary/10 text-primary font-semibold text-sm px-4 py-1.5 rounded-full capitalize">
+                      {app.replace('-', ' ')}
+                    </span>
                   ))}
                 </div>
+              </div>
+
+              {/* Expert Support CTA - Added to fill space and provide value */}
+              <div className="bg-primary text-white rounded-2xl p-8 sm:p-10 shadow-lg relative overflow-hidden mt-12">
+                <div className="relative z-10">
+                  <H3 className="text-white mb-3 text-2xl font-bold">Need a Custom Solution?</H3>
+                  <p className="text-white/80 text-base mb-8 max-w-md">
+                    Our engineering team can help configure the perfect energy storage system for your specific requirements.
+                  </p>
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto font-semibold text-primary hover:bg-white">
+                    <Phone className="w-5 h-5 mr-2" /> Talk to an Engineer
+                  </Button>
+                </div>
+                {/* Decorative background elements */}
+                <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="absolute -left-12 -top-12 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
               </div>
             </div>
 
@@ -263,21 +268,21 @@ export default async function ProductDetailPage({ params }: Props) {
                 <Link 
                   key={rp.id}
                   href={`/products/${category.slug}/${rp.slug}`}
-                  className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-black/5"
+                  className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-black/5 h-full relative"
                 >
-                  <div className="relative w-full aspect-[4/3] bg-[#F6F5F2] p-8 flex items-center justify-center">
+                  <div className="relative w-full aspect-[4/3] bg-[#F6F5F2] overflow-hidden">
                     <ResponsiveImage
                       src={rp.image}
                       alt={rp.name}
                       fill
                       objectFit="contain"
-                      className="scale-90 group-hover:scale-100 transition-transform duration-500 ease-out mix-blend-darken"
+                      className="p-4 group-hover:scale-105 transition-transform duration-500 ease-out mix-blend-darken"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1 relative bg-white">
                     <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{rp.name}</h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{rp.shortDescription}</p>
-                    <div className="flex items-center text-sm font-semibold text-primary">
+                    <p className="text-sm text-muted-foreground line-clamp-2 mb-6">{rp.shortDescription}</p>
+                    <div className="mt-auto flex items-center text-sm font-semibold text-primary">
                       View Specifications <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
