@@ -56,14 +56,9 @@ export const WhyChooseSection = () => {
                   </div>
                 </div>
                 <div className="w-full lg:w-1/2 h-100 lg:h-125 relative bg-slate-100 overflow-hidden">
-                  <video 
-                    src="/Lithium Technology.mp4" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" 
-                  />
+                  <div dangerouslySetInnerHTML={{
+                    __html: `<video src="/Lithium Technology.mp4" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"></video>`
+                  }} className="w-full h-full" />
                 </div>
               </div>
             </FadeIn>
@@ -105,14 +100,9 @@ export const WhyChooseSection = () => {
             <FadeIn>
               <div className="group relative w-full rounded-3xl bg-white/60 backdrop-blur-xl border border-black/5 overflow-hidden flex flex-col-reverse lg:flex-row transition-all duration-500 shadow-[0_8px_40px_rgb(0,0,0,0.08)] -translate-y-1 lg:shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:translate-y-0 lg:hover:shadow-[0_8px_40px_rgb(0,0,0,0.08)] lg:hover:-translate-y-1">
                 <div className="w-full lg:w-1/2 h-87.5 lg:h-112.5 relative bg-slate-100 overflow-hidden">
-                  <video 
-                    src="/Build with Precision.mp4" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" 
-                  />
+                  <div dangerouslySetInnerHTML={{
+                    __html: `<video src="/Build with Precision.mp4" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"></video>`
+                  }} className="w-full h-full" />
                 </div>
                 <div className="w-full lg:w-1/2 p-10 md:p-16 flex flex-col justify-center">
                   <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-500 bg-primary/5 border border-primary/30 lg:bg-white lg:border-slate-100 lg:shadow-sm lg:group-hover:border-primary/30 lg:group-hover:bg-primary/5">
