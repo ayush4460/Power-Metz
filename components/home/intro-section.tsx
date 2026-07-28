@@ -6,6 +6,7 @@ import { ResponsiveImage } from "@/components/shared/media"
 import { Button } from "@/components/ui/button"
 import { homeContent } from "@/content/home"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 export const IntroSection = () => {
   const { label, headline, paragraph1, paragraph2, image, cta, card, metrics } = homeContent.intro
@@ -37,10 +38,12 @@ export const IntroSection = () => {
             </div>
 
             <Reveal direction="up" delay={0.3} duration={0.8} className="flex justify-center lg:justify-start">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base md:text-lg px-8 h-14 rounded-full transition-all duration-300 w-fit group">
-                {cta}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
+              <Link href="/about">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base md:text-lg px-8 h-14 rounded-full transition-all duration-300 w-fit group">
+                  {cta}
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </Link>
             </Reveal>
           </div>
 
