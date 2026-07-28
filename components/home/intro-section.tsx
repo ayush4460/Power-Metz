@@ -11,7 +11,7 @@ export const IntroSection = () => {
   const { label, headline, paragraph1, paragraph2, image, cta, card, metrics } = homeContent.intro
 
   return (
-    <Section className="bg-background relative z-20 py-16 lg:py-[120px] overflow-hidden">
+    <Section className="bg-background relative z-20 py-12 lg:py-20 overflow-hidden">
       <Container>
         {/* Top: 2 Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-24 lg:items-stretch items-center">

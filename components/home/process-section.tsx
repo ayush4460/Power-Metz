@@ -1,28 +1,21 @@
 "use client"
 
-import React, { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import React from "react"
+import { motion } from "framer-motion"
 import { Container, Section } from "@/components/layout"
 import { H2, H3, Lead, Paragraph } from "@/components/ui/typography"
 import { Reveal } from "@/components/motion"
 import { ResponsiveImage } from "@/components/shared/media"
 import { homeContent } from "@/content/home"
+import { Check } from "lucide-react"
 
 export const ProcessSection = () => {
-  const { headline, subheadline, steps } = homeContent.process
-  const containerRef = useRef<HTMLDivElement>(null)
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  })
-  
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const { headline, subheadline, steps } = homeContent.engineeringProcess
 
   return (
-    <Section className="bg-surface relative overflow-hidden">
+    <Section className="bg-surface relative overflow-hidden py-16 md:py-24">
       <Container>
-        <div className="text-center max-w-4xl mx-auto mb-24 md:mb-40">
+        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-24">
           <Reveal direction="up" duration={0.8}>
             <H2 className="mb-8 leading-tight tracking-tight">{headline}</H2>
           </Reveal>
@@ -31,56 +24,62 @@ export const ProcessSection = () => {
           </Reveal>
         </div>
 
-        <div className="relative max-w-6xl mx-auto" ref={containerRef}>
-          {/* Central Timeline Line (Desktop only) */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border/50 -translate-x-1/2" />
-          <motion.div 
-            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-primary -translate-x-1/2 origin-top"
-            style={{ scaleY }}
-          />
+        <div className="relative max-w-7xl mx-auto space-y-20 md:space-y-32">
+          {steps.map((step, index) => {
+            const isImageRight = index % 2 === 0
 
-          <div className="space-y-32 md:space-y-48">
-            {steps.map((step, index) => {
-              const isEven = index % 2 === 1
-
-              return (
-                <div key={step.id} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center group">
-                  {/* Timeline Dot (Desktop only) */}
-                  <div className="hidden md:block absolute left-1/2 top-1/2 w-4 h-4 bg-surface border-4 border-primary rounded-full -translate-x-1/2 -translate-y-1/2 z-10 transition-transform duration-500 group-hover:scale-[1.7]" />
-
-                  {/* Content (Alternating) */}
-                  <div className={`${isEven ? 'md:order-2 md:text-left' : 'md:order-1 md:text-right'}`}>
-                    <Reveal direction="up" duration={0.8} delay={0.1}>
-                      <span className="flex flex-wrap items-center gap-4 text-primary font-mono text-sm tracking-widest mb-6 uppercase">
-                        {!isEven && <span className="hidden md:block w-8 h-px bg-primary ml-auto" />}
-                        Step 0{step.id}
-                        {isEven && <span className="hidden md:block w-8 h-px bg-primary" />}
-                      </span>
-                      <H3 className="mb-6 text-3xl tracking-tight">{step.title}</H3>
-                      <Paragraph className={`text-muted-foreground text-lg leading-relaxed max-w-md ${isEven ? '' : 'md:ml-auto'}`}>
-                        {step.description}
-                      </Paragraph>
-                    </Reveal>
-                  </div>
-
-                  {/* Image (Alternating) */}
-                  <div className={`${isEven ? 'md:order-1' : 'md:order-2'}`}>
-                    <Reveal direction="up" duration={0.8} delay={0.2}>
-                      <div className="relative w-full aspect-[16/9] md:aspect-[3/2] rounded-3xl overflow-hidden shadow-2xl">
-                        <ResponsiveImage
-                          src={step.image.src}
-                          alt={step.image.alt}
-                          fill
-                          className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 ring-1 ring-inset ring-border/20 rounded-3xl pointer-events-none" />
+            return (
+              <div key={step.id} className="relative flex flex-col md:flex-row gap-10 md:gap-16 items-center group">
+                {/* Content */}
+                <div className={`w-full md:w-[45%] ${isImageRight ? 'md:order-1' : 'md:order-2'}`}>
+                  <Reveal direction="up" duration={0.8}>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8">
+                      <div className="flex items-center gap-4">
+                        <span className="text-4xl md:text-5xl font-bold text-muted-foreground group-hover:text-primary transition-colors duration-500">{step.id}</span>
+                        <div className="h-px bg-border w-12 sm:w-16 relative overflow-hidden">
+                          <motion.div
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 1, ease: "easeInOut" }}
+                            className="absolute inset-0 bg-primary origin-left"
+                          />
+                        </div>
                       </div>
-                    </Reveal>
-                  </div>
+                      <H3 className="text-3xl md:text-4xl tracking-tight mb-0">{step.title}</H3>
+                    </div>
+                    <Paragraph className="text-muted-foreground text-lg leading-relaxed mb-8">
+                      {step.description}
+                    </Paragraph>
+                    <ul className="space-y-3">
+                      {step.highlights.map((h) => (
+                        <li key={h} className="flex items-center gap-3 text-base font-semibold text-foreground">
+                          <Check className="w-5 h-5 text-primary shrink-0" />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Reveal>
                 </div>
-              )
-            })}
-          </div>
+
+                {/* Image */}
+                <div className={`w-full md:w-[55%] ${isImageRight ? 'md:order-2' : 'md:order-1'}`}>
+                  <Reveal direction="up" duration={0.8} delay={0.1}>
+                    <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl">
+                      <ResponsiveImage
+                        src={step.image.src}
+                        alt={step.image.alt}
+                        fill
+                        className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03]"
+                      />
+                      <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+                      <div className="absolute inset-0 ring-1 ring-inset ring-border/20 rounded-3xl pointer-events-none" />
+                    </div>
+                  </Reveal>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </Container>
     </Section>

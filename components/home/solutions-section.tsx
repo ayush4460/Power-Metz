@@ -95,15 +95,14 @@ export const SolutionsSection = () => {
           </div>
         </div>
 
-        {/* Button Area */}
         <div className="mt-12 lg:mt-16 flex justify-center">
           <Reveal direction="up" delay={0.3} duration={0.8}>
             <Link 
               href="/products" 
-              className="group inline-flex items-center gap-2 text-foreground font-semibold hover:bg-primary hover:text-white transition-all duration-300 whitespace-nowrap text-sm md:text-base border border-border/50 bg-white px-8 py-4 rounded-full shadow-sm hover:shadow-md"
+              className="group inline-flex items-center gap-2 text-foreground font-semibold hover:bg-primary hover:text-white whitespace-nowrap text-sm md:text-base border border-border/50 bg-white px-8 py-4 rounded-full shadow-sm hover:shadow-md"
             >
               Explore All Products
-              <ArrowRight className="w-4 h-4 text-primary group-hover:text-white transition-colors" />
+              <ArrowRight className="w-4 h-4 text-primary group-hover:text-white" />
             </Link>
           </Reveal>
         </div>

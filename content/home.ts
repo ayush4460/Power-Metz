@@ -121,62 +121,92 @@ export const homeContent = {
       }
     ]
   },
-  process: {
-    headline: "The PowerMetz Manufacturing Journey",
-    subheadline: "From raw lithium to grid-scale deployment, our end-to-end manufacturing process guarantees uncompromised quality at every stage.",
+  engineeringProcess: {
+    headline: "The PowerMetz Engineering Process",
+    subheadline: "Every PowerMetz battery energy storage solution follows a structured engineering and quality process, from application analysis and system design to manufacturing, testing, commissioning and long-term support.",
     steps: [
       {
-        id: 1,
-        title: "Research & Development",
-        description: "Our engineers continuously push the boundaries of cell chemistry and thermal dynamics to maximize energy density and safety.",
+        id: "01",
+        title: "Requirement Analysis",
+        description: "We evaluate customer applications across industrial, commercial, solar, and grid scale storage to determine optimal capacity and performance needs for each Industrial Battery Storage project.",
+        highlights: [
+          "Application Study",
+          "Capacity Planning",
+          "Industrial Battery Storage"
+        ],
         image: {
-          src: "/images/placeholders/technology.webp",
-          alt: "R&D Lab"
+          src: "/requirement%20analysis.JPG",
+          alt: "Requirement Analysis for Industrial Energy Storage"
         }
       },
       {
-        id: 2,
-        title: "Precision Engineering",
-        description: "Every component is digitally modeled, simulated for extreme stress conditions, and optimized for structural integrity.",
+        id: "02",
+        title: "System Engineering & Design",
+        description: "Our engineering team customizes system sizing, voltage configuration, capacity selection, thermal design, and cabinet architecture to ensure every Battery Energy Storage System is perfectly tailored.",
+        highlights: [
+          "System Sizing",
+          "Voltage Configuration",
+          "Thermal Design"
+        ],
         image: {
-          src: "/images/placeholders/technology.webp",
-          alt: "Precision Engineering"
+          src: "/system%20engineering.JPG",
+          alt: "System Engineering and Design"
         }
       },
       {
-        id: 3,
-        title: "Automated Manufacturing",
-        description: "State-of-the-art robotics ensure sub-millimeter precision during cell assembly, eliminating human error.",
+        id: "03",
+        title: "Manufacturing & Assembly",
+        description: "Operating from our Vadodara facility, we manage precision Lithium Battery Assembly, battery module integration, and electrical wiring using high-quality components for maximum reliability.",
+        highlights: [
+          "Module Assembly",
+          "Cabinet Integration",
+          "Precision Manufacturing"
+        ],
         image: {
-          src: "/images/placeholders/manufacturing.webp",
-          alt: "Automated Manufacturing"
+          src: "/manufacturing%20assembly.JPG",
+          alt: "Lithium Battery Manufacturing"
         }
       },
       {
-        id: 4,
-        title: "Rigorous Testing",
-        description: "Each module undergoes thermal runaway tests, vibration analysis, and deep-cycle stress testing before approval.",
+        id: "04",
+        title: "Battery Management & Safety",
+        description: "Each system includes an Intelligent Built-in Battery Management System providing cell balancing, temperature monitoring, system diagnostics, and seamless CAN/RS485 communication protocols.",
+        highlights: [
+          "Intelligent Smart BMS",
+          "Temperature Monitoring",
+          "CAN/RS485 Communication"
+        ],
         image: {
-          src: "/images/placeholders/manufacturing.webp",
-          alt: "Testing Facility"
+          src: "/battery%20management.JPG",
+          alt: "Intelligent Battery Management System"
         }
       },
       {
-        id: 5,
-        title: "Quality Control",
-        description: "A final 100-point inspection validates the BMS integrity, voltage matching, and outer casing resilience.",
+        id: "05",
+        title: "Testing & Quality Validation",
+        description: "We subject every unit to rigorous Battery Testing, including performance testing, load testing, electrical verification, and comprehensive safety inspections before factory acceptance.",
+        highlights: [
+          "Performance Testing",
+          "Electrical Verification",
+          "Safety Inspection"
+        ],
         image: {
-          src: "/images/placeholders/manufacturing.webp",
-          alt: "Quality Control"
+          src: "/testing.JPG",
+          alt: "Quality Validation and Testing"
         }
       },
       {
-        id: 6,
-        title: "Global Delivery",
-        description: "Secure, compliance-certified logistics ensure your energy systems arrive ready for immediate deployment.",
+        id: "06",
+        title: "Installation & Support",
+        description: "Our dedicated support team provides seamless ground or rack-mounted installation, full system commissioning, and ongoing maintenance to guarantee the reliability of your Energy Storage Solutions.",
+        highlights: [
+          "System Commissioning",
+          "Technical Assistance",
+          "Long-Term Maintenance"
+        ],
         image: {
-          src: "/images/placeholders/manufacturing.webp",
-          alt: "Global Delivery logistics"
+          src: "/installation.JPG",
+          alt: "Installation and Long-Term Support"
         }
       }
     ]
