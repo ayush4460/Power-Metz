@@ -131,7 +131,7 @@ export const HeroSection = () => {
         .pm-hero__overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0, 0, 0, 0.52);
+          background: rgba(0, 0, 0, 0.35);
         }
         /* Left-to-right fade: text side dark → video side shows through */
         .pm-hero__fade {
@@ -139,9 +139,9 @@ export const HeroSection = () => {
           inset: 0;
           background: linear-gradient(
             105deg,
-            rgba(0, 0, 0, 0.68) 0%,
-            rgba(0, 0, 0, 0.42) 40%,
-            rgba(0, 0, 0, 0.10) 70%,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.30) 40%,
+            rgba(0, 0, 0, 0.05) 70%,
             transparent 100%
           );
         }
