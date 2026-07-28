@@ -37,6 +37,7 @@ export const TechnologySection = () => {
               src={image.src}
               alt={image.alt}
               fill
+              unoptimized={true}
               className="object-cover md:object-contain object-center scale-105"
               sizes="(max-width: 1024px) 100vw, 1500px"
             />

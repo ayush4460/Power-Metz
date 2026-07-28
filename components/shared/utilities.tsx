@@ -50,6 +50,7 @@ export const CompanyLogo = ({ className }: { className?: string }) => (
       alt="PowerMetz Logo" 
       width={40} 
       height={40} 
+      unoptimized={true}
       className="object-contain h-8 md:h-9 w-auto transition-all"
       priority
     />

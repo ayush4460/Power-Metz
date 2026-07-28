@@ -17,7 +17,12 @@ export const HeroSection = () => {
 
       {/* ── Video Background ── */}
       <div aria-hidden="true" className="pm-hero__bg">
-        <video src="/HeroSection_BG.mp4" autoPlay loop muted playsInline preload="auto" className="pm-hero__video" />
+        <div 
+          className="pm-hero__video-wrapper"
+          dangerouslySetInnerHTML={{
+            __html: `<video src="/HeroSection_BG.mp4" autoplay loop muted playsinline preload="auto" class="pm-hero__video"></video>`
+          }}
+        />
         {/* Base dark overlay */}
         <div className="pm-hero__overlay" />
         {/* Left-to-right gradient: dark on left (text legibility) → transparent on right (video shows) */}
@@ -107,6 +112,12 @@ export const HeroSection = () => {
           position: absolute;
           inset: 0;
           z-index: 0;
+        }
+        .pm-hero__video-wrapper {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
         }
         .pm-hero__video {
           position: absolute;
