@@ -7,7 +7,7 @@ import { H2, H3, Lead, Paragraph } from "@/components/ui/typography"
 import { Reveal } from "@/components/motion"
 import { ResponsiveImage } from "@/components/shared/media"
 import { homeContent } from "@/content/home"
-import { Check } from "lucide-react"
+import { CheckCircle } from "lucide-react"
 
 export const ProcessSection = () => {
   const { headline, subheadline, steps } = homeContent.engineeringProcess
@@ -38,7 +38,7 @@ export const ProcessSection = () => {
                   <Reveal direction="up" duration={0.8}>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8">
                       <div className="flex items-center gap-4">
-                        <span className="text-4xl md:text-5xl font-bold text-muted-foreground group-hover:text-primary transition-colors duration-500">{step.id}</span>
+                        <span className="text-4xl md:text-5xl font-bold text-primary lg:text-muted-foreground lg:group-hover:text-primary transition-colors duration-500">{step.id}</span>
                         <div className="h-px bg-border w-12 sm:w-16 relative overflow-hidden">
                           <motion.div
                             initial={{ scaleX: 0 }}
@@ -57,7 +57,7 @@ export const ProcessSection = () => {
                     <ul className="space-y-3">
                       {step.highlights.map((h) => (
                         <li key={h} className="flex items-center gap-3 text-base font-semibold text-foreground">
-                          <Check className="w-5 h-5 text-primary shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-primary shrink-0" strokeWidth={2.5} />
                           <span>{h}</span>
                         </li>
                       ))}

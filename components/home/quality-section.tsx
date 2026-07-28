@@ -36,7 +36,7 @@ export const QualitySection = () => {
 
         {/* Bottom Cards Grid */}
         <Stagger staggerChildren={0.15}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
             {pillars.map((pillar, index) => (
               <FadeIn key={index} className="group h-full">
                 <div className="relative bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 flex flex-col h-full border border-border/40 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">

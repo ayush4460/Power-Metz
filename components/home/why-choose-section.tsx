@@ -129,7 +129,7 @@ export const WhyChooseSection = () => {
             </FadeIn>
 
             {/* Row 4: Four Small Features */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
               {items.slice(4, 8).map((item, index) => {
                 const icons = [Network, Shield, Sun, Wrench]
                 const Icon = icons[index]

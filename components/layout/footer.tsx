@@ -90,7 +90,7 @@ export const Footer = () => {
       <StarsBackground />
 
       <Container className="relative z-10 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Company Info */}
           <div className="space-y-6">
             <CompanyLogo className="text-white" />

@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight, CheckCircle } from "lucide-react"
 import { Container, Section, Grid } from "@/components/layout"
 import { H2 } from "@/components/ui/typography"
 import { Reveal } from "@/components/motion"
@@ -34,16 +34,16 @@ export const SolutionsSection = () => {
           </div>
         </div>
 
-        {/* Grid / Carousel Area */}
+        {/* Grid Area */}
         <div className="-mx-4 px-4 md:mx-0 md:px-0">
-          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide md:overflow-visible">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pb-8 md:pb-0">
             {categories.map((category, index) => (
               <Reveal 
                 key={category.id} 
                 direction="up" 
                 delay={0.2 + index * 0.1} 
                 duration={0.8}
-                className="min-w-[85%] md:min-w-0 snap-center"
+                className="min-w-0"
               >
                 <Link 
                   href={`/products/${category.slug}`} 
@@ -76,17 +76,17 @@ export const SolutionsSection = () => {
                       </div>
                       <div className="flex flex-wrap gap-2 mb-6">
                         {category.suitableFor.slice(0, 3).map((app) => (
-                          <div key={app} className="inline-flex items-center gap-1 bg-muted/50 px-2.5 py-1 rounded-md text-xs font-medium text-foreground/80">
-                            <Check className="w-3 h-3 text-primary" />
+                          <div key={app} className="inline-flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-md text-xs font-medium text-foreground/80">
+                            <CheckCircle className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
                             {app}
                           </div>
                         ))}
                       </div>
                     </div>
                     
-                    <div className="flex items-center text-sm font-semibold text-primary">
+                    <div className="flex items-center text-sm font-semibold text-primary underline underline-offset-4 lg:no-underline lg:group-hover:underline">
                       Explore Solution
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="w-4 h-4 ml-2 translate-x-1 lg:translate-x-0 lg:group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
                 </Link>
@@ -99,10 +99,10 @@ export const SolutionsSection = () => {
           <Reveal direction="up" delay={0.3} duration={0.8}>
             <Link 
               href="/products" 
-              className="group inline-flex items-center gap-2 text-foreground font-semibold hover:bg-primary hover:text-white whitespace-nowrap text-sm md:text-base border border-border/50 bg-white px-8 py-4 rounded-full shadow-sm hover:shadow-md"
+              className="group inline-flex items-center gap-2 text-white font-semibold bg-primary hover:bg-primary/90 whitespace-nowrap text-sm md:text-base border border-transparent px-8 py-4 rounded-full shadow-sm hover:shadow-md transition-colors"
             >
               Explore All Products
-              <ArrowRight className="w-4 h-4 text-primary group-hover:text-white" />
+              <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </Reveal>
         </div>

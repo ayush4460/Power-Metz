@@ -61,9 +61,8 @@ export const IntroSection = () => {
           </div>
         </div>
 
-        {/* Bottom: Metrics Row */}
         <Reveal direction="up" delay={0.5} duration={0.8} className="mt-16 lg:mt-32 pt-12 lg:pt-16 border-t border-border/40">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8 text-center lg:text-left">
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-8 md:gap-12 lg:gap-8 text-center lg:text-left">
             {metrics.map((metric, index) => (
               <div key={index} className="flex flex-col gap-1.5 md:gap-2">
                 <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
