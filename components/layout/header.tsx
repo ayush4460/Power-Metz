@@ -10,6 +10,7 @@ import { MobileNav } from "./mobile-nav"
 import { navigationConfig } from "@/config/navigation"
 import { Button } from "@/components/ui/button"
 import { Container } from "./index" // Assuming we can import layout components here
+import Link from "next/link"
 
 export const Header = () => {
   const pathname = usePathname()
@@ -46,21 +47,21 @@ export const Header = () => {
   return (
     <motion.header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[80] h-[var(--header-height)] flex items-center transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-80 h-(--header-height) flex items-center transition-all duration-500",
         scrollState === "transparent" ? (isHome ? "bg-transparent text-white" : "bg-transparent text-foreground") : "bg-background/80 backdrop-blur-md border-b border-border text-foreground shadow-sm",
       )}
     >
       {/* Skip Navigation */}
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[100] px-4 py-2 bg-primary text-white rounded">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-100 px-4 py-2 bg-primary text-white rounded">
         Skip to content
       </a>
 
       <Container className="relative flex items-center justify-between w-full h-full">
         {/* Left: Logo */}
         <div className="flex-1 flex justify-start z-10">
-          <a href="/" className="shrink-0 hover:opacity-80 transition-opacity">
+          <Link href="/" className="shrink-0 hover:opacity-80 transition-opacity">
             <CompanyLogo />
-          </a>
+          </Link>
         </div>
 
         {/* Center: Navigation */}

@@ -30,13 +30,13 @@ export const IndustriesSection = () => {
         </div>
 
         <Stagger staggerChildren={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px] md:auto-rows-[360px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-80 md:auto-rows-90">
             {/* Featured Tile */}
             {featured && (
               <FadeIn className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 group">
                 <Link href="/products" className="relative block w-full h-full rounded-3xl overflow-hidden shadow-2xl">
                   {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
                   
                   <ResponsiveImage
                     src={featured.image.src}
@@ -65,7 +65,7 @@ export const IndustriesSection = () => {
               <FadeIn key={item.id} className="col-span-1 row-span-1 group">
                 <Link href="/products" className="relative block w-full h-full rounded-3xl overflow-hidden shadow-xl">
                   {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
                   
                   <ResponsiveImage
                     src={item.image.src}

@@ -11,8 +11,8 @@ export const QualitySection = () => {
   return (
     <Section className="bg-[#F8F9FA] relative overflow-hidden py-16 md:py-24 lg:py-32">
       {/* Premium Background Layering */}
-      <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-slate-300/30 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-200 h-200 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-150 h-150 bg-slate-300/30 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
       
       <Container className="relative z-10">

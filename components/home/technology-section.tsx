@@ -29,7 +29,7 @@ export const TechnologySection = () => {
         </div>
 
         <Reveal direction="up" delay={0.2} duration={1}>
-          <div className="relative w-full max-w-6xl mx-auto aspect-[4/5] md:aspect-[16/9] lg:aspect-[2/1] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-full max-w-6xl mx-auto aspect-4/5 md:aspect-video lg:aspect-2/1 rounded-3xl overflow-hidden shadow-2xl">
             {/* Deep background glow for the battery */}
             <div className="absolute inset-0 bg-primary/10 blur-[150px] rounded-full translate-x-1/4 -translate-y-1/4 -z-10" />
             

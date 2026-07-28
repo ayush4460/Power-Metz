@@ -17,7 +17,7 @@ export const IntroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-24 lg:items-stretch items-center">
           
           {/* Left: Text Content */}
-          <div className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 w-full max-w-[620px] mx-auto lg:mx-0 py-4">
+          <div className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 w-full max-w-155 mx-auto lg:mx-0 py-4">
             <Reveal direction="up" duration={0.8}>
               <div className="text-primary text-sm font-semibold tracking-widest uppercase mb-4">
                 {label}
@@ -46,7 +46,7 @@ export const IntroSection = () => {
 
           {/* Right: Image */}
           <div className="relative flex flex-col items-center lg:items-start order-1 lg:order-2 w-full mt-8 lg:mt-0 h-full">
-            <Reveal direction="up" duration={1} delay={0.2} className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-auto lg:h-full rounded-2xl overflow-hidden bg-muted shadow-2xl">
+            <Reveal direction="up" duration={1} delay={0.2} className="relative w-full aspect-square md:aspect-4/3 lg:aspect-auto lg:h-full rounded-2xl overflow-hidden bg-muted shadow-2xl">
               <ResponsiveImage
                 src={image.src}
                 alt={image.alt}

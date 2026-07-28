@@ -11,7 +11,7 @@ export const WhyChooseSection = () => {
   return (
     <Section className="relative overflow-hidden bg-[#faf9f8]">
       {/* Background Glows and Noise */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[600px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-150 bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10" />
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none -z-10 bg-[url('/noise.png')] mix-blend-multiply" />
 
       <Container>
@@ -55,7 +55,7 @@ export const WhyChooseSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:w-1/2 h-[400px] lg:h-[500px] relative bg-slate-100 overflow-hidden">
+                <div className="w-full lg:w-1/2 h-100 lg:h-125 relative bg-slate-100 overflow-hidden">
                   <video 
                     src="/Lithium Technology.mp4" 
                     autoPlay 
@@ -104,7 +104,7 @@ export const WhyChooseSection = () => {
             {/* Row 3: Wide Feature (Built with Precision) */}
             <FadeIn>
               <div className="group relative w-full rounded-3xl bg-white/60 backdrop-blur-xl border border-black/5 overflow-hidden flex flex-col-reverse lg:flex-row transition-all duration-500 shadow-[0_8px_40px_rgb(0,0,0,0.08)] -translate-y-1 lg:shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:translate-y-0 lg:hover:shadow-[0_8px_40px_rgb(0,0,0,0.08)] lg:hover:-translate-y-1">
-                <div className="w-full lg:w-1/2 h-[350px] lg:h-[450px] relative bg-slate-100 overflow-hidden">
+                <div className="w-full lg:w-1/2 h-87.5 lg:h-112.5 relative bg-slate-100 overflow-hidden">
                   <video 
                     src="/Build with Precision.mp4" 
                     autoPlay 

@@ -21,7 +21,7 @@ export const Background = ({ gradient, radialGlow, noise, className }: Backgroun
       )}
       
       {radialGlow && (
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[50vh] bg-primary/10 rounded-full blur-[120px] opacity-80 mix-blend-screen" />
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-screen h-[50vh] bg-primary/10 rounded-full blur-[120px] opacity-80 mix-blend-screen" />
       )}
       
       {noise && (

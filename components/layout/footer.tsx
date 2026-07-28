@@ -1,10 +1,10 @@
 import React from "react";
-import { Container, Stack } from "./index";
+import { Container } from "./index";
 import { CompanyLogo, SocialIcons } from "@/components/shared/utilities";
 import { companyConfig } from "@/config/company";
 import { navigationConfig } from "@/config/navigation";
-import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg
@@ -72,6 +72,18 @@ export const Footer = () => {
                 <InstagramIcon className="w-5 h-5" />
               </a>
               <a
+                href={`tel:${companyConfig.phone.replace(/[^+\d]/g, "")}`}
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+              </a>
+              <a
+                href={`mailto:${companyConfig.email}`}
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+              <a
                 href="https://maps.app.goo.gl/BoqdPCddBx2t1rdq8"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -88,30 +100,30 @@ export const Footer = () => {
               Solutions
             </h4>
             <div className="space-y-4 flex flex-col">
-              <a
+              <Link
                 href="/products/residential-energy-storage"
                 className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors"
               >
                 Residential Energy Storage
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/rack-mounted-bess"
                 className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors"
               >
                 Rack Mounted BESS
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/ups-battery-systems"
                 className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors"
               >
                 UPS Battery Systems
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/containerized-bess"
                 className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors"
               >
                 Containerized BESS
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -122,13 +134,13 @@ export const Footer = () => {
             </h4>
             <div className="space-y-4 flex flex-col">
               {navigationConfig.mainNav.map((item) => (
-                <a
+                <Link
                   key={item.title}
                   href={item.href || "#"}
                   className="text-base md:text-lg text-muted-foreground hover:text-primary transition-colors"
                 >
                   {item.title}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -172,12 +184,12 @@ export const Footer = () => {
             © {new Date().getFullYear()} PowerMetz Energy. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
-            <a href="/privacy" className="hover:text-primary transition-colors">
+            <Link href="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy
-            </a>
-            <a href="/terms" className="hover:text-primary transition-colors">
+            </Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">
               Terms of Service
-            </a>
+            </Link>
             {/* Empty array placeholder for social links, to be configured later */}
             <SocialIcons links={[]} />
           </div>

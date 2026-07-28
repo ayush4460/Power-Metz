@@ -35,7 +35,7 @@ export const InsightsSection = () => {
                     {insight.title}
                   </h4>
                   
-                  <p className="text-muted-foreground text-base font-light leading-relaxed mb-10 flex-grow">
+                  <p className="text-muted-foreground text-base font-light leading-relaxed mb-10 grow">
                     {insight.excerpt}
                   </p>
 

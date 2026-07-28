@@ -58,7 +58,7 @@ export const ProductsSection = () => {
                 className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-xl transition-all duration-300 border border-black/5 h-full"
               >
                 {/* Image */}
-                <div className="relative w-full aspect-[4/3] bg-muted/20 p-8 flex items-center justify-center">
+                <div className="relative w-full aspect-4/3 bg-muted/20 p-8 flex items-center justify-center">
                   <ResponsiveImage
                     src={product.image.src}
                     alt={product.image.alt}

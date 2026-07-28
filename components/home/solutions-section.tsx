@@ -50,7 +50,7 @@ export const SolutionsSection = () => {
                   className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-black/5 h-full relative"
                 >
                   {/* Image */}
-                  <div className="relative w-full aspect-[4/3] bg-muted/10 overflow-hidden">
+                  <div className="relative w-full aspect-4/3 bg-muted/10 overflow-hidden">
                     <ResponsiveImage
                       src={category.image}
                       alt={category.name}

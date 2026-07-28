@@ -29,7 +29,7 @@ export const ProjectsSection = () => {
             {items.map((project) => (
               <FadeIn key={project.id} className="group">
                 <Link href={project.link} className="block w-full">
-                  <div className="relative w-full aspect-[16/9] md:aspect-[3/2] rounded-3xl overflow-hidden mb-8 bg-surface">
+                  <div className="relative w-full aspect-video md:aspect-3/2 rounded-3xl overflow-hidden mb-8 bg-surface">
                     <ResponsiveImage
                       src={project.image.src}
                       alt={project.image.alt}
