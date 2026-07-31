@@ -45,9 +45,16 @@ export default function BlogClient() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   useEffect(() => {
-    fetch('/api/admin/categories')
+    fetch('/api/categories')
       .then(res => res.json())
-      .then(data => setCategories(data))
+      .then(data => {
+        if (Array.isArray(data)) {
+          setCategories(data)
+        } else {
+          console.error('Failed to fetch categories:', data)
+          setCategories([])
+        }
+      })
   }, [])
 
   // Debounce search
