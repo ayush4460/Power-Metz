@@ -33,13 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { PageTransition } from "@/components/shared/global/page-transition";
-import { ScrollProgress } from "@/components/shared/global/scroll-progress";
-import { BackToTop } from "@/components/shared/global/back-to-top";
 import { Background } from "@/components/shared/global/background";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { TrustStrip } from "@/components/layout/trust-strip";
 
 export default function RootLayout({
   children,
@@ -48,19 +42,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth overflow-x-hidden">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden flex flex-col min-h-screen`}>
         <Providers>
           <Background noise />
-          <ScrollProgress />
-          <Header />
-          <main id="main-content" className="flex-1 flex flex-col">
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </main>
-          <TrustStrip />
-          <Footer />
-          <BackToTop />
+          {children}
         </Providers>
       </body>
     </html>

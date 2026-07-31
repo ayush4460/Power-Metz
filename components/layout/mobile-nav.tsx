@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { createPortal } from "react-dom"
+import Link from "next/link"
 import { X, Menu, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SocialIcons, CompanyLogo } from "@/components/shared/utilities"
-import { siteConfig } from "@/config/site"
+
 import { NavigationItem } from "./navigation-menu"
 
 const MobileNavGroup = ({ item }: { item: NavigationItem }) => {
@@ -38,9 +39,9 @@ const MobileNavGroup = ({ item }: { item: NavigationItem }) => {
           >
             <div className="pl-4 flex flex-col gap-4 border-l-2 border-primary/30 mt-4 py-2">
               {item.items.map((subItem) => (
-                <a key={subItem.title} href={subItem.href || "#"} className="text-lg text-muted-foreground hover:text-primary transition-colors">
+                <Link key={subItem.title} href={subItem.href || "#"} className="text-lg text-muted-foreground hover:text-primary transition-colors">
                   {subItem.title}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -53,11 +54,13 @@ const MobileNavGroup = ({ item }: { item: NavigationItem }) => {
 export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+  const [prevPathname, setPrevPathname] = useState(pathname)
 
   // Close on route change
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setIsOpen(false)
-  }, [pathname])
+  }
 
   // Body scroll lock
   useEffect(() => {
@@ -95,7 +98,7 @@ export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-xl"
+              className="fixed inset-0 z-100 bg-background/80 backdrop-blur-xl"
             />
             
             <motion.div
@@ -103,7 +106,7 @@ export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 z-[100] w-full sm:w-96 bg-surface shadow-2xl border-l border-border flex flex-col pt-safe-top pb-safe-bottom"
+              className="fixed inset-y-0 right-0 z-100 w-full sm:w-96 bg-surface shadow-2xl border-l border-border flex flex-col pt-safe-top pb-safe-bottom"
             >
               <div className="flex items-center justify-between p-4 border-b border-border">
                 <CompanyLogo />
@@ -122,9 +125,9 @@ export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
                       transition={{ delay: 0.1 + i * 0.05 }}
                     >
                       {item.href ? (
-                        <a href={item.href} className="text-2xl font-headings font-medium text-foreground hover:text-primary transition-colors block">
+                        <Link href={item.href} className="text-2xl font-headings font-medium text-foreground hover:text-primary transition-colors block">
                           {item.title}
-                        </a>
+                        </Link>
                       ) : (
                         <MobileNavGroup item={item} />
                       )}

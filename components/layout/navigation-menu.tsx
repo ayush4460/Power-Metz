@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/cn"
+import Link from "next/link"
 
 export interface NavigationItem {
   title: string
@@ -24,7 +25,7 @@ export const NavigationMenu = ({ items, className, variant = "default" }: { item
           onMouseEnter={() => setHoveredIndex(index)}
         >
           {item.href ? (
-            <a 
+            <Link 
               href={item.href}
               className={cn(
                 "px-4 py-2 text-base font-medium transition-colors relative z-10 block",
@@ -35,14 +36,14 @@ export const NavigationMenu = ({ items, className, variant = "default" }: { item
               {hoveredIndex === index && (
                 <motion.div
                   layoutId="nav-hover"
-                  className="absolute bottom-1 left-4 right-4 h-[2px] bg-primary"
+                  className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-            </a>
+            </Link>
           ) : (
             <button className={cn(
               "flex items-center gap-1 px-4 py-2 text-base font-medium transition-colors relative z-10",
@@ -53,7 +54,7 @@ export const NavigationMenu = ({ items, className, variant = "default" }: { item
               {hoveredIndex === index && (
                 <motion.div
                   layoutId="nav-hover"
-                  className="absolute bottom-1 left-4 right-10 h-[2px] bg-primary"
+                  className="absolute bottom-1 left-4 right-10 h-0.5 bg-primary"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
@@ -73,16 +74,16 @@ export const NavigationMenu = ({ items, className, variant = "default" }: { item
                 >
                   <div className="flex flex-col gap-1">
                     {item.items.map((subItem) => (
-                      <a 
+                      <Link 
                         key={subItem.title} 
                         href={subItem.href || "#"} 
-                        className="px-4 py-3 rounded-md hover:bg-primary group cursor-pointer transition-colors"
+                        className="px-4 py-3 rounded-md hover:bg-primary group cursor-pointer transition-colors block"
                       >
                         <div className="text-sm font-medium text-foreground group-hover:text-white transition-colors">{subItem.title}</div>
                         {subItem.description && (
                           <div className="text-xs text-muted-foreground mt-0.5 group-hover:text-white/90 transition-colors">{subItem.description}</div>
                         )}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </motion.div>

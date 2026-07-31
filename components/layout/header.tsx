@@ -15,6 +15,8 @@ import Link from "next/link"
 export const Header = () => {
   const pathname = usePathname()
   const isHome = pathname === "/"
+  const isBlogPost = pathname.startsWith("/blog")
+  const isTransparentRoute = isHome || isBlogPost
   const { scrollY } = useScroll()
   const [scrollState, setScrollState] = useState<"transparent" | "glass" | "solid">("transparent")
 
@@ -48,7 +50,7 @@ export const Header = () => {
     <motion.header
       className={cn(
         "fixed top-0 left-0 right-0 z-80 h-(--header-height) flex items-center transition-all duration-500",
-        scrollState === "transparent" ? (isHome ? "bg-transparent text-white" : "bg-transparent text-foreground") : "bg-background/80 backdrop-blur-md border-b border-border text-foreground shadow-sm",
+        scrollState === "transparent" ? (isTransparentRoute ? "bg-transparent text-white" : "bg-transparent text-foreground") : "bg-background/80 backdrop-blur-md border-b border-border text-foreground shadow-sm",
       )}
     >
       {/* Skip Navigation */}
@@ -58,25 +60,25 @@ export const Header = () => {
 
       <Container className="relative flex items-center justify-between w-full h-full">
         {/* Left: Logo */}
-        <div className="flex-1 flex justify-start z-10">
-          <Link href="/" className="shrink-0 hover:opacity-80 transition-opacity">
+        <div className="flex-1 flex justify-start z-10 pointer-events-none">
+          <Link href="/" className="shrink-0 hover:opacity-80 transition-opacity pointer-events-auto">
             <CompanyLogo />
           </Link>
         </div>
 
         {/* Center: Navigation */}
-        <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex justify-center z-10">
-          <NavigationMenu items={navItems} variant={scrollState === "transparent" && isHome ? "transparent" : "default"} />
+        <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex justify-center z-20 w-auto">
+          <NavigationMenu items={navItems} variant={scrollState === "transparent" && isTransparentRoute ? "transparent" : "default"} />
         </div>
         
         {/* Right: CTA & Mobile Nav */}
-        <div className="flex-1 flex items-center justify-end gap-2 z-10">
-          <div className="hidden lg:block">
+        <div className="flex-1 flex items-center justify-end gap-2 z-10 pointer-events-none">
+          <div className="hidden lg:block pointer-events-auto">
             <Button className="bg-primary text-white hover:bg-primary/90 border-0 text-base px-6">
               Get a Quote
             </Button>
           </div>
-          <div className="lg:hidden">
+          <div className="lg:hidden pointer-events-auto">
             <MobileNav items={navItems} />
           </div>
         </div>

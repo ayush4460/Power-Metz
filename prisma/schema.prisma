@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// The core Post model optimized for fast reads on the public site
+model Post {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique // Indexed automatically for fast lookups
+  excerpt         String?
+  content         String   // HTML string from TipTap
+  coverImage      String?
+  
+  // Dedicated SEO Fields
+  seoTitle        String?
+  seoDescription  String?
+  seoKeywords     String?
+
+  published       Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  publishedAt     DateTime?
+
+  // Relations
+  categories      Category[] // A post can have multiple categories
+
+  @@index([published, publishedAt(sort: Desc)]) // Compound index for extremely fast sorting of published blogs
+}
+
+// Categories for Blog Posts
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  posts     Post[]
+}
+
+// Audit Log to track all Admin actions (Zero Downtime Tracking)
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String   // e.g., "CREATE_POST", "UPDATE_POST", "PUBLISH_POST", "CREATE_CATEGORY"
+  entityId  String   // The ID of the post/category that was changed
+  details   String?  // JSON string of changes (optional)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([entityId])
+}

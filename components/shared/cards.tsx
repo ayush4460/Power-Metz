@@ -44,6 +44,7 @@ export const ProjectCard = ({ imageSrc, title, category, className }: { imageSrc
   <GenericCard className={cn("overflow-hidden p-0 group cursor-pointer hover:border-primary/50", className)}>
     <div className="aspect-video w-full bg-muted relative overflow-hidden">
       {/* Placeholder for Image */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       {imageSrc && <img src={imageSrc} alt={title} className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" />}
     </div>
     <div className="p-6">
@@ -77,7 +78,7 @@ export const BlogCard = ({ date, title, excerpt, className }: { date: string, ti
 
 export const TestimonialCard = ({ quote, author, role, className }: { quote: string, author: string, role: string, className?: string }) => (
   <GenericCard className={cn("bg-muted/30 border-transparent", className)}>
-    <Paragraph className="italic text-foreground mb-6">"{quote}"</Paragraph>
+    <p className="text-muted-foreground italic mb-6 relative z-10">&quot;{quote}&quot;</p>
     <div className="flex items-center gap-3">
       <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
         {author.charAt(0)}
@@ -102,6 +103,7 @@ export const CertificateCard = ({ title, organization, year, className }: { titl
 
 export const GalleryCard = ({ imageSrc, alt, className }: { imageSrc: string, alt: string, className?: string }) => (
   <div className={cn("relative overflow-hidden rounded-xl group bg-muted cursor-pointer", className)}>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
     <img src={imageSrc} alt={alt} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" />
     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
       <p className="text-white font-medium">{alt}</p>
