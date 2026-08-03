@@ -81,7 +81,7 @@ export default function CategoriesPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="w-full space-y-8">
       <div>
         <H3>Categories</H3>
         <Paragraph className="text-muted-foreground mt-1">Manage blog categories</Paragraph>

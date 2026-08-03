@@ -35,6 +35,7 @@ export type PostMinAggregateOutputType = {
   seoDescription: string | null
   seoKeywords: string | null
   published: boolean | null
+  isDeleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   publishedAt: Date | null
@@ -51,6 +52,7 @@ export type PostMaxAggregateOutputType = {
   seoDescription: string | null
   seoKeywords: string | null
   published: boolean | null
+  isDeleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   publishedAt: Date | null
@@ -67,6 +69,7 @@ export type PostCountAggregateOutputType = {
   seoDescription: number
   seoKeywords: number
   published: number
+  isDeleted: number
   createdAt: number
   updatedAt: number
   publishedAt: number
@@ -85,6 +88,7 @@ export type PostMinAggregateInputType = {
   seoDescription?: true
   seoKeywords?: true
   published?: true
+  isDeleted?: true
   createdAt?: true
   updatedAt?: true
   publishedAt?: true
@@ -101,6 +105,7 @@ export type PostMaxAggregateInputType = {
   seoDescription?: true
   seoKeywords?: true
   published?: true
+  isDeleted?: true
   createdAt?: true
   updatedAt?: true
   publishedAt?: true
@@ -117,6 +122,7 @@ export type PostCountAggregateInputType = {
   seoDescription?: true
   seoKeywords?: true
   published?: true
+  isDeleted?: true
   createdAt?: true
   updatedAt?: true
   publishedAt?: true
@@ -206,6 +212,7 @@ export type PostGroupByOutputType = {
   seoDescription: string | null
   seoKeywords: string | null
   published: boolean
+  isDeleted: boolean
   createdAt: Date
   updatedAt: Date
   publishedAt: Date | null
@@ -243,6 +250,7 @@ export type PostWhereInput = {
   seoDescription?: Prisma.StringNullableFilter<"Post"> | string | null
   seoKeywords?: Prisma.StringNullableFilter<"Post"> | string | null
   published?: Prisma.BoolFilter<"Post"> | boolean
+  isDeleted?: Prisma.BoolFilter<"Post"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Post"> | Date | string | null
@@ -260,6 +268,7 @@ export type PostOrderByWithRelationInput = {
   seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   seoKeywords?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -280,6 +289,7 @@ export type PostWhereUniqueInput = Prisma.AtLeast<{
   seoDescription?: Prisma.StringNullableFilter<"Post"> | string | null
   seoKeywords?: Prisma.StringNullableFilter<"Post"> | string | null
   published?: Prisma.BoolFilter<"Post"> | boolean
+  isDeleted?: Prisma.BoolFilter<"Post"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Post"> | Date | string | null
@@ -297,6 +307,7 @@ export type PostOrderByWithAggregationInput = {
   seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   seoKeywords?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -319,6 +330,7 @@ export type PostScalarWhereWithAggregatesInput = {
   seoDescription?: Prisma.StringNullableWithAggregatesFilter<"Post"> | string | null
   seoKeywords?: Prisma.StringNullableWithAggregatesFilter<"Post"> | string | null
   published?: Prisma.BoolWithAggregatesFilter<"Post"> | boolean
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"Post"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Post"> | Date | string
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Post"> | Date | string | null
@@ -335,6 +347,7 @@ export type PostCreateInput = {
   seoDescription?: string | null
   seoKeywords?: string | null
   published?: boolean
+  isDeleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   publishedAt?: Date | string | null
@@ -352,6 +365,7 @@ export type PostUncheckedCreateInput = {
   seoDescription?: string | null
   seoKeywords?: string | null
   published?: boolean
+  isDeleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   publishedAt?: Date | string | null
@@ -369,6 +383,7 @@ export type PostUpdateInput = {
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoKeywords?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -386,6 +401,7 @@ export type PostUncheckedUpdateInput = {
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoKeywords?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -403,6 +419,7 @@ export type PostCreateManyInput = {
   seoDescription?: string | null
   seoKeywords?: string | null
   published?: boolean
+  isDeleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   publishedAt?: Date | string | null
@@ -419,6 +436,7 @@ export type PostUpdateManyMutationInput = {
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoKeywords?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -435,6 +453,7 @@ export type PostUncheckedUpdateManyInput = {
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoKeywords?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -451,6 +470,7 @@ export type PostCountOrderByAggregateInput = {
   seoDescription?: Prisma.SortOrder
   seoKeywords?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
@@ -467,6 +487,7 @@ export type PostMaxOrderByAggregateInput = {
   seoDescription?: Prisma.SortOrder
   seoKeywords?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
@@ -483,6 +504,7 @@ export type PostMinOrderByAggregateInput = {
   seoDescription?: Prisma.SortOrder
   seoKeywords?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
@@ -567,6 +589,7 @@ export type PostCreateWithoutCategoriesInput = {
   seoDescription?: string | null
   seoKeywords?: string | null
   published?: boolean
+  isDeleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   publishedAt?: Date | string | null
@@ -583,6 +606,7 @@ export type PostUncheckedCreateWithoutCategoriesInput = {
   seoDescription?: string | null
   seoKeywords?: string | null
   published?: boolean
+  isDeleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   publishedAt?: Date | string | null
@@ -623,6 +647,7 @@ export type PostScalarWhereInput = {
   seoDescription?: Prisma.StringNullableFilter<"Post"> | string | null
   seoKeywords?: Prisma.StringNullableFilter<"Post"> | string | null
   published?: Prisma.BoolFilter<"Post"> | boolean
+  isDeleted?: Prisma.BoolFilter<"Post"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Post"> | Date | string | null
@@ -639,6 +664,7 @@ export type PostUpdateWithoutCategoriesInput = {
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoKeywords?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -655,6 +681,7 @@ export type PostUncheckedUpdateWithoutCategoriesInput = {
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoKeywords?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -671,6 +698,7 @@ export type PostUncheckedUpdateManyWithoutCategoriesInput = {
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoKeywords?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -718,6 +746,7 @@ export type PostSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   seoDescription?: boolean
   seoKeywords?: boolean
   published?: boolean
+  isDeleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   publishedAt?: boolean
@@ -736,6 +765,7 @@ export type PostSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   seoDescription?: boolean
   seoKeywords?: boolean
   published?: boolean
+  isDeleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   publishedAt?: boolean
@@ -752,6 +782,7 @@ export type PostSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   seoDescription?: boolean
   seoKeywords?: boolean
   published?: boolean
+  isDeleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   publishedAt?: boolean
@@ -768,12 +799,13 @@ export type PostSelectScalar = {
   seoDescription?: boolean
   seoKeywords?: boolean
   published?: boolean
+  isDeleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   publishedAt?: boolean
 }
 
-export type PostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "content" | "coverImage" | "seoTitle" | "seoDescription" | "seoKeywords" | "published" | "createdAt" | "updatedAt" | "publishedAt", ExtArgs["result"]["post"]>
+export type PostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "content" | "coverImage" | "seoTitle" | "seoDescription" | "seoKeywords" | "published" | "isDeleted" | "createdAt" | "updatedAt" | "publishedAt", ExtArgs["result"]["post"]>
 export type PostInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   categories?: boolean | Prisma.Post$categoriesArgs<ExtArgs>
   _count?: boolean | Prisma.PostCountOutputTypeDefaultArgs<ExtArgs>
@@ -797,6 +829,7 @@ export type $PostPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     seoDescription: string | null
     seoKeywords: string | null
     published: boolean
+    isDeleted: boolean
     createdAt: Date
     updatedAt: Date
     publishedAt: Date | null
@@ -1234,6 +1267,7 @@ export interface PostFieldRefs {
   readonly seoDescription: Prisma.FieldRef<"Post", 'String'>
   readonly seoKeywords: Prisma.FieldRef<"Post", 'String'>
   readonly published: Prisma.FieldRef<"Post", 'Boolean'>
+  readonly isDeleted: Prisma.FieldRef<"Post", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Post", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Post", 'DateTime'>
   readonly publishedAt: Prisma.FieldRef<"Post", 'DateTime'>

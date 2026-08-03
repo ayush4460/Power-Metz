@@ -22,6 +22,7 @@ model Post {
   seoKeywords     String?
 
   published       Boolean  @default(false)
+  isDeleted       Boolean  @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   publishedAt     DateTime?

@@ -83,6 +83,7 @@ export const PostScalarFieldEnum = {
   seoDescription: 'seoDescription',
   seoKeywords: 'seoKeywords',
   published: 'published',
+  isDeleted: 'isDeleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   publishedAt: 'publishedAt'

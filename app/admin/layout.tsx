@@ -23,8 +23,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-64 bg-surface border-r border-border flex-col hidden md:flex">
         <div className="p-6 border-b border-border">
           <Link href="/admin/blogs" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center shrink-0">
+              <img src="/images/Power_Metz_Logo.png" alt="PowerMetz" className="h-full w-full object-left object-cover" />
+            </div>
             <span className="text-xl font-bold text-foreground">PowerMetz</span>
-            <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-md font-semibold">ADMIN</span>
           </Link>
         </div>
         
