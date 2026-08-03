@@ -20,11 +20,11 @@ export default function AboutPage() {
       <HeroSection />
       <CompanySnapshot />
       <CompanyOverview />
-      <CertificationsSection />
       <WhyChoose />
       <OurJourneyVision />
       <FounderSection />
       <MissionVision />
+      <CertificationsSection />
       <CTASection />
     </main>
   );

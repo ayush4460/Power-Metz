@@ -3,68 +3,58 @@
 import { motion } from "framer-motion";
 import { Container, Section } from "@/components/layout";
 import { Reveal } from "@/components/motion";
-import { certifications } from "@/content/about";
-import { ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
-// Descriptions for each cert to add context and visual weight
-const certDetails: Record<string, string> = {
-  "ISO 9001": "Quality Management",
-  "ISO 14001": "Environmental Management",
-  "UL": "Safety Certification",
-  "IEC": "International Electrotechnical",
-  "CE": "European Conformity",
-  "RoHS": "Hazardous Substances",
-  "UN38.3": "Transport Safety",
-};
+const certLogos = [
+  { src: "/quality.png", alt: "Quality", name: "Quality", imageClass: "p-4 group-hover:scale-105" },
+  { src: "/trust.png", alt: "Trust", name: "Trust", imageClass: "p-2 scale-125 group-hover:scale-[1.3]" },
+  { src: "/ISO.png", alt: "ISO", name: "ISO Certified", imageClass: "p-4 group-hover:scale-105" },
+  { src: "/BIS.png", alt: "BIS", name: "BIS Certified", imageClass: "p-4 group-hover:scale-105" },
+];
 
 export const CertificationsSection = () => {
   return (
     <Section className="py-12 lg:py-16 bg-background overflow-hidden">
       <Container>
 
-        {/* Section header — same style as rest of page */}
+        {/* Section header */}
         <Reveal direction="up" duration={0.8}>
           <div className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
             <div className="text-primary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">
-              Quality & Trust
+              Certifications
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4 font-headings leading-tight">
-              Built to Global Standards
+              Quality & Trust
             </h2>
             <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light">
-              Every PowerMetz product is engineered and tested to meet the most rigorous international safety, quality, and environmental benchmarks.
+              We are proudly certified by international and national standards, ensuring the highest quality, safety, and reliability in every product.
             </p>
           </div>
         </Reveal>
 
-        {/* Certification cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {certifications.map((cert, index) => (
+        {/* Certification logos */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-start justify-items-center max-w-5xl mx-auto">
+          {certLogos.map((logo, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: index * 0.07 }}
-              className="group relative bg-background border border-border/70 hover:border-primary/40 rounded-2xl p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex flex-col items-center gap-4 group"
             >
-              {/* Subtle orange tint on hover */}
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.03] transition-colors duration-300 rounded-2xl pointer-events-none" />
-
-              {/* Icon */}
-              <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={2.5} />
+              <div className="relative w-32 h-32 md:w-44 md:h-44 flex items-center justify-center bg-white rounded-2xl shadow-sm border border-border/50 group-hover:shadow-md group-hover:border-primary/30 transition-all duration-300 overflow-hidden">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  fill
+                  sizes="(max-width: 768px) 128px, 176px"
+                  className={`object-contain transition-transform duration-300 ${logo.imageClass}`}
+                />
               </div>
-
-              {/* Name + Description */}
-              <div>
-                <p className="text-xl md:text-2xl font-bold text-foreground tracking-tight mb-1">
-                  {cert}
-                </p>
-                <p className="text-sm text-muted-foreground font-medium leading-snug">
-                  {certDetails[cert] ?? "International Standard"}
-                </p>
-              </div>
+              <h3 className="text-sm md:text-base font-semibold text-foreground text-center">
+                {logo.name}
+              </h3>
             </motion.div>
           ))}
         </div>
@@ -73,4 +63,3 @@ export const CertificationsSection = () => {
     </Section>
   );
 };
-
