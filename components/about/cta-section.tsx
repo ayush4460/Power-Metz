@@ -35,7 +35,7 @@ export const CTASection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="tel:+918511000944" className="w-full sm:w-auto">
+            <a href="tel:+917041647216" className="w-full sm:w-auto">
               <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg font-semibold rounded-full bg-primary hover:bg-primary/90 text-white transition-all group">
                 Talk to Experts
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

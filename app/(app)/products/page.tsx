@@ -67,13 +67,14 @@ export default function ProductsPage() {
       {/* Categories Grid */}
       <Section className="bg-[#F6F5F2] py-8 lg:py-12">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
             {categories.map((category, index) => (
               <Reveal 
                 key={category.id} 
                 direction="up" 
                 delay={index * 0.1} 
                 duration={0.8}
+                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)] flex flex-col"
               >
                 <Link 
                   href={`/products/${category.slug}`} 

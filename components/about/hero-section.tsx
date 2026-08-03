@@ -60,7 +60,7 @@ export const HeroSection = () => {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </Link>
-              <a href="tel:+918511000944">
+              <a href="tel:+917041647216">
                 <Button size="lg" variant="outline" className="h-14 px-8 text-base md:text-lg rounded-full border-border text-foreground hover:bg-muted transition-colors duration-300 w-fit flex items-center gap-2">
                   <Phone className="w-5 h-5" /> Contact Our Team
                 </Button>

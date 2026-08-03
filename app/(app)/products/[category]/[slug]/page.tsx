@@ -48,6 +48,16 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
+  const pdfMap: Record<string, string> = {
+    "bess": "/container%20solution.pdf",
+    "ess": "/ess%20solution.pdf",
+    "ev-traction": "/EV%20%26%20TRACTION%20application%20solution.pdf",
+    "ups-data-center": "/ups%20tds.pdf",
+    "oems-customised": "/oems%20customization.pdf",
+  };
+  const pdfUrl = pdfMap[category.id] || "/powermetz%20products.pdf";
+  const pdfFilename = decodeURIComponent(pdfUrl.split('/').pop() || "datasheet.pdf");
+
   const specs = productSpecifications[product.id] || [];
   const relatedProducts = products
     .filter((p) => p.categoryId === category.id && p.id !== product.id)
@@ -168,7 +178,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="tel:+918511000944" className="w-full sm:flex-1">
+                <a href="tel:+917041647216" className="w-full sm:flex-1">
                   <Button
                     size="lg"
                     className="w-full text-base font-semibold"
@@ -177,8 +187,8 @@ export default async function ProductDetailPage({ params }: Props) {
                   </Button>
                 </a>
                 <a
-                  href="/powermetz%20products.pdf"
-                  download="powermetz products.pdf"
+                  href={pdfUrl}
+                  download={pdfFilename}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:flex-1"
@@ -303,7 +313,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     Our engineering team can help configure the perfect energy
                     storage system for your specific requirements.
                   </p>
-                  <a href="tel:+918511000944" className="w-full sm:w-auto inline-block">
+                  <a href="tel:+917041647216" className="w-full sm:w-auto inline-block">
                     <Button
                       variant="secondary"
                       size="lg"

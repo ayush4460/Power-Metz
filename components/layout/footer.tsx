@@ -147,28 +147,34 @@ export const Footer = () => {
             </h4>
             <div className="space-y-4 flex flex-col">
               <Link
-                href="/products/residential-energy-storage"
+                href="/products/bess"
                 className="text-base md:text-lg text-white/80 hover:text-primary transition-colors"
               >
-                Residential Energy Storage
+                BESS
               </Link>
               <Link
-                href="/products/rack-mounted-bess"
+                href="/products/ess"
                 className="text-base md:text-lg text-white/80 hover:text-primary transition-colors"
               >
-                Rack Mounted BESS
+                ESS
               </Link>
               <Link
-                href="/products/ups-battery-systems"
+                href="/products/ups-data-center"
                 className="text-base md:text-lg text-white/80 hover:text-primary transition-colors"
               >
-                UPS Battery Systems
+                UPS / DATA CENTER BATTERY
               </Link>
               <Link
-                href="/products/containerized-bess"
+                href="/products/oems-customised"
                 className="text-base md:text-lg text-white/80 hover:text-primary transition-colors"
               >
-                Containerized BESS
+                OEMS CUSTOMISED
+              </Link>
+              <Link
+                href="/products/ev-traction"
+                className="text-base md:text-lg text-white/80 hover:text-primary transition-colors"
+              >
+                EV / TRACTION BATTERY SOLUTION
               </Link>
             </div>
           </div>

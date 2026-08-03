@@ -36,14 +36,14 @@ export const SolutionsSection = () => {
 
         {/* Grid Area */}
         <div className="-mx-4 px-4 md:mx-0 md:px-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pb-8 md:pb-0">
+          <div className="flex flex-wrap justify-center gap-6 pb-8 md:pb-0">
             {categories.map((category, index) => (
               <Reveal 
                 key={category.id} 
                 direction="up" 
                 delay={0.2 + index * 0.1} 
                 duration={0.8}
-                className="min-w-0"
+                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-17px)] min-w-0 flex flex-col"
               >
                 <Link 
                   href={`/products/${category.slug}`} 

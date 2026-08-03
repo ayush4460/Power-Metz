@@ -36,10 +36,11 @@ export const Header = () => {
       return {
         title: "Solutions",
         items: [
-          { title: "Residential Energy Storage", href: "/products/residential-energy-storage", description: "Smart home backup" },
-          { title: "Rack Mounted BESS", href: "/products/rack-mounted-bess", description: "Scalable commercial storage" },
-          { title: "UPS Battery Systems", href: "/products/ups-battery-systems", description: "High voltage critical power" },
-          { title: "Containerized BESS", href: "/products/containerized-bess", description: "Utility-scale turnkey systems" },
+          { title: "BESS", href: "/products/bess", description: "Utility-scale BESS" },
+          { title: "ESS", href: "/products/ess", description: "Commercial Energy Storage" },
+          { title: "UPS / DATA CENTER BATTERY", href: "/products/ups-data-center", description: "Critical Power Systems" },
+          { title: "OEMS CUSTOMISED", href: "/products/oems-customised", description: "Tailored Energy Solutions" },
+          { title: "EV / TRACTION BATTERY SOLUTION", href: "/products/ev-traction", description: "Lithium packs for mobility" },
         ]
       }
     }

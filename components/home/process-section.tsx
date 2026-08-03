@@ -32,13 +32,13 @@ export const ProcessSection = () => {
             const isImageRight = index % 2 === 0
 
             return (
-              <div key={step.id} className="relative flex flex-col md:flex-row gap-10 md:gap-16 items-center group">
+              <div key={step.id} className="relative flex flex-col lg:flex-row gap-10 lg:gap-16 items-center group">
                 {/* Content */}
-                <div className={`w-full md:w-[45%] ${isImageRight ? 'md:order-1' : 'md:order-2'}`}>
+                <div className={`w-full lg:w-[45%] ${isImageRight ? 'lg:order-1' : 'lg:order-2'}`}>
                   <Reveal direction="up" duration={0.8}>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8">
+                    <div className="flex flex-col sm:flex-row sm:items-center lg:items-start xl:items-center gap-4 sm:gap-6 mb-8">
                       <div className="flex items-center gap-4">
-                        <span className="text-4xl md:text-5xl font-bold text-primary lg:text-muted-foreground lg:group-hover:text-primary transition-colors duration-500">{step.id}</span>
+                        <span className="text-4xl lg:text-5xl font-bold text-primary lg:text-muted-foreground lg:group-hover:text-primary transition-colors duration-500">{step.id}</span>
                         <div className="h-px bg-border w-12 sm:w-16 relative overflow-hidden">
                           <motion.div
                             initial={{ scaleX: 0 }}
@@ -49,7 +49,7 @@ export const ProcessSection = () => {
                           />
                         </div>
                       </div>
-                      <H3 className="text-3xl md:text-4xl tracking-tight mb-0">{step.title}</H3>
+                      <H3 className="text-3xl lg:text-4xl tracking-tight mb-0">{step.title}</H3>
                     </div>
                     <Paragraph className="text-muted-foreground text-lg leading-relaxed mb-8">
                       {step.description}
@@ -66,7 +66,7 @@ export const ProcessSection = () => {
                 </div>
 
                 {/* Image */}
-                <div className={`w-full md:w-[55%] ${isImageRight ? 'md:order-2' : 'md:order-1'}`}>
+                <div className={`w-full lg:w-[55%] ${isImageRight ? 'lg:order-2' : 'lg:order-1'}`}>
                   <Reveal direction="up" duration={0.8} delay={0.1}>
                     <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl">
                       <ResponsiveImage
