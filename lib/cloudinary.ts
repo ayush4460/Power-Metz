@@ -8,3 +8,29 @@ cloudinary.config({
 });
 
 export { cloudinary };
+
+export async function uploadResumeToCloudinary(fileBuffer: Buffer, fileName: string, jobName: string): Promise<string> {
+  // Sanitize job name for folder
+  const folderName = jobName.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+  
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        folder: `careers/${folderName}`,
+        public_id: fileName,
+        resource_type: "auto", // Auto detects if it's pdf/doc
+      },
+      (error, result) => {
+        if (error) {
+          reject(error);
+        } else if (result) {
+          resolve(result.secure_url);
+        } else {
+          reject(new Error("Upload failed without error message."));
+        }
+      }
+    );
+
+    uploadStream.end(fileBuffer);
+  });
+}

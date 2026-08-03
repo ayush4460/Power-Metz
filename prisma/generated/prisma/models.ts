@@ -11,4 +11,8 @@
 export type * from './models/Post'
 export type * from './models/Category'
 export type * from './models/AuditLog'
+export type * from './models/JobOpening'
+export type * from './models/VendorSubmission'
+export type * from './models/CustomerSubmission'
+export type * from './models/JobApplication'
 export type * from './commonInputTypes'

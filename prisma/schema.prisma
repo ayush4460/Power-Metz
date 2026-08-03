@@ -52,3 +52,50 @@ model AuditLog {
   @@index([createdAt(sort: Desc)])
   @@index([entityId])
 }
+
+model JobOpening {
+  id          String   @id @default(cuid())
+  title       String
+  department  String
+  location    String
+  type        String   // e.g., Full-time, Part-time
+  description String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  applications JobApplication[]
+}
+
+model VendorSubmission {
+  id              String   @id @default(cuid())
+  companyName     String
+  contactPerson   String
+  email           String
+  phone           String
+  productCategory String
+  message         String?
+  createdAt       DateTime @default(now())
+}
+
+model CustomerSubmission {
+  id              String   @id @default(cuid())
+  name            String
+  email           String
+  phone           String
+  location        String
+  productInterest String
+  createdAt       DateTime @default(now())
+}
+
+model JobApplication {
+  id          String   @id @default(cuid())
+  jobId       String
+  name        String
+  email       String
+  resumeUrl   String
+  coverLetter String?
+  createdAt   DateTime @default(now())
+
+  job         JobOpening @relation(fields: [jobId], references: [id], onDelete: Cascade)
+}

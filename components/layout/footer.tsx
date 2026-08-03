@@ -186,13 +186,38 @@ export const Footer = () => {
             </h4>
             <div className="space-y-4 flex flex-col">
               {navigationConfig.mainNav.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href || "#"}
-                  className="text-base md:text-lg text-white/80 hover:text-primary transition-colors"
-                >
-                  {item.title}
-                </Link>
+                <div key={item.title} className="flex flex-col gap-2">
+                  {item.title === "Join Us" && item.items ? (
+                    <details className="group cursor-pointer">
+                      <summary className="text-base md:text-lg text-white hover:text-primary transition-colors font-medium list-none flex items-center justify-between">
+                        {item.title}
+                        <span className="transition-transform group-open:rotate-180 ml-2">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
+                      </summary>
+                      <div className="flex flex-col gap-2 pl-4 border-l border-white/20 ml-2 mt-3">
+                        {item.items.map(sub => (
+                          <Link
+                            key={sub.title}
+                            href={sub.href || "#"}
+                            className="text-sm md:text-base text-white/70 hover:text-primary transition-colors"
+                          >
+                            {sub.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </details>
+                  ) : (
+                    <Link
+                      href={item.href || "#"}
+                      className="text-base md:text-lg text-white hover:text-primary transition-colors font-medium"
+                    >
+                      {item.title}
+                    </Link>
+                  )}
+                </div>
               ))}
             </div>
           </div>

@@ -53,7 +53,11 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Post: 'Post',
   Category: 'Category',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  JobOpening: 'JobOpening',
+  VendorSubmission: 'VendorSubmission',
+  CustomerSubmission: 'CustomerSubmission',
+  JobApplication: 'JobApplication'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -110,6 +114,61 @@ export const AuditLogScalarFieldEnum = {
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const JobOpeningScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  department: 'department',
+  location: 'location',
+  type: 'type',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type JobOpeningScalarFieldEnum = (typeof JobOpeningScalarFieldEnum)[keyof typeof JobOpeningScalarFieldEnum]
+
+
+export const VendorSubmissionScalarFieldEnum = {
+  id: 'id',
+  companyName: 'companyName',
+  contactPerson: 'contactPerson',
+  email: 'email',
+  phone: 'phone',
+  productCategory: 'productCategory',
+  message: 'message',
+  createdAt: 'createdAt'
+} as const
+
+export type VendorSubmissionScalarFieldEnum = (typeof VendorSubmissionScalarFieldEnum)[keyof typeof VendorSubmissionScalarFieldEnum]
+
+
+export const CustomerSubmissionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  location: 'location',
+  productInterest: 'productInterest',
+  createdAt: 'createdAt'
+} as const
+
+export type CustomerSubmissionScalarFieldEnum = (typeof CustomerSubmissionScalarFieldEnum)[keyof typeof CustomerSubmissionScalarFieldEnum]
+
+
+export const JobApplicationScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  name: 'name',
+  email: 'email',
+  resumeUrl: 'resumeUrl',
+  coverLetter: 'coverLetter',
+  createdAt: 'createdAt'
+} as const
+
+export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
 
 
 export const SortOrder = {

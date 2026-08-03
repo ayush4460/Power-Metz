@@ -17,7 +17,8 @@ export const Header = () => {
   const isHome = pathname === "/"
   const isBlogPost = pathname.startsWith("/blog")
   const isProjects = pathname.startsWith("/projects")
-  const isTransparentRoute = isHome || isBlogPost || isProjects
+  const isJoinUs = pathname.startsWith("/join-us")
+  const isTransparentRoute = isHome || isBlogPost || isProjects || isJoinUs
   const { scrollY } = useScroll()
   const [scrollState, setScrollState] = useState<"transparent" | "glass" | "solid">("transparent")
 
@@ -42,6 +43,16 @@ export const Header = () => {
           { title: "UPS / DATA CENTER BATTERY", href: "/products/ups-data-center", description: "Critical Power Systems" },
           { title: "OEMS CUSTOMISED", href: "/products/oems-customised", description: "Tailored Energy Solutions" },
           { title: "EV / TRACTION BATTERY SOLUTION", href: "/products/ev-traction", description: "Lithium packs for mobility" },
+        ]
+      }
+    }
+    if (nav.title === "Join Us") {
+      return {
+        title: "Join Us",
+        items: [
+          { title: "For Vendors", href: "/join-us#vendor", description: "Partner with PowerMetz" },
+          { title: "For Customers", href: "/join-us#customer", description: "Get our solutions" },
+          { title: "Careers", href: "/join-us#career", description: "Join our team" },
         ]
       }
     }

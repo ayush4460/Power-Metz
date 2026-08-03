@@ -56,3 +56,23 @@ export type Category = Prisma.CategoryModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model JobOpening
+ * 
+ */
+export type JobOpening = Prisma.JobOpeningModel
+/**
+ * Model VendorSubmission
+ * 
+ */
+export type VendorSubmission = Prisma.VendorSubmissionModel
+/**
+ * Model CustomerSubmission
+ * 
+ */
+export type CustomerSubmission = Prisma.CustomerSubmissionModel
+/**
+ * Model JobApplication
+ * 
+ */
+export type JobApplication = Prisma.JobApplicationModel
