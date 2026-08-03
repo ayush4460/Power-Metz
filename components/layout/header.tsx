@@ -16,7 +16,8 @@ export const Header = () => {
   const pathname = usePathname()
   const isHome = pathname === "/"
   const isBlogPost = pathname.startsWith("/blog")
-  const isTransparentRoute = isHome || isBlogPost
+  const isProjects = pathname.startsWith("/projects")
+  const isTransparentRoute = isHome || isBlogPost || isProjects
   const { scrollY } = useScroll()
   const [scrollState, setScrollState] = useState<"transparent" | "glass" | "solid">("transparent")
 
