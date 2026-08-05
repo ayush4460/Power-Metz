@@ -17,11 +17,11 @@ export const navigationConfig = {
     { title: "Blog", href: "/blog" },
     { 
       title: "Join Us", 
-      href: "/join-us",
+      href: "/vendor", 
       items: [
-        { title: "Vendor", href: "/join-us#vendor", description: "Partner with us" },
-        { title: "Customer", href: "/join-us#customer", description: "Become a customer" },
-        { title: "Career", href: "/join-us#career", description: "Join our team" },
+        { title: "Vendor", href: "/vendor", description: "Partner with us" },
+        { title: "Customer", href: "/customer", description: "Become a customer" },
+        { title: "Career", href: "/career", description: "Join our team" },
       ]
     },
   ],

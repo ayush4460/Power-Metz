@@ -53,18 +53,52 @@ model AuditLog {
   @@index([entityId])
 }
 
-model JobOpening {
-  id          String   @id @default(cuid())
-  title       String
-  department  String
-  location    String
-  type        String   // e.g., Full-time, Part-time
-  description String
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model JobDepartment {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  jobs      JobOpening[]
+}
+
+model JobOpening {
+  id           String   @id @default(cuid())
+  title        String
+  departmentId String?
+  location     String
+  type         String   // e.g., Full-time, Part-time
+  description  String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  department   JobDepartment?  @relation(fields: [departmentId], references: [id], onDelete: Restrict)
   applications JobApplication[]
+
+  @@index([departmentId])
+}
+
+enum Role {
+  ADMIN
+  VENDOR
+}
+
+model User {
+  id                 String   @id @default(cuid())
+  email              String   @unique
+  passwordHash       String?
+  role               Role     @default(VENDOR)
+  vendorSubmissionId String?  @unique
+  setupToken         String?  @unique
+  setupTokenExpiresAt DateTime?
+  resetToken         String?  @unique
+  resetTokenExpiresAt DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  
+  submission         VendorSubmission? @relation(fields: [vendorSubmissionId], references: [id])
 }
 
 model VendorSubmission {
@@ -74,8 +108,13 @@ model VendorSubmission {
   email           String
   phone           String
   productCategory String
+  experience      String?
   message         String?
+  status          String   @default("PENDING")
+  isRead          Boolean  @default(false)
   createdAt       DateTime @default(now())
+
+  user            User?
 }
 
 model CustomerSubmission {
@@ -85,6 +124,7 @@ model CustomerSubmission {
   phone           String
   location        String
   productInterest String
+  isRead          Boolean  @default(false)
   createdAt       DateTime @default(now())
 }
 
@@ -95,6 +135,7 @@ model JobApplication {
   email       String
   resumeUrl   String
   coverLetter String?
+  isRead      Boolean  @default(false)
   createdAt   DateTime @default(now())
 
   job         JobOpening @relation(fields: [jobId], references: [id], onDelete: Cascade)

@@ -54,7 +54,9 @@ export const ModelName = {
   Post: 'Post',
   Category: 'Category',
   AuditLog: 'AuditLog',
+  JobDepartment: 'JobDepartment',
   JobOpening: 'JobOpening',
+  User: 'User',
   VendorSubmission: 'VendorSubmission',
   CustomerSubmission: 'CustomerSubmission',
   JobApplication: 'JobApplication'
@@ -116,10 +118,21 @@ export const AuditLogScalarFieldEnum = {
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
+export const JobDepartmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type JobDepartmentScalarFieldEnum = (typeof JobDepartmentScalarFieldEnum)[keyof typeof JobDepartmentScalarFieldEnum]
+
+
 export const JobOpeningScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  department: 'department',
+  departmentId: 'departmentId',
   location: 'location',
   type: 'type',
   description: 'description',
@@ -131,6 +144,23 @@ export const JobOpeningScalarFieldEnum = {
 export type JobOpeningScalarFieldEnum = (typeof JobOpeningScalarFieldEnum)[keyof typeof JobOpeningScalarFieldEnum]
 
 
+export const UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  role: 'role',
+  vendorSubmissionId: 'vendorSubmissionId',
+  setupToken: 'setupToken',
+  setupTokenExpiresAt: 'setupTokenExpiresAt',
+  resetToken: 'resetToken',
+  resetTokenExpiresAt: 'resetTokenExpiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
 export const VendorSubmissionScalarFieldEnum = {
   id: 'id',
   companyName: 'companyName',
@@ -138,7 +168,10 @@ export const VendorSubmissionScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   productCategory: 'productCategory',
+  experience: 'experience',
   message: 'message',
+  status: 'status',
+  isRead: 'isRead',
   createdAt: 'createdAt'
 } as const
 
@@ -152,6 +185,7 @@ export const CustomerSubmissionScalarFieldEnum = {
   phone: 'phone',
   location: 'location',
   productInterest: 'productInterest',
+  isRead: 'isRead',
   createdAt: 'createdAt'
 } as const
 
@@ -165,6 +199,7 @@ export const JobApplicationScalarFieldEnum = {
   email: 'email',
   resumeUrl: 'resumeUrl',
   coverLetter: 'coverLetter',
+  isRead: 'isRead',
   createdAt: 'createdAt'
 } as const
 

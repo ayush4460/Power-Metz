@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import nodemailer from 'nodemailer';
 import prisma from "@/lib/prisma";
 
@@ -31,6 +32,7 @@ Contact Person: ${payload.contactPerson}
 Email: ${payload.email}
 Phone: ${payload.phone}
 Product Category: ${payload.productCategory}
+Experience: ${payload.experience || 'N/A'}
 Message: ${payload.message || 'N/A'}
       `;
     } else if (type === 'customer') {
@@ -55,6 +57,8 @@ Product Interest: ${payload.productInterest}
       subject,
       text,
     });
+
+    revalidatePath("/admin", "layout");
 
     return NextResponse.json({ success: true, message: 'Submission successful' }, { status: 200 });
   } catch (error) {

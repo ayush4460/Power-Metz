@@ -31,6 +31,7 @@ export type JobApplicationMinAggregateOutputType = {
   email: string | null
   resumeUrl: string | null
   coverLetter: string | null
+  isRead: boolean | null
   createdAt: Date | null
 }
 
@@ -41,6 +42,7 @@ export type JobApplicationMaxAggregateOutputType = {
   email: string | null
   resumeUrl: string | null
   coverLetter: string | null
+  isRead: boolean | null
   createdAt: Date | null
 }
 
@@ -51,6 +53,7 @@ export type JobApplicationCountAggregateOutputType = {
   email: number
   resumeUrl: number
   coverLetter: number
+  isRead: number
   createdAt: number
   _all: number
 }
@@ -63,6 +66,7 @@ export type JobApplicationMinAggregateInputType = {
   email?: true
   resumeUrl?: true
   coverLetter?: true
+  isRead?: true
   createdAt?: true
 }
 
@@ -73,6 +77,7 @@ export type JobApplicationMaxAggregateInputType = {
   email?: true
   resumeUrl?: true
   coverLetter?: true
+  isRead?: true
   createdAt?: true
 }
 
@@ -83,6 +88,7 @@ export type JobApplicationCountAggregateInputType = {
   email?: true
   resumeUrl?: true
   coverLetter?: true
+  isRead?: true
   createdAt?: true
   _all?: true
 }
@@ -166,6 +172,7 @@ export type JobApplicationGroupByOutputType = {
   email: string
   resumeUrl: string
   coverLetter: string | null
+  isRead: boolean
   createdAt: Date
   _count: JobApplicationCountAggregateOutputType | null
   _min: JobApplicationMinAggregateOutputType | null
@@ -197,6 +204,7 @@ export type JobApplicationWhereInput = {
   email?: Prisma.StringFilter<"JobApplication"> | string
   resumeUrl?: Prisma.StringFilter<"JobApplication"> | string
   coverLetter?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  isRead?: Prisma.BoolFilter<"JobApplication"> | boolean
   createdAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
   job?: Prisma.XOR<Prisma.JobOpeningScalarRelationFilter, Prisma.JobOpeningWhereInput>
 }
@@ -208,6 +216,7 @@ export type JobApplicationOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
   coverLetter?: Prisma.SortOrderInput | Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   job?: Prisma.JobOpeningOrderByWithRelationInput
 }
@@ -222,6 +231,7 @@ export type JobApplicationWhereUniqueInput = Prisma.AtLeast<{
   email?: Prisma.StringFilter<"JobApplication"> | string
   resumeUrl?: Prisma.StringFilter<"JobApplication"> | string
   coverLetter?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  isRead?: Prisma.BoolFilter<"JobApplication"> | boolean
   createdAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
   job?: Prisma.XOR<Prisma.JobOpeningScalarRelationFilter, Prisma.JobOpeningWhereInput>
 }, "id">
@@ -233,6 +243,7 @@ export type JobApplicationOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
   coverLetter?: Prisma.SortOrderInput | Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.JobApplicationCountOrderByAggregateInput
   _max?: Prisma.JobApplicationMaxOrderByAggregateInput
@@ -249,6 +260,7 @@ export type JobApplicationScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"JobApplication"> | string
   resumeUrl?: Prisma.StringWithAggregatesFilter<"JobApplication"> | string
   coverLetter?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  isRead?: Prisma.BoolWithAggregatesFilter<"JobApplication"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
 }
 
@@ -258,6 +270,7 @@ export type JobApplicationCreateInput = {
   email: string
   resumeUrl: string
   coverLetter?: string | null
+  isRead?: boolean
   createdAt?: Date | string
   job: Prisma.JobOpeningCreateNestedOneWithoutApplicationsInput
 }
@@ -269,6 +282,7 @@ export type JobApplicationUncheckedCreateInput = {
   email: string
   resumeUrl: string
   coverLetter?: string | null
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -278,6 +292,7 @@ export type JobApplicationUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   resumeUrl?: Prisma.StringFieldUpdateOperationsInput | string
   coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   job?: Prisma.JobOpeningUpdateOneRequiredWithoutApplicationsNestedInput
 }
@@ -289,6 +304,7 @@ export type JobApplicationUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   resumeUrl?: Prisma.StringFieldUpdateOperationsInput | string
   coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -299,6 +315,7 @@ export type JobApplicationCreateManyInput = {
   email: string
   resumeUrl: string
   coverLetter?: string | null
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -308,6 +325,7 @@ export type JobApplicationUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   resumeUrl?: Prisma.StringFieldUpdateOperationsInput | string
   coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -318,6 +336,7 @@ export type JobApplicationUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   resumeUrl?: Prisma.StringFieldUpdateOperationsInput | string
   coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -338,6 +357,7 @@ export type JobApplicationCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
   coverLetter?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -348,6 +368,7 @@ export type JobApplicationMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
   coverLetter?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -358,6 +379,7 @@ export type JobApplicationMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
   coverLetter?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -409,6 +431,7 @@ export type JobApplicationCreateWithoutJobInput = {
   email: string
   resumeUrl: string
   coverLetter?: string | null
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -418,6 +441,7 @@ export type JobApplicationUncheckedCreateWithoutJobInput = {
   email: string
   resumeUrl: string
   coverLetter?: string | null
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -457,6 +481,7 @@ export type JobApplicationScalarWhereInput = {
   email?: Prisma.StringFilter<"JobApplication"> | string
   resumeUrl?: Prisma.StringFilter<"JobApplication"> | string
   coverLetter?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  isRead?: Prisma.BoolFilter<"JobApplication"> | boolean
   createdAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
 }
 
@@ -466,6 +491,7 @@ export type JobApplicationCreateManyJobInput = {
   email: string
   resumeUrl: string
   coverLetter?: string | null
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -475,6 +501,7 @@ export type JobApplicationUpdateWithoutJobInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   resumeUrl?: Prisma.StringFieldUpdateOperationsInput | string
   coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -484,6 +511,7 @@ export type JobApplicationUncheckedUpdateWithoutJobInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   resumeUrl?: Prisma.StringFieldUpdateOperationsInput | string
   coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -493,6 +521,7 @@ export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   resumeUrl?: Prisma.StringFieldUpdateOperationsInput | string
   coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -505,6 +534,7 @@ export type JobApplicationSelect<ExtArgs extends runtime.Types.Extensions.Intern
   email?: boolean
   resumeUrl?: boolean
   coverLetter?: boolean
+  isRead?: boolean
   createdAt?: boolean
   job?: boolean | Prisma.JobOpeningDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobApplication"]>
@@ -516,6 +546,7 @@ export type JobApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   email?: boolean
   resumeUrl?: boolean
   coverLetter?: boolean
+  isRead?: boolean
   createdAt?: boolean
   job?: boolean | Prisma.JobOpeningDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobApplication"]>
@@ -527,6 +558,7 @@ export type JobApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   email?: boolean
   resumeUrl?: boolean
   coverLetter?: boolean
+  isRead?: boolean
   createdAt?: boolean
   job?: boolean | Prisma.JobOpeningDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobApplication"]>
@@ -538,10 +570,11 @@ export type JobApplicationSelectScalar = {
   email?: boolean
   resumeUrl?: boolean
   coverLetter?: boolean
+  isRead?: boolean
   createdAt?: boolean
 }
 
-export type JobApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "name" | "email" | "resumeUrl" | "coverLetter" | "createdAt", ExtArgs["result"]["jobApplication"]>
+export type JobApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "name" | "email" | "resumeUrl" | "coverLetter" | "isRead" | "createdAt", ExtArgs["result"]["jobApplication"]>
 export type JobApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   job?: boolean | Prisma.JobOpeningDefaultArgs<ExtArgs>
 }
@@ -564,6 +597,7 @@ export type $JobApplicationPayload<ExtArgs extends runtime.Types.Extensions.Inte
     email: string
     resumeUrl: string
     coverLetter: string | null
+    isRead: boolean
     createdAt: Date
   }, ExtArgs["result"]["jobApplication"]>
   composites: {}
@@ -995,6 +1029,7 @@ export interface JobApplicationFieldRefs {
   readonly email: Prisma.FieldRef<"JobApplication", 'String'>
   readonly resumeUrl: Prisma.FieldRef<"JobApplication", 'String'>
   readonly coverLetter: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly isRead: Prisma.FieldRef<"JobApplication", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
 }
     

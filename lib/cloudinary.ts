@@ -18,7 +18,7 @@ export async function uploadResumeToCloudinary(fileBuffer: Buffer, fileName: str
       {
         folder: `careers/${folderName}`,
         public_id: fileName,
-        resource_type: "auto", // Auto detects if it's pdf/doc
+        resource_type: "raw", // Use raw so PDFs and documents are served correctly without 401 errors
       },
       (error, result) => {
         if (error) {

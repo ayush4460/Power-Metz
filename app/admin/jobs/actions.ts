@@ -7,7 +7,7 @@ import { z } from "zod"
 
 const JobSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters."),
-  department: z.string().min(2, "Department is required."),
+  departmentId: z.string().min(2, "Department is required."),
   location: z.string().min(2, "Location is required."),
   type: z.string().min(2, "Job Type is required."),
   description: z.string().min(10, "Description must be at least 10 characters."),
@@ -17,6 +17,18 @@ const JobSchema = z.object({
 export async function getJobs() {
   return await prisma.jobOpening.findMany({
     orderBy: { createdAt: "desc" },
+    include: {
+      department: true,
+    }
+  })
+}
+
+export async function getJobById(id: string) {
+  return await prisma.jobOpening.findUnique({
+    where: { id },
+    include: {
+      department: true,
+    }
   })
 }
 
@@ -24,7 +36,7 @@ export async function createJob(prevState: any, formData: FormData) {
   try {
     const rawData = {
       title: formData.get("title") as string,
-      department: formData.get("department") as string,
+      departmentId: formData.get("departmentId") as string,
       location: formData.get("location") as string,
       type: formData.get("type") as string,
       description: formData.get("description") as string,
@@ -69,5 +81,33 @@ export async function toggleJobStatus(id: string, isActive: boolean) {
     return { success: true, message: "Job status updated." }
   } catch (error) {
     return { success: false, message: "Failed to update job status." }
+  }
+}
+
+export async function updateJob(id: string, formData: FormData) {
+  try {
+    const rawData = {
+      title: formData.get("title") as string,
+      departmentId: formData.get("departmentId") as string,
+      location: formData.get("location") as string,
+      type: formData.get("type") as string,
+      description: formData.get("description") as string,
+      isActive: formData.get("isActive") === "true" || formData.get("isActive") === "on",
+    }
+
+    const validatedData = JobSchema.parse(rawData)
+
+    await prisma.jobOpening.update({
+      where: { id },
+      data: validatedData,
+    })
+
+    revalidatePath("/admin/jobs")
+    return { success: true, message: "Job updated successfully." }
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return { success: false, errors: error.flatten().fieldErrors, message: "Validation error" }
+    }
+    return { success: false, message: "Failed to update job." }
   }
 }

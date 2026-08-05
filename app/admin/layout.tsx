@@ -1,93 +1,23 @@
-"use client"
+import { AdminSidebar } from "@/components/admin/sidebar"
+import prisma from "@/lib/prisma"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { LayoutDashboard, Tags, LogOut, Briefcase, Inbox } from "lucide-react"
+import { AdminLayoutClient } from "./layout-client"
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  // Fetch unread counts
+  const [vendorsCount, customersCount, careersCount] = await Promise.all([
+    prisma.vendorSubmission.count({ where: { isRead: false } }),
+    prisma.customerSubmission.count({ where: { isRead: false } }),
+    prisma.jobApplication.count({ where: { isRead: false } }),
+  ])
 
-  // Don't show sidebar on login page
-  if (pathname === '/admin/login') {
-    return <>{children}</>
-  }
-
-  const navItems = [
-    { name: 'Dashboard', href: '/admin/blogs', icon: LayoutDashboard },
-    { name: 'Categories', href: '/admin/categories', icon: Tags },
-    { name: 'Career Jobs', href: '/admin/jobs', icon: Briefcase },
-    { name: 'Submissions', href: '/admin/submissions', icon: Inbox },
-  ]
-
-  return (
-    <div className="min-h-screen flex bg-muted/30">
-      {/* Sidebar */}
-      <aside className="w-64 bg-surface border-r border-border flex-col hidden md:flex">
-        <div className="p-6 border-b border-border">
-          <Link href="/admin/blogs" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center shrink-0">
-              <img src="/images/Power_Metz_Logo.png" alt="PowerMetz" className="h-full w-full object-left object-cover" />
-            </div>
-            <span className="text-xl font-bold text-foreground">PowerMetz</span>
-          </Link>
-        </div>
-        
-        <nav className="flex-1 p-4 space-y-1">
-          {navItems.map((item) => {
-            const isActive = pathname.startsWith(item.href)
-            const Icon = item.icon
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                  isActive 
-                    ? 'bg-primary/10 text-primary font-medium' 
-                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
-                }`}
-              >
-                <Icon className="w-5 h-5" />
-                {item.name}
-              </Link>
-            )
-          })}
-        </nav>
-
-        <div className="p-4 border-t border-border">
-          <button 
-            onClick={() => {
-              // Quick logout approach: clear cookie via a quick API route or client side
-              document.cookie = "admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              window.location.href = '/admin/login';
-            }}
-            className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-muted-foreground hover:bg-red-500/10 hover:text-red-500 transition-colors"
-          >
-            <LogOut className="w-5 h-5" />
-            Sign Out
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col">
-        {/* Mobile Header */}
-        <header className="md:hidden bg-surface border-b border-border p-4 flex items-center justify-between">
-          <span className="text-lg font-bold text-foreground">PowerMetz Admin</span>
-          <button 
-            onClick={() => {
-              document.cookie = "admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              window.location.href = '/admin/login';
-            }}
-            className="text-muted-foreground"
-          >
-            <LogOut className="w-5 h-5" />
-          </button>
-        </header>
-
-        <div className="flex-1 p-4 md:p-8 overflow-y-auto">
-          {children}
-        </div>
-      </main>
-    </div>
+  const sidebar = (
+    <AdminSidebar 
+      vendorsCount={vendorsCount} 
+      customersCount={customersCount} 
+      careersCount={careersCount} 
+    />
   )
+
+  return <AdminLayoutClient sidebar={sidebar}>{children}</AdminLayoutClient>
 }

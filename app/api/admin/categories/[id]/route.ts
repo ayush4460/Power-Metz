@@ -1,6 +1,32 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
+export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { id } = await params
+    const { name } = await request.json()
+
+    if (!name?.trim()) {
+      return NextResponse.json({ error: 'Name is required' }, { status: 400 })
+    }
+
+    const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+
+    const updated = await prisma.category.update({
+      where: { id },
+      data: { name: name.trim(), slug },
+      include: { _count: { select: { posts: true } } }
+    })
+
+    return NextResponse.json(updated)
+  } catch (error: any) {
+    if (error?.code === 'P2002') {
+      return NextResponse.json({ error: 'A category with this name already exists' }, { status: 400 })
+    }
+    return NextResponse.json({ error: 'Failed to update category' }, { status: 500 })
+  }
+}
+
 export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params

@@ -86,7 +86,7 @@ export default function AdminBlogsPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <H3>Blogs</H3>
-          <Paragraph className="text-muted-foreground mt-1">Manage all your blogs and content</Paragraph>
+          <p className="text-muted-foreground mt-1 text-sm">Manage all your blogs and content</p>
         </div>
         <Link href="/admin/blogs/new">
           <Button className="bg-primary hover:bg-primary/90 text-white">
@@ -96,7 +96,7 @@ export default function AdminBlogsPage() {
         </Link>
       </div>
 
-      <div className="flex space-x-2 border-b border-border">
+      <div className="flex items-center gap-1.5 sm:gap-2 pb-1 justify-between sm:justify-start">
         {[
           { id: 'all', label: 'All', count: posts.filter(p => !p.isDeleted).length },
           { id: 'published', label: 'Published', count: posts.filter(p => p.published && !p.isDeleted).length },
@@ -106,113 +106,175 @@ export default function AdminBlogsPage() {
           <button
             key={tab.id}
             onClick={() => setCurrentTab(tab.id as any)}
-            className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors -mb-[1px] ${
+            className={`cursor-pointer inline-flex items-center justify-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 flex-1 sm:flex-none ${
               currentTab === tab.id
-                ? 'border-primary text-primary'
-                : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                ? 'bg-[#F58220] text-white shadow-sm shadow-[#F58220]/30'
+                : 'bg-white border border-gray-200 text-slate-500 hover:border-[#F58220]/40 hover:text-[#F58220] hover:bg-[#F58220]/5'
             }`}
           >
-            {tab.label} <span className={`ml-1.5 text-xs px-2 py-0.5 rounded-full ${currentTab === tab.id ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`}>{tab.count}</span>
+            {tab.label}
+            <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-full min-w-[20px] text-center ${
+              currentTab === tab.id ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-500'
+            }`}>
+              {tab.count}
+            </span>
           </button>
         ))}
       </div>
 
-      <div className="bg-surface border border-border rounded-2xl shadow-sm overflow-hidden">
-        {loading ? (
-          <div className="p-8 text-center text-muted-foreground">Loading blogs...</div>
-        ) : filteredPosts.length === 0 ? (
-          <div className="p-12 text-center flex flex-col items-center">
-            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
-              <FileText className="w-8 h-8 text-muted-foreground" />
-            </div>
-            <h4 className="text-lg font-semibold text-foreground">No blogs found</h4>
-            <p className="text-muted-foreground mt-2 max-w-sm mb-6">There are no blogs in this section.</p>
-            {currentTab !== 'trash' && (
-              <Link href="/admin/blogs/new">
-                <Button variant="outline">Create Blog</Button>
-              </Link>
-            )}
+      {/* ── Loading ── */}
+      {loading ? (
+        <div className="p-8 text-center text-muted-foreground">Loading blogs...</div>
+      ) : filteredPosts.length === 0 ? (
+        <div className="p-12 text-center flex flex-col items-center">
+          <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
+            <FileText className="w-8 h-8 text-muted-foreground" />
           </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-muted/50 text-muted-foreground">
-                <tr>
-                  <th className="px-6 py-4 font-semibold">Title</th>
-                  <th className="px-6 py-4 font-semibold">Status</th>
-                  <th className="px-6 py-4 font-semibold">Categories</th>
-                  <th className="px-6 py-4 font-semibold">Date</th>
-                  <th className="px-6 py-4 font-semibold text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {filteredPosts.map((post) => (
-                  <tr key={post.id} className="hover:bg-muted/30 transition-colors">
-                    <td className="px-6 py-4 font-medium text-foreground max-w-50 sm:max-w-xs md:max-w-md truncate">
-                      {post.title}
-                    </td>
-                    <td className="px-6 py-4">
-                      {post.isDeleted ? (
-                         <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-red-500/10 text-red-500">Trashed</span>
-                      ) : post.published ? (
-                        <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-green-500/10 text-green-500">Published</span>
-                      ) : (
-                        <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-amber-500/10 text-amber-500">Draft</span>
+          <h4 className="text-lg font-semibold text-foreground">No blogs found</h4>
+          <p className="text-muted-foreground mt-2 max-w-sm mb-6">There are no blogs in this section.</p>
+          {currentTab !== 'trash' && (
+            <Link href="/admin/blogs/new">
+              <Button variant="outline">Create Blog</Button>
+            </Link>
+          )}
+        </div>
+      ) : (
+        <>
+          {/* ── Mobile / Tablet: Card Grid (hidden on lg+) ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+            {filteredPosts.map((post) => (
+              <div key={post.id} className="bg-white border border-border rounded-xl p-5 shadow-sm flex flex-col gap-3 relative overflow-hidden">
+
+                {/* Header */}
+                <div className="flex items-start justify-between gap-2 pt-1">
+                  <h4 className="font-semibold text-slate-800 text-sm leading-snug line-clamp-2" title={post.title}>
+                    {post.title}
+                  </h4>
+                  <span className={`shrink-0 text-[11px] font-semibold ${post.isDeleted ? 'text-red-500' : post.published ? 'text-emerald-600' : 'text-amber-600'}`}>
+                    {post.isDeleted ? 'Trashed' : post.published ? 'Published' : 'Draft'}
+                  </span>
+                </div>
+
+                {/* Meta */}
+                <div className="flex flex-col gap-1 text-xs text-slate-500">
+                  <span><span className="font-medium text-slate-700">Category:</span> {post.categories.length > 0 ? post.categories.map(c => c.name).join(', ') : <span className="text-slate-300 italic">None</span>}</span>
+                  <span><span className="font-medium text-slate-700">Date:</span> {new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })} · {new Date(post.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-1.5 pt-2 border-t border-gray-100">
+                  {post.isDeleted ? (
+                    <>
+                      <button onClick={() => handleRestore(post.id)} title="Restore" className="cursor-pointer flex-1 flex items-center justify-center gap-1.5 py-1.5 text-xs font-medium text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors">
+                        <RotateCcw className="w-3.5 h-3.5" /> Restore
+                      </button>
+                      <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Permanently Delete" className="cursor-pointer flex-1 flex items-center justify-center gap-1.5 py-1.5 text-xs font-medium text-red-500 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">
+                        <Trash2 className="w-3.5 h-3.5" /> Delete
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {post.published && (
+                        <Link href={`/blog/${post.slug}`} target="_blank" title="View Live" className="cursor-pointer p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-lg transition-colors">
+                          <ExternalLink className="w-4 h-4" />
+                        </Link>
                       )}
-                    </td>
-                    <td className="px-6 py-4 text-muted-foreground">
-                      {post.categories.map(c => c.name).join(', ') || '—'}
-                    </td>
-                    <td className="px-6 py-4 text-muted-foreground">
-                      {new Date(post.createdAt).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center justify-end gap-2">
-                        {post.isDeleted ? (
-                          <>
-                            <button
-                              onClick={() => handleRestore(post.id)}
-                              title="Restore"
-                              className="p-2 text-muted-foreground hover:bg-green-500/10 hover:text-green-600 rounded-lg transition-colors flex items-center justify-center"
-                            >
-                              <RotateCcw className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(post.id, post.isDeleted)}
-                              title="Permanently Delete"
-                              className="p-2 text-muted-foreground hover:bg-red-500/10 hover:text-red-500 rounded-lg transition-colors flex items-center justify-center"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            {post.published && (
-                              <Link href={`/blog/${post.slug}`} target="_blank" className="p-2 text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors flex items-center justify-center">
-                                <ExternalLink className="w-4 h-4" />
-                              </Link>
-                            )}
-                            <Link href={`/admin/blogs/${post.id}`} className="p-2 text-muted-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-colors flex items-center justify-center">
-                              <Edit2 className="w-4 h-4" />
-                            </Link>
-                            <button
-                              onClick={() => handleDelete(post.id, post.isDeleted)}
-                              title="Move to Trash"
-                              className="p-2 text-muted-foreground hover:bg-red-500/10 hover:text-red-500 rounded-lg transition-colors flex items-center justify-center"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      <Link href={`/admin/blogs/${post.id}`} title="Edit" className="cursor-pointer p-2 text-slate-400 hover:bg-[#F58220]/10 hover:text-[#F58220] rounded-lg transition-colors">
+                        <Edit2 className="w-4 h-4" />
+                      </Link>
+                      <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Move to Trash" className="cursor-pointer p-2 text-slate-400 hover:bg-red-50 hover:text-red-500 rounded-lg transition-colors">
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-        )}
-      </div>
+
+          {/* ── Desktop: Table (hidden below lg) ── */}
+          <div className="hidden lg:block bg-surface border border-border rounded-2xl shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-gray-100">
+                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Date</th>
+                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Title</th>
+                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Category</th>
+                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Status</th>
+                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  {filteredPosts.map((post) => (
+                    <tr
+                      key={post.id}
+                      className="group border-b border-gray-50 hover:bg-[#F58220]/[0.03] transition-all duration-150 cursor-default"
+                    >
+                      <td className="px-6 py-4 text-center whitespace-nowrap">
+                        <div className="text-sm font-semibold text-slate-700">
+                          {new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}
+                        </div>
+                        <div className="text-[11px] text-slate-400 mt-0.5 font-medium">
+                          {new Date(post.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <span className="font-semibold text-slate-800 group-hover:text-[#F58220] transition-colors duration-150 truncate block max-w-xs mx-auto" title={post.title}>
+                          {post.title}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-center whitespace-nowrap">
+                        {post.categories.length > 0
+                          ? <span className="text-sm text-slate-500 font-medium">{post.categories.map(c => c.name).join(', ')}</span>
+                          : <span className="text-slate-300">—</span>
+                        }
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {post.isDeleted ? (
+                          <span className="text-xs font-semibold text-red-500">Trashed</span>
+                        ) : post.published ? (
+                          <span className="text-xs font-semibold text-emerald-600">Published</span>
+                        ) : (
+                          <span className="text-xs font-semibold text-amber-600">Draft</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center justify-center gap-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
+                          {post.isDeleted ? (
+                            <>
+                              <button onClick={() => handleRestore(post.id)} title="Restore" className="cursor-pointer p-2 text-slate-400 hover:bg-green-50 hover:text-green-600 rounded-lg transition-all duration-150">
+                                <RotateCcw className="w-4 h-4" />
+                              </button>
+                              <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Permanently Delete" className="cursor-pointer p-2 text-slate-400 hover:bg-red-50 hover:text-red-500 rounded-lg transition-all duration-150">
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              {post.published && (
+                                <Link href={`/blog/${post.slug}`} target="_blank" title="View Live" className="cursor-pointer p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-lg transition-all duration-150">
+                                  <ExternalLink className="w-4 h-4" />
+                                </Link>
+                              )}
+                              <Link href={`/admin/blogs/${post.id}`} title="Edit" className="cursor-pointer p-2 text-slate-400 hover:bg-[#F58220]/10 hover:text-[#F58220] rounded-lg transition-all duration-150">
+                                <Edit2 className="w-4 h-4" />
+                              </Link>
+                              <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Move to Trash" className="cursor-pointer p-2 text-slate-400 hover:bg-red-50 hover:text-red-500 rounded-lg transition-all duration-150">
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }

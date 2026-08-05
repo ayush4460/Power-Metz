@@ -64,40 +64,44 @@ export function CustomerForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {error && <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md border border-red-200">{error}</div>}
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium mb-1">Name <span className="text-red-500">*</span></label>
-          <input {...register("name")} className="w-full border rounded-md p-2 bg-background" />
-          {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
+          <label className="block text-sm font-medium mb-1.5 text-slate-700">Name <span className="text-red-500">*</span></label>
+          <input {...register("name")} className="w-full border border-gray-200 rounded-lg p-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#F58220]/20 focus:border-[#F58220] hover:border-[#F58220]/50 transition-all duration-300 shadow-sm placeholder:text-gray-400" placeholder="e.g. Rajesh Kumar" />
+          {errors.name && <span className="text-red-500 text-xs mt-1 block">{errors.name.message}</span>}
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Email <span className="text-red-500">*</span></label>
-          <input type="email" {...register("email")} className="w-full border rounded-md p-2 bg-background" />
-          {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
+          <label className="block text-sm font-medium mb-1.5 text-slate-700">Email <span className="text-red-500">*</span></label>
+          <input type="email" {...register("email")} className="w-full border border-gray-200 rounded-lg p-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#F58220]/20 focus:border-[#F58220] hover:border-[#F58220]/50 transition-all duration-300 shadow-sm placeholder:text-gray-400" placeholder="e.g. rajesh@company.in" />
+          {errors.email && <span className="text-red-500 text-xs mt-1 block">{errors.email.message}</span>}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium mb-1">Phone <span className="text-red-500">*</span></label>
-          <input type="tel" {...register("phone")} className="w-full border rounded-md p-2 bg-background" />
-          {errors.phone && <span className="text-red-500 text-xs">{errors.phone.message}</span>}
+          <label className="block text-sm font-medium mb-1.5 text-slate-700">Phone <span className="text-red-500">*</span></label>
+          <input type="tel" {...register("phone")} className="w-full border border-gray-200 rounded-lg p-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#F58220]/20 focus:border-[#F58220] hover:border-[#F58220]/50 transition-all duration-300 shadow-sm placeholder:text-gray-400" placeholder="+91 98765 43210" />
+          {errors.phone && <span className="text-red-500 text-xs mt-1 block">{errors.phone.message}</span>}
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Location <span className="text-red-500">*</span></label>
-          <input {...register("location")} className="w-full border rounded-md p-2 bg-background" />
-          {errors.location && <span className="text-red-500 text-xs">{errors.location.message}</span>}
+          <label className="block text-sm font-medium mb-1.5 text-slate-700">Location <span className="text-red-500">*</span></label>
+          <input {...register("location")} className="w-full border border-gray-200 rounded-lg p-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#F58220]/20 focus:border-[#F58220] hover:border-[#F58220]/50 transition-all duration-300 shadow-sm placeholder:text-gray-400" placeholder="e.g. Mumbai, Maharashtra" />
+          {errors.location && <span className="text-red-500 text-xs mt-1 block">{errors.location.message}</span>}
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">Product Interest / Requirements <span className="text-red-500">*</span></label>
-        <textarea {...register("productInterest")} rows={4} className="w-full border rounded-md p-2 bg-background" />
-        {errors.productInterest && <span className="text-red-500 text-xs">{errors.productInterest.message}</span>}
+        <label className="block text-sm font-medium mb-1.5 text-slate-700">Product Interest / Requirements <span className="text-red-500">*</span></label>
+        <textarea {...register("productInterest")} rows={4} className="w-full border border-gray-200 rounded-lg p-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#F58220]/20 focus:border-[#F58220] hover:border-[#F58220]/50 transition-all duration-300 shadow-sm placeholder:text-gray-400" placeholder="e.g. I need a 100kWh ESS system for my manufacturing plant..." />
+        {errors.productInterest && <span className="text-red-500 text-xs mt-1 block">{errors.productInterest.message}</span>}
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto">
-        {isSubmitting ? "Submitting..." : "Submit Inquiry"}
+      <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto mt-6 bg-[#F58220] hover:bg-[#F58220]/90 text-white rounded-lg px-8 py-6 text-base font-medium shadow-md transition-all flex items-center justify-center">
+        {isSubmitting ? "Submitting..." : (
+          <>
+            Submit Inquiry<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 rotate-45"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          </>
+        )}
       </Button>
     </form>
   )

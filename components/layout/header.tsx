@@ -17,8 +17,10 @@ export const Header = () => {
   const isHome = pathname === "/"
   const isBlogPost = pathname.startsWith("/blog")
   const isProjects = pathname.startsWith("/projects")
-  const isJoinUs = pathname.startsWith("/join-us")
-  const isTransparentRoute = isHome || isBlogPost || isProjects || isJoinUs
+  const isVendor = pathname.startsWith("/vendor")
+  const isCustomer = pathname.startsWith("/customer")
+  const isCareer = pathname.startsWith("/career")
+  const isTransparentRoute = isHome || isBlogPost || isProjects || isVendor || isCustomer || isCareer
   const { scrollY } = useScroll()
   const [scrollState, setScrollState] = useState<"transparent" | "glass" | "solid">("transparent")
 
@@ -50,9 +52,9 @@ export const Header = () => {
       return {
         title: "Join Us",
         items: [
-          { title: "For Vendors", href: "/join-us#vendor", description: "Partner with PowerMetz" },
-          { title: "For Customers", href: "/join-us#customer", description: "Get our solutions" },
-          { title: "Careers", href: "/join-us#career", description: "Join our team" },
+          { title: "For Vendors", href: "/vendor", description: "Partner with PowerMetz" },
+          { title: "For Customers", href: "/customer", description: "Get our solutions" },
+          { title: "Careers", href: "/career", description: "Join our team" },
         ]
       }
     }
@@ -62,8 +64,8 @@ export const Header = () => {
   return (
     <motion.header
       className={cn(
-        "fixed top-0 left-0 right-0 z-80 h-(--header-height) flex items-center transition-all duration-500",
-        scrollState === "transparent" ? (isTransparentRoute ? "bg-transparent text-white" : "bg-transparent text-foreground") : "bg-background/80 backdrop-blur-md border-b border-border text-foreground shadow-sm",
+        "fixed top-0 left-0 right-0 z-80 h-[var(--header-height)] flex items-center transition-all duration-500",
+        scrollState === "transparent" ? (isTransparentRoute ? "bg-gradient-to-b from-black/70 via-black/30 to-transparent text-white" : "bg-transparent text-foreground") : "bg-background/80 backdrop-blur-md border-b border-border text-foreground shadow-sm",
       )}
     >
       {/* Skip Navigation */}

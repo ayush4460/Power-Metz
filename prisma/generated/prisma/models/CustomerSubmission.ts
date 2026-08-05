@@ -31,6 +31,7 @@ export type CustomerSubmissionMinAggregateOutputType = {
   phone: string | null
   location: string | null
   productInterest: string | null
+  isRead: boolean | null
   createdAt: Date | null
 }
 
@@ -41,6 +42,7 @@ export type CustomerSubmissionMaxAggregateOutputType = {
   phone: string | null
   location: string | null
   productInterest: string | null
+  isRead: boolean | null
   createdAt: Date | null
 }
 
@@ -51,6 +53,7 @@ export type CustomerSubmissionCountAggregateOutputType = {
   phone: number
   location: number
   productInterest: number
+  isRead: number
   createdAt: number
   _all: number
 }
@@ -63,6 +66,7 @@ export type CustomerSubmissionMinAggregateInputType = {
   phone?: true
   location?: true
   productInterest?: true
+  isRead?: true
   createdAt?: true
 }
 
@@ -73,6 +77,7 @@ export type CustomerSubmissionMaxAggregateInputType = {
   phone?: true
   location?: true
   productInterest?: true
+  isRead?: true
   createdAt?: true
 }
 
@@ -83,6 +88,7 @@ export type CustomerSubmissionCountAggregateInputType = {
   phone?: true
   location?: true
   productInterest?: true
+  isRead?: true
   createdAt?: true
   _all?: true
 }
@@ -166,6 +172,7 @@ export type CustomerSubmissionGroupByOutputType = {
   phone: string
   location: string
   productInterest: string
+  isRead: boolean
   createdAt: Date
   _count: CustomerSubmissionCountAggregateOutputType | null
   _min: CustomerSubmissionMinAggregateOutputType | null
@@ -197,6 +204,7 @@ export type CustomerSubmissionWhereInput = {
   phone?: Prisma.StringFilter<"CustomerSubmission"> | string
   location?: Prisma.StringFilter<"CustomerSubmission"> | string
   productInterest?: Prisma.StringFilter<"CustomerSubmission"> | string
+  isRead?: Prisma.BoolFilter<"CustomerSubmission"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CustomerSubmission"> | Date | string
 }
 
@@ -207,6 +215,7 @@ export type CustomerSubmissionOrderByWithRelationInput = {
   phone?: Prisma.SortOrder
   location?: Prisma.SortOrder
   productInterest?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -220,6 +229,7 @@ export type CustomerSubmissionWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"CustomerSubmission"> | string
   location?: Prisma.StringFilter<"CustomerSubmission"> | string
   productInterest?: Prisma.StringFilter<"CustomerSubmission"> | string
+  isRead?: Prisma.BoolFilter<"CustomerSubmission"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CustomerSubmission"> | Date | string
 }, "id">
 
@@ -230,6 +240,7 @@ export type CustomerSubmissionOrderByWithAggregationInput = {
   phone?: Prisma.SortOrder
   location?: Prisma.SortOrder
   productInterest?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.CustomerSubmissionCountOrderByAggregateInput
   _max?: Prisma.CustomerSubmissionMaxOrderByAggregateInput
@@ -246,6 +257,7 @@ export type CustomerSubmissionScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringWithAggregatesFilter<"CustomerSubmission"> | string
   location?: Prisma.StringWithAggregatesFilter<"CustomerSubmission"> | string
   productInterest?: Prisma.StringWithAggregatesFilter<"CustomerSubmission"> | string
+  isRead?: Prisma.BoolWithAggregatesFilter<"CustomerSubmission"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CustomerSubmission"> | Date | string
 }
 
@@ -256,6 +268,7 @@ export type CustomerSubmissionCreateInput = {
   phone: string
   location: string
   productInterest: string
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -266,6 +279,7 @@ export type CustomerSubmissionUncheckedCreateInput = {
   phone: string
   location: string
   productInterest: string
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -276,6 +290,7 @@ export type CustomerSubmissionUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   productInterest?: Prisma.StringFieldUpdateOperationsInput | string
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -286,6 +301,7 @@ export type CustomerSubmissionUncheckedUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   productInterest?: Prisma.StringFieldUpdateOperationsInput | string
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -296,6 +312,7 @@ export type CustomerSubmissionCreateManyInput = {
   phone: string
   location: string
   productInterest: string
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -306,6 +323,7 @@ export type CustomerSubmissionUpdateManyMutationInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   productInterest?: Prisma.StringFieldUpdateOperationsInput | string
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -316,6 +334,7 @@ export type CustomerSubmissionUncheckedUpdateManyInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   productInterest?: Prisma.StringFieldUpdateOperationsInput | string
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -326,6 +345,7 @@ export type CustomerSubmissionCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   location?: Prisma.SortOrder
   productInterest?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -336,6 +356,7 @@ export type CustomerSubmissionMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   location?: Prisma.SortOrder
   productInterest?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -346,6 +367,7 @@ export type CustomerSubmissionMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   location?: Prisma.SortOrder
   productInterest?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -358,6 +380,7 @@ export type CustomerSubmissionSelect<ExtArgs extends runtime.Types.Extensions.In
   phone?: boolean
   location?: boolean
   productInterest?: boolean
+  isRead?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["customerSubmission"]>
 
@@ -368,6 +391,7 @@ export type CustomerSubmissionSelectCreateManyAndReturn<ExtArgs extends runtime.
   phone?: boolean
   location?: boolean
   productInterest?: boolean
+  isRead?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["customerSubmission"]>
 
@@ -378,6 +402,7 @@ export type CustomerSubmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.
   phone?: boolean
   location?: boolean
   productInterest?: boolean
+  isRead?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["customerSubmission"]>
 
@@ -388,10 +413,11 @@ export type CustomerSubmissionSelectScalar = {
   phone?: boolean
   location?: boolean
   productInterest?: boolean
+  isRead?: boolean
   createdAt?: boolean
 }
 
-export type CustomerSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "location" | "productInterest" | "createdAt", ExtArgs["result"]["customerSubmission"]>
+export type CustomerSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "location" | "productInterest" | "isRead" | "createdAt", ExtArgs["result"]["customerSubmission"]>
 
 export type $CustomerSubmissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CustomerSubmission"
@@ -403,6 +429,7 @@ export type $CustomerSubmissionPayload<ExtArgs extends runtime.Types.Extensions.
     phone: string
     location: string
     productInterest: string
+    isRead: boolean
     createdAt: Date
   }, ExtArgs["result"]["customerSubmission"]>
   composites: {}
@@ -833,6 +860,7 @@ export interface CustomerSubmissionFieldRefs {
   readonly phone: Prisma.FieldRef<"CustomerSubmission", 'String'>
   readonly location: Prisma.FieldRef<"CustomerSubmission", 'String'>
   readonly productInterest: Prisma.FieldRef<"CustomerSubmission", 'String'>
+  readonly isRead: Prisma.FieldRef<"CustomerSubmission", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"CustomerSubmission", 'DateTime'>
 }
     
