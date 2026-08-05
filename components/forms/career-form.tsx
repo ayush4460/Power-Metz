@@ -4,7 +4,9 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { Turnstile } from "@marsidev/react-turnstile"
 import { Button } from "@/components/ui/button"
+import { Send } from "lucide-react"
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 const ACCEPTED_FILE_TYPES = [
@@ -33,12 +35,18 @@ export function CareerForm({ jobId, jobTitle }: { jobId: string, jobTitle: strin
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<CareerFormValues>({
     resolver: zodResolver(careerSchema)
   })
 
   const onSubmit = async (data: CareerFormValues) => {
+    if (!turnstileToken) {
+      setError("Please complete the security check.")
+      return
+    }
+
     setIsSubmitting(true)
     setError("")
     
@@ -49,6 +57,7 @@ export function CareerForm({ jobId, jobTitle }: { jobId: string, jobTitle: strin
       formData.append("email", data.email)
       if (data.coverLetter) formData.append("coverLetter", data.coverLetter)
       formData.append("resume", data.resume[0])
+      formData.append("turnstileToken", turnstileToken)
 
       const res = await fetch("/api/join-us/career", {
         method: "POST",
@@ -112,8 +121,21 @@ export function CareerForm({ jobId, jobTitle }: { jobId: string, jobTitle: strin
         {errors.coverLetter && <span className="text-red-500 text-xs mt-1 block">{errors.coverLetter.message as string}</span>}
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto">
-        {isSubmitting ? "Submitting Application..." : "Submit Application"}
+      <div className="pt-2">
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+          onSuccess={(token) => setTurnstileToken(token)}
+          onError={() => setTurnstileToken(null)}
+          onExpire={() => setTurnstileToken(null)}
+        />
+      </div>
+
+      <Button type="submit" disabled={isSubmitting || !turnstileToken} className={`w-full md:w-auto mt-6 rounded-lg px-8 py-6 text-base font-medium transition-all flex items-center justify-center gap-2 ${isSubmitting || !turnstileToken ? "bg-slate-300 text-slate-500 cursor-not-allowed shadow-none" : "bg-[#F58220] hover:bg-[#F58220]/90 text-white shadow-md"}`}>
+        {isSubmitting ? "Submitting..." : (
+          <>
+            Submit Application <Send className="w-5 h-5" />
+          </>
+        )}
       </Button>
     </form>
   )

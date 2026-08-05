@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { Turnstile } from "@marsidev/react-turnstile"
 import { Button } from "@/components/ui/button"
 
 const vendorSchema = z.object({
@@ -22,6 +23,7 @@ export function VendorForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
 
   const { register, handleSubmit, formState: { errors }, reset, watch, setValue } = useForm<VendorFormValues>({
     resolver: zodResolver(vendorSchema)
@@ -30,6 +32,11 @@ export function VendorForm() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   const onSubmit = async (data: VendorFormValues) => {
+    if (!turnstileToken) {
+      setError("Please complete the security check.")
+      return
+    }
+
     setIsSubmitting(true)
     setError("")
     
@@ -37,7 +44,7 @@ export function VendorForm() {
       const res = await fetch("/api/join-us", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "vendor", payload: data })
+        body: JSON.stringify({ type: "vendor", payload: data, turnstileToken })
       })
 
       if (res.ok) {
@@ -165,7 +172,16 @@ export function VendorForm() {
         {errors.message && <span className="text-red-500 text-xs mt-1 block">{errors.message.message}</span>}
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto mt-6 bg-[#F58220] hover:bg-[#F58220]/90 text-white rounded-lg px-8 py-6 text-base font-medium shadow-md transition-all flex items-center justify-center">
+      <div className="pt-2">
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+          onSuccess={(token) => setTurnstileToken(token)}
+          onError={() => setTurnstileToken(null)}
+          onExpire={() => setTurnstileToken(null)}
+        />
+      </div>
+
+      <Button type="submit" disabled={isSubmitting || !turnstileToken} className={`w-full md:w-auto mt-6 rounded-lg px-8 py-6 text-base font-medium transition-all flex items-center justify-center ${isSubmitting || !turnstileToken ? "bg-slate-300 text-slate-500 cursor-not-allowed shadow-none" : "bg-[#F58220] hover:bg-[#F58220]/90 text-white shadow-md"}`}>
         {isSubmitting ? "Submitting..." : (
           <>
             Submit Registration<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 rotate-45"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>

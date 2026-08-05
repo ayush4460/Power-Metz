@@ -20,7 +20,8 @@ export const Header = () => {
   const isVendor = pathname.startsWith("/vendor")
   const isCustomer = pathname.startsWith("/customer")
   const isCareer = pathname.startsWith("/career")
-  const isTransparentRoute = isHome || isBlogPost || isProjects || isVendor || isCustomer || isCareer
+  const isReachUs = pathname.startsWith("/reach-us")
+  const isTransparentRoute = isHome || isBlogPost || isProjects || isVendor || isCustomer || isCareer || isReachUs
   const { scrollY } = useScroll()
   const [scrollState, setScrollState] = useState<"transparent" | "glass" | "solid">("transparent")
 
@@ -89,9 +90,11 @@ export const Header = () => {
         {/* Right: CTA & Mobile Nav */}
         <div className="flex-1 flex items-center justify-end gap-2 z-10 pointer-events-none">
           <div className="hidden lg:block pointer-events-auto">
-            <Button className="bg-primary text-white hover:bg-primary/90 border-0 text-base px-6">
-              Get a Quote
-            </Button>
+            <Link href="/reach-us">
+              <Button className="bg-primary text-white hover:bg-primary/90 border-0 text-base px-6">
+                Reach Us
+              </Button>
+            </Link>
           </div>
           <div className="lg:hidden pointer-events-auto">
             <MobileNav items={navItems} />

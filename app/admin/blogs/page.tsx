@@ -106,13 +106,13 @@ export default function AdminBlogsPage() {
           <button
             key={tab.id}
             onClick={() => setCurrentTab(tab.id as any)}
-            className={`cursor-pointer inline-flex items-center justify-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 flex-1 sm:flex-none ${
+            className={`cursor-pointer inline-flex items-center justify-between gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 flex-1 sm:flex-none ${
               currentTab === tab.id
                 ? 'bg-[#F58220] text-white shadow-sm shadow-[#F58220]/30'
                 : 'bg-white border border-gray-200 text-slate-500 hover:border-[#F58220]/40 hover:text-[#F58220] hover:bg-[#F58220]/5'
             }`}
           >
-            {tab.label}
+            <span>{tab.label}</span>
             <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-full min-w-[20px] text-center ${
               currentTab === tab.id ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-500'
             }`}>

@@ -9,9 +9,10 @@ type SidebarProps = {
   vendorsCount: number
   customersCount: number
   careersCount: number
+  reachUsCount?: number
 }
 
-export function AdminSidebar({ vendorsCount, customersCount, careersCount }: SidebarProps) {
+export function AdminSidebar({ vendorsCount, customersCount, careersCount, reachUsCount = 0 }: SidebarProps) {
   const pathname = usePathname()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
@@ -20,6 +21,12 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount }: Sid
     { name: 'Blog Categories', href: '/admin/categories', icon: Tags },
     { name: 'Job Departments', href: '/admin/departments', icon: Building2 },
     { name: 'Job Openings', href: '/admin/jobs', icon: Briefcase },
+    { 
+      name: 'Reach Us Submissions', 
+      href: '/admin/submissions/reach-us', 
+      icon: Inbox,
+      count: reachUsCount
+    },
     { 
       name: 'Vendor Submissions', 
       href: '/admin/submissions/vendors', 
@@ -35,7 +42,7 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount }: Sid
     { 
       name: 'Career Submissions', 
       href: '/admin/submissions/careers', 
-      icon: Inbox,
+      icon: Briefcase,
       count: careersCount
     },
   ]
@@ -106,7 +113,7 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount }: Sid
               document.cookie = "admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
               window.location.href = '/admin/login';
             }}
-            className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-muted-foreground hover:bg-red-500/10 hover:text-red-500 transition-colors"
+            className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-muted-foreground hover:bg-red-500/10 hover:text-red-500 transition-colors cursor-pointer"
           >
             <LogOut className="w-5 h-5" />
             Sign Out

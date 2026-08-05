@@ -17,8 +17,24 @@ const transporter = nodemailer.createTransport({
 export async function POST(req: Request) {
   try {
     const data = await req.json();
-    const { type, payload } = data;
+    const { type, payload, turnstileToken } = data;
     
+    if (!turnstileToken) {
+      return NextResponse.json({ error: "Turnstile token is required" }, { status: 400 });
+    }
+
+    const turnstileVerify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${turnstileToken}`,
+    });
+    
+    const turnstileResult = await turnstileVerify.json();
+    if (!turnstileResult.success) {
+      return NextResponse.json({ error: "Security check failed. Please try again." }, { status: 400 });
+    }
     let subject = '';
     let text = '';
     

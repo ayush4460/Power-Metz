@@ -59,7 +59,8 @@ export const ModelName = {
   User: 'User',
   VendorSubmission: 'VendorSubmission',
   CustomerSubmission: 'CustomerSubmission',
-  JobApplication: 'JobApplication'
+  JobApplication: 'JobApplication',
+  ReachUsSubmission: 'ReachUsSubmission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -204,6 +205,21 @@ export const JobApplicationScalarFieldEnum = {
 } as const
 
 export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
+
+
+export const ReachUsSubmissionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  company: 'company',
+  purpose: 'purpose',
+  message: 'message',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+} as const
+
+export type ReachUsSubmissionScalarFieldEnum = (typeof ReachUsSubmissionScalarFieldEnum)[keyof typeof ReachUsSubmissionScalarFieldEnum]
 
 
 export const SortOrder = {

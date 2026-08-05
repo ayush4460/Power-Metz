@@ -62,3 +62,8 @@ export type CustomerSubmission = Prisma.CustomerSubmissionModel
  * 
  */
 export type JobApplication = Prisma.JobApplicationModel
+/**
+ * Model ReachUsSubmission
+ * 
+ */
+export type ReachUsSubmission = Prisma.ReachUsSubmissionModel

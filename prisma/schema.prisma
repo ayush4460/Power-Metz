@@ -140,3 +140,15 @@ model JobApplication {
 
   job         JobOpening @relation(fields: [jobId], references: [id], onDelete: Cascade)
 }
+
+model ReachUsSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  purpose   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

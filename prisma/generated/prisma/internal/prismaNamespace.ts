@@ -405,7 +405,8 @@ export const ModelName = {
   User: 'User',
   VendorSubmission: 'VendorSubmission',
   CustomerSubmission: 'CustomerSubmission',
-  JobApplication: 'JobApplication'
+  JobApplication: 'JobApplication',
+  ReachUsSubmission: 'ReachUsSubmission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "post" | "category" | "auditLog" | "jobDepartment" | "jobOpening" | "user" | "vendorSubmission" | "customerSubmission" | "jobApplication"
+    modelProps: "post" | "category" | "auditLog" | "jobDepartment" | "jobOpening" | "user" | "vendorSubmission" | "customerSubmission" | "jobApplication" | "reachUsSubmission"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1091,6 +1092,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ReachUsSubmission: {
+      payload: Prisma.$ReachUsSubmissionPayload<ExtArgs>
+      fields: Prisma.ReachUsSubmissionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReachUsSubmissionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReachUsSubmissionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>
+        }
+        findFirst: {
+          args: Prisma.ReachUsSubmissionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReachUsSubmissionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>
+        }
+        findMany: {
+          args: Prisma.ReachUsSubmissionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>[]
+        }
+        create: {
+          args: Prisma.ReachUsSubmissionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>
+        }
+        createMany: {
+          args: Prisma.ReachUsSubmissionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ReachUsSubmissionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>[]
+        }
+        delete: {
+          args: Prisma.ReachUsSubmissionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>
+        }
+        update: {
+          args: Prisma.ReachUsSubmissionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReachUsSubmissionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReachUsSubmissionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ReachUsSubmissionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ReachUsSubmissionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReachUsSubmissionPayload>
+        }
+        aggregate: {
+          args: Prisma.ReachUsSubmissionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReachUsSubmission>
+        }
+        groupBy: {
+          args: Prisma.ReachUsSubmissionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReachUsSubmissionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReachUsSubmissionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReachUsSubmissionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1256,6 +1331,21 @@ export const JobApplicationScalarFieldEnum = {
 } as const
 
 export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
+
+
+export const ReachUsSubmissionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  company: 'company',
+  purpose: 'purpose',
+  message: 'message',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+} as const
+
+export type ReachUsSubmissionScalarFieldEnum = (typeof ReachUsSubmissionScalarFieldEnum)[keyof typeof ReachUsSubmissionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1510,6 +1600,7 @@ export type GlobalOmitConfig = {
   vendorSubmission?: Prisma.VendorSubmissionOmit
   customerSubmission?: Prisma.CustomerSubmissionOmit
   jobApplication?: Prisma.JobApplicationOmit
+  reachUsSubmission?: Prisma.ReachUsSubmissionOmit
 }
 
 /* Types for Logging */

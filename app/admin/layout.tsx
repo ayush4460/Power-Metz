@@ -5,17 +5,19 @@ import { AdminLayoutClient } from "./layout-client"
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   // Fetch unread counts
-  const [vendorsCount, customersCount, careersCount] = await Promise.all([
+  const [vendorsCount, customersCount, careersCount, reachUsCount] = await Promise.all([
     prisma.vendorSubmission.count({ where: { isRead: false } }),
     prisma.customerSubmission.count({ where: { isRead: false } }),
     prisma.jobApplication.count({ where: { isRead: false } }),
+    prisma.reachUsSubmission.count({ where: { isRead: false } }),
   ])
 
   const sidebar = (
     <AdminSidebar 
       vendorsCount={vendorsCount} 
       customersCount={customersCount} 
-      careersCount={careersCount} 
+      careersCount={careersCount}
+      reachUsCount={reachUsCount}
     />
   )
 

@@ -142,7 +142,9 @@ export const MobileNav = ({ items }: { items: NavigationItem[] }) => {
                 transition={{ delay: 0.4 }}
                 className="p-6 border-t border-border mt-auto bg-surface space-y-6"
               >
-                <Button className="w-full" size="lg">Get in Touch</Button>
+                <Link href="/reach-us" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full" size="lg">Reach Us</Button>
+                </Link>
                 <div className="flex justify-center">
                   {/* Assuming social icons setup here. We'll pass dummy for now or pull from siteConfig if we had them mapped to lucide icons */}
                   <SocialIcons links={[]} />
