@@ -56,6 +56,7 @@ export default function VendorPage() {
               </Button>
             </Link>
           </div>
+          <div className="w-16 h-1 bg-primary mx-auto mt-10 rounded-full" />
         </div>
       </div>
 

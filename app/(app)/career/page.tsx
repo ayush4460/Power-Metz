@@ -66,6 +66,7 @@ export default async function CareersPage() {
           <Paragraph className="max-w-2xl mx-auto !text-white/90 text-lg md:text-xl">
             Start a rewarding career with an industry leader. Explore our open roles and apply today to make an impact.
           </Paragraph>
+          <div className="w-16 h-1 bg-primary mx-auto mt-8 rounded-full" />
         </div>
       </div>
 

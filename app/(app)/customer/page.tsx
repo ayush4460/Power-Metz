@@ -46,6 +46,7 @@ export default function CustomerPage() {
           <Paragraph className="max-w-3xl mx-auto !text-white/90 text-lg md:text-xl leading-relaxed">
             PowerMetz provides high-performance energy solutions tailored exactly to your needs. From <span className="font-semibold text-white">Residential & Commercial ESS</span> to <span className="font-semibold text-white">EV / Traction Batteries</span>, <span className="font-semibold text-white">UPS Systems</span>, and <span className="font-semibold text-white">OEM Customizations</span>, we have the reliable technology to power your next project.
           </Paragraph>
+          <div className="w-16 h-1 bg-primary mx-auto mt-8 rounded-full" />
         </div>
       </div>
 

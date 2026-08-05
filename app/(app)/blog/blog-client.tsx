@@ -104,8 +104,8 @@ export default function BlogClient() {
         <div className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/battery management.JPG" alt="Knowledge Center" className="w-full h-full object-cover object-center" />
-          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30" />
-          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/80 to-transparent" />
+          <div className="absolute inset-0 bg-black/60 z-0" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent z-0" />
         </div>
         
         <div className="relative z-10 text-center max-w-5xl px-4 mt-20">

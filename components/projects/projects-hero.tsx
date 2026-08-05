@@ -11,11 +11,8 @@ export const ProjectsHero = () => {
         className="absolute inset-0 bg-[url('/images/industry_solar_1784955969013.png')] bg-cover bg-center bg-no-repeat"
       />
       
-      {/* Overall gradient from bottom (blackening effect) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
-      
-      {/* Dark gradient from top for navbar visibility */}
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/80 to-transparent" />
+      <div className="absolute inset-0 bg-black/60 z-0" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent z-0" />
 
       <Container className="relative z-10">
         <Reveal direction="up" duration={0.8}>
