@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       where: { email: username }
     })
 
-    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+    if (!user || !user.passwordHash || !(await bcrypt.compare(password, user.passwordHash))) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 
