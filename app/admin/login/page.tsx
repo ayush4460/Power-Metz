@@ -47,9 +47,9 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row">
+    <div className="min-h-screen w-full flex flex-col-reverse lg:flex-row">
       {/* Left Form Section */}
-      <div className="w-full lg:w-5/12 xl:w-2/5 min-h-screen bg-white flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-24 border-r border-gray-100">
+      <div className="w-full lg:w-5/12 xl:w-2/5 flex-1 lg:min-h-screen bg-white flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-24 border-r border-gray-100 py-12 lg:py-0">
         <div className="w-full max-w-sm mx-auto">
           <div className="mb-10 text-center lg:text-left">
             <H2 className="text-3xl font-extrabold text-slate-800 tracking-tight">Welcome back</H2>
@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
       </div>
 
       {/* Right Image Section */}
-      <div className="hidden lg:flex w-full lg:w-7/12 xl:w-3/5 relative items-center justify-center bg-black">
+      <div className="flex min-h-[40vh] lg:min-h-screen w-full lg:w-7/12 xl:w-3/5 relative items-center justify-center bg-black py-12 lg:py-0">
         <div 
           className="absolute inset-0 z-0 opacity-60" 
           style={{

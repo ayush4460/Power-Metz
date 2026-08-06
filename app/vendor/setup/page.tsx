@@ -63,15 +63,15 @@ export default async function VendorSetupPage({ searchParams }: { searchParams: 
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row">
-      <div className="w-full lg:w-5/12 xl:w-2/5 min-h-screen bg-white flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-24 border-r border-gray-100">
+    <div className="min-h-screen w-full flex flex-col-reverse lg:flex-row">
+      <div className="w-full lg:w-5/12 xl:w-2/5 flex-1 lg:min-h-screen bg-white flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-24 border-r border-gray-100 py-12 lg:py-0">
         {leftContent}
         <div className="mt-16 text-center text-xs text-slate-400 font-medium">
           © {new Date().getFullYear()} PowerMetz Energy. All rights reserved.
         </div>
       </div>
 
-      <div className="hidden lg:flex w-full lg:w-7/12 xl:w-3/5 relative items-center justify-center bg-black">
+      <div className="flex min-h-[40vh] lg:min-h-screen w-full lg:w-7/12 xl:w-3/5 relative items-center justify-center bg-black py-12 lg:py-0">
         <div 
           className="absolute inset-0 z-0 opacity-60" 
           style={{

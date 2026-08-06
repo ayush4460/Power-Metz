@@ -17,7 +17,7 @@ export function AdminLayoutClient({
   }
 
   return (
-    <div className="min-h-screen flex bg-muted/30 overflow-hidden relative">
+    <div className="h-screen flex bg-muted/30 overflow-hidden relative">
       {sidebar}
 
       {/* Main Content */}

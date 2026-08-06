@@ -2,7 +2,7 @@ import { VendorSidebar } from "@/components/vendor/sidebar"
 
 export default function VendorDashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex bg-muted/30 overflow-hidden relative">
+    <div className="h-screen flex bg-muted/30 overflow-hidden relative">
       <VendorSidebar />
 
       {/* Main Content */}

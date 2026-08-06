@@ -59,7 +59,7 @@ export function VendorSidebar() {
           </button>
         </div>
         
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 overflow-y-auto p-4 space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/vendor/dashboard')
             const Icon = item.icon
