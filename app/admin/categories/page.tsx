@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { H2 } from '@/components/ui/typography'
 import { Button } from '@/components/ui/button'
+import { PortalLoader } from '@/components/ui/portal-loader'
 import { Trash2, Plus, Pencil, Tags, X } from 'lucide-react'
 
 type Category = {
@@ -282,8 +283,8 @@ export default function CategoriesPage() {
       </div>
 
       {loading ? (
-        <div className="bg-surface border border-border rounded-xl p-12 flex items-center justify-center text-muted-foreground">
-          Loading categories...
+        <div className="bg-surface border border-border rounded-xl overflow-hidden">
+          <PortalLoader message="Loading categories..." />
         </div>
       ) : categories.length === 0 ? (
         <div className="bg-surface border border-dashed border-border rounded-xl p-12 flex flex-col items-center justify-center space-y-3 text-muted-foreground">

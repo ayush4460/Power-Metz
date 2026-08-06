@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { H3, Paragraph } from '@/components/ui/typography'
 import { Button } from '@/components/ui/button'
+import { PortalLoader } from '@/components/ui/portal-loader'
 import { Plus, Edit2, Trash2, ExternalLink, RotateCcw } from 'lucide-react'
 
 type Post = {
@@ -124,7 +125,7 @@ export default function AdminBlogsPage() {
 
       {/* ── Loading ── */}
       {loading ? (
-        <div className="p-8 text-center text-muted-foreground">Loading blogs...</div>
+        <PortalLoader message="Loading blogs..." />
       ) : filteredPosts.length === 0 ? (
         <div className="p-12 text-center flex flex-col items-center">
           <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
