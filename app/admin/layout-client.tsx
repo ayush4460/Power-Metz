@@ -21,7 +21,7 @@ export function AdminLayoutClient({
       {sidebar}
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col min-w-0 pt-16 lg:pt-0">
+      <main className="flex-1 flex flex-col min-w-0">
         <div className="flex-1 p-4 md:p-8 overflow-y-auto">
           {children}
         </div>

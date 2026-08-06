@@ -7,6 +7,8 @@ import { H3 } from "@/components/ui/typography"
 import { Button } from "@/components/ui/button"
 import { createJob, updateJob } from "./actions"
 import { RichTextEditor } from "@/components/admin/rich-text-editor"
+import { PageHeader } from "@/components/ui/page-header"
+import { ArrowLeft } from "lucide-react"
 
 type JobDepartment = {
   id: string
@@ -70,19 +72,17 @@ export function JobForm({
 
   return (
     <div className="w-full space-y-8">
-      <div className="flex justify-between items-start">
-        <div>
-          <H3>{isEditing ? "Edit Job Opening" : "Create New Job Opening"}</H3>
-          <p className="text-muted-foreground mt-1 text-sm">
-            {isEditing ? "Update the details for this position" : "Add a new open position to the careers page"}
-          </p>
-        </div>
-        <Link href="/admin/jobs">
-          <Button variant="outline" type="button" className="hidden sm:flex">
-            Back to Jobs
-          </Button>
-        </Link>
-      </div>
+      {/* ── Header ── */}
+      <PageHeader 
+        title={
+          <div className="flex items-center gap-2">
+            <Link href="/admin/jobs" className="p-1 hover:bg-muted rounded-full transition-colors text-muted-foreground mr-1">
+              <ArrowLeft className="w-5 h-5" />
+            </Link>
+            {isEditing ? "Edit Job Opening" : "Create New Job Opening"}
+          </div>
+        }
+      />
 
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-sm">
         <form onSubmit={handleSubmit} className="space-y-6">

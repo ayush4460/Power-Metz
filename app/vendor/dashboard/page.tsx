@@ -1,14 +1,10 @@
 import { H2, Paragraph } from "@/components/ui/typography"
+import { PageHeader } from "@/components/ui/page-header"
 
 export default function VendorDashboardPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
-      <div>
-        <H2 className="text-3xl font-bold tracking-tight">Vendor Portal</H2>
-        <Paragraph className="text-muted-foreground mt-2">
-          Welcome to your secure Vendor Portal. This dashboard will be populated with your performance metrics, documents, and tools shortly.
-        </Paragraph>
-      </div>
+      <PageHeader title="Vendor Portal" />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Placeholder cards for future content */}

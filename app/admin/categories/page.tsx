@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { H2 } from '@/components/ui/typography'
 import { Button } from '@/components/ui/button'
+import { PageHeader } from '@/components/ui/page-header'
 import { PortalLoader } from '@/components/ui/portal-loader'
 import { Trash2, Plus, Pencil, Tags, X } from 'lucide-react'
 
@@ -272,15 +273,12 @@ export default function CategoriesPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <H2 className="text-2xl font-bold tracking-tight">Blog Categories</H2>
-          <p className="text-muted-foreground mt-1 text-sm">
-            Manage the categories available for blog posts.
-          </p>
-        </div>
-        <AddCategoryModal onSuccess={fetchCategories} />
-      </div>
+      <PageHeader 
+        title="Blog Categories"
+        actionButton={<AddCategoryModal onSuccess={fetchCategories} />}
+        onRefresh={fetchCategories}
+        isRefreshing={loading}
+      />
 
       {loading ? (
         <div className="bg-surface border border-border rounded-xl overflow-hidden">

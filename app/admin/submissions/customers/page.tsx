@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma"
 import { H3, Paragraph } from "@/components/ui/typography"
 import { User, Mail, Phone, Calendar, MapPin, Package } from "lucide-react"
+import { PageHeader } from "@/components/ui/page-header"
 
 export const metadata = {
   title: "Admin - Customer Submissions",
@@ -19,12 +20,10 @@ export default async function CustomerSubmissionsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-border">
-        <H3>Customer Submissions</H3>
-        <p className="text-muted-foreground text-sm">Review all customer inquiries and product interests.</p>
-        
+      <PageHeader title="Customer Submissions" />
+      <div>
         {/* Mobile/Tablet Card View */}
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 xl:hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:hidden">
           {customers.length === 0 ? (
             <div className="p-8 text-center text-muted-foreground border border-border rounded-xl col-span-full">No customer submissions yet.</div>
           ) : (

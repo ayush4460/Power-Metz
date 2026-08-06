@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Tags, LogOut, Briefcase, Inbox, Building2, Menu, X, Users, Store } from "lucide-react"
+import { LayoutDashboard, Tags, LogOut, Briefcase, Inbox, Building2, Menu, X, Users, Store, ExternalLink } from "lucide-react"
 
 type SidebarProps = {
   vendorsCount: number
@@ -16,8 +16,14 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount, reach
   const pathname = usePathname()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
+  useEffect(() => {
+    const handleOpen = () => setIsSidebarOpen(true)
+    window.addEventListener('openSidebar', handleOpen)
+    return () => window.removeEventListener('openSidebar', handleOpen)
+  }, [])
+
   const navItems = [
-    { name: 'Blogs & Articles', href: '/admin/blogs', icon: LayoutDashboard },
+    { name: 'Blogs', href: '/admin/blogs', icon: LayoutDashboard },
     { name: 'Blog Categories', href: '/admin/categories', icon: Tags },
     { name: 'Job Departments', href: '/admin/departments', icon: Building2 },
     { name: 'Job Openings', href: '/admin/jobs', icon: Briefcase },
@@ -107,7 +113,15 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount, reach
           })}
         </nav>
 
-        <div className="p-4 border-t border-border">
+        <div className="p-4 border-t border-border space-y-2">
+          <Link
+            href="/"
+            target="_blank"
+            className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-muted-foreground hover:bg-muted/50 hover:text-foreground transition-colors cursor-pointer"
+          >
+            <ExternalLink className="w-5 h-5" />
+            View Website
+          </Link>
           <button 
             onClick={() => {
               document.cookie = "admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -120,19 +134,6 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount, reach
           </button>
         </div>
       </aside>
-
-      {/* Mobile Header (To toggle sidebar) */}
-      <header className="lg:hidden bg-surface border-b border-border p-4 flex items-center justify-between absolute top-0 w-full z-30">
-        <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setIsSidebarOpen(true)}
-            className="text-muted-foreground p-1 hover:bg-muted rounded-md -ml-1"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-          <span className="font-bold">Power<span className="text-[#F58220]">Metz</span> Admin</span>
-        </div>
-      </header>
     </>
   )
 }

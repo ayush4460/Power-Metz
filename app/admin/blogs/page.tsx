@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { H3, Paragraph } from '@/components/ui/typography'
 import { Button } from '@/components/ui/button'
+import { PageHeader } from '@/components/ui/page-header'
 import { PortalLoader } from '@/components/ui/portal-loader'
-import { Plus, Edit2, Trash2, ExternalLink, RotateCcw } from 'lucide-react'
+import { Plus, Edit2, Trash2, ExternalLink, RotateCcw, Search, FileText, ChevronDown } from 'lucide-react'
 
 type Post = {
   id: string
@@ -15,27 +16,32 @@ type Post = {
   isDeleted: boolean
   createdAt: string
   categories: { name: string }[]
+  coverImage?: string | null
 }
 
 export default function AdminBlogsPage() {
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
   const [currentTab, setCurrentTab] = useState<'all' | 'published' | 'draft' | 'trash'>('all')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+  const fetchPosts = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/admin/blogs')
+      if (res.ok) {
+        const data = await res.json()
+        setPosts(data)
+      }
+    } catch {
+      console.error('Failed to fetch posts')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch('/api/admin/blogs')
-        if (res.ok) {
-          const data = await res.json()
-          setPosts(data)
-        }
-      } catch {
-        console.error('Failed to fetch posts')
-      } finally {
-        setLoading(false)
-      }
-    }
     fetchPosts()
   }, [])
 
@@ -75,6 +81,7 @@ export default function AdminBlogsPage() {
   }
 
   const filteredPosts = posts.filter(post => {
+    if (searchQuery && !post.title.toLowerCase().includes(searchQuery.toLowerCase())) return false
     if (currentTab === 'trash') return post.isDeleted
     if (post.isDeleted) return false
     if (currentTab === 'published') return post.published
@@ -83,44 +90,78 @@ export default function AdminBlogsPage() {
   })
 
   return (
-    <div className="w-full space-y-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <H3>Blogs</H3>
-          <p className="text-muted-foreground mt-1 text-sm">Manage all your blogs and content</p>
-        </div>
-        <Link href="/admin/blogs/new">
-          <Button className="bg-primary hover:bg-primary/90 text-white">
-            <Plus className="w-4 h-4 mr-2" />
-            Add Blog
-          </Button>
-        </Link>
-      </div>
+    <div className="space-y-6 animate-in fade-in zoom-in-95 duration-500 pb-20">
+      <PageHeader 
+        title="Blog Posts" 
+        actionButton={
+          <Link href="/admin/blogs/new">
+            <Button className="w-full sm:w-auto bg-[#F58220] hover:bg-[#d9731b] text-white">
+              <Plus className="w-4 h-4 mr-2" />
+              New Post
+            </Button>
+          </Link>
+        }
+        onRefresh={fetchPosts}
+        isRefreshing={loading}
+      />
 
-      <div className="flex items-center gap-1.5 sm:gap-2 pb-1 justify-between sm:justify-start">
-        {[
-          { id: 'all', label: 'All', count: posts.filter(p => !p.isDeleted).length },
-          { id: 'published', label: 'Published', count: posts.filter(p => p.published && !p.isDeleted).length },
-          { id: 'draft', label: 'Drafts', count: posts.filter(p => !p.published && !p.isDeleted).length },
-          { id: 'trash', label: 'Trash', count: posts.filter(p => p.isDeleted).length },
-        ].map(tab => (
-          <button
-            key={tab.id}
-            onClick={() => setCurrentTab(tab.id as any)}
-            className={`cursor-pointer inline-flex items-center justify-between gap-1 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 flex-1 sm:flex-none ${
-              currentTab === tab.id
-                ? 'bg-[#F58220] text-white shadow-sm shadow-[#F58220]/30'
-                : 'bg-white border border-gray-200 text-slate-500 hover:border-[#F58220]/40 hover:text-[#F58220] hover:bg-[#F58220]/5'
-            }`}
-          >
-            <span>{tab.label}</span>
-            <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-full min-w-[20px] text-center ${
-              currentTab === tab.id ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-500'
-            }`}>
-              {tab.count}
-            </span>
-          </button>
-        ))}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-1 -mt-2">
+        <div className="relative w-full flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <input 
+            type="text"
+            placeholder="Search blogs by title..." 
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="w-full pl-9 pr-4 py-2 text-sm bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F58220]/20 focus:border-[#F58220] transition-colors shadow-sm placeholder:text-gray-400"
+          />
+        </div>
+
+        <div className="relative w-full sm:w-48 shrink-0">
+          {(() => {
+            const options = [
+              { value: 'all', label: `All (${posts.filter(p => !p.isDeleted).length})` },
+              { value: 'published', label: `Published (${posts.filter(p => p.published && !p.isDeleted).length})` },
+              { value: 'draft', label: `Drafts (${posts.filter(p => !p.published && !p.isDeleted).length})` },
+              { value: 'trash', label: `Trash (${posts.filter(p => p.isDeleted).length})` }
+            ]
+            const currentOption = options.find(o => o.value === currentTab) || options[0]
+
+            return (
+              <>
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
+                  className="w-full flex items-center justify-between px-4 py-2 text-sm bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F58220]/20 focus:border-[#F58220] transition-colors shadow-sm cursor-pointer text-slate-700"
+                >
+                  <span className="font-medium">{currentOption.label}</span>
+                  <ChevronDown className="w-4 h-4 text-slate-400" />
+                </button>
+                
+                {isDropdownOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-full bg-white border border-gray-100 rounded-2xl shadow-xl z-50 overflow-hidden py-1 animate-in fade-in zoom-in-95 duration-100">
+                    {options.map(option => (
+                      <button
+                        key={option.value}
+                        onClick={() => {
+                          setCurrentTab(option.value as any)
+                          setIsDropdownOpen(false)
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${
+                          currentTab === option.value 
+                            ? 'bg-[#F58220]/10 text-[#F58220] font-medium' 
+                            : 'text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            )
+          })()}
+        </div>
       </div>
 
       {/* ── Loading ── */}
@@ -140,155 +181,107 @@ export default function AdminBlogsPage() {
           )}
         </div>
       ) : (
-        <>
-          {/* ── Mobile / Tablet: Card Grid (hidden on lg+) ── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
-            {filteredPosts.map((post) => (
-              <div key={post.id} className="bg-white border border-border rounded-xl p-5 shadow-sm flex flex-col gap-3 relative overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredPosts.map((post) => (
+            <div key={post.id} className="bg-white border border-border rounded-none shadow-sm hover:shadow-md transition-shadow flex flex-col relative overflow-hidden group">
+              
+              {/* Cover Image */}
+              <div className="relative w-full h-52 bg-slate-100 overflow-hidden shrink-0">
+                {post.coverImage ? (
+                  <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-slate-100">
+                    <FileText className="w-10 h-10 text-slate-300" />
+                  </div>
+                )}
 
-                {/* Header */}
-                <div className="flex items-start justify-between gap-2 pt-1">
-                  <h4 className="font-semibold text-slate-800 text-sm leading-snug line-clamp-2" title={post.title}>
-                    {post.title}
-                  </h4>
-                  <span className={`shrink-0 text-[11px] font-semibold ${post.isDeleted ? 'text-red-500' : post.published ? 'text-emerald-600' : 'text-amber-600'}`}>
-                    {post.isDeleted ? 'Trashed' : post.published ? 'Published' : 'Draft'}
-                  </span>
+                {/* Badges Overlay */}
+                <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+                  {post.categories.slice(0, 2).map((cat, idx) => (
+                    <span key={idx} className="px-3 py-1.5 text-xs font-bold text-white shadow-sm tracking-wide bg-[#F58220]">
+                      {cat.name}
+                    </span>
+                  ))}
+                  {!post.categories.length && (
+                    <span className="px-3 py-1.5 text-xs font-bold text-white shadow-sm tracking-wide bg-[#334155]">
+                      Uncategorized
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 flex flex-col flex-1">
+                <h4 className="font-bold text-slate-900 text-[19px] leading-snug mb-3 line-clamp-3" title={post.title}>
+                  {post.title}
+                </h4>
+                
+                <div className="text-[14px] text-slate-400 mb-6">
+                  {new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                 </div>
 
-                {/* Meta */}
-                <div className="flex flex-col gap-1 text-xs text-slate-500">
-                  <span><span className="font-medium text-slate-700">Category:</span> {post.categories.length > 0 ? post.categories.map(c => c.name).join(', ') : <span className="text-slate-300 italic">None</span>}</span>
-                  <span><span className="font-medium text-slate-700">Date:</span> {new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })} · {new Date(post.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center gap-1.5 pt-2 border-t border-gray-100">
+                <div className="mt-auto flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
                   {post.isDeleted ? (
                     <>
-                      <button onClick={() => handleRestore(post.id)} title="Restore" className="cursor-pointer flex-1 flex items-center justify-center gap-1.5 py-1.5 text-xs font-medium text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors">
-                        <RotateCcw className="w-3.5 h-3.5" /> Restore
-                      </button>
-                      <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Permanently Delete" className="cursor-pointer flex-1 flex items-center justify-center gap-1.5 py-1.5 text-xs font-medium text-red-500 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">
-                        <Trash2 className="w-3.5 h-3.5" /> Delete
-                      </button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleRestore(post.id)} 
+                        title="Restore"
+                      >
+                        <RotateCcw className="w-4 h-4 text-green-500" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleDelete(post.id, post.isDeleted)} 
+                        title="Delete Permanently"
+                        className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
                     </>
                   ) : (
                     <>
                       {post.published && (
-                        <Link href={`/blog/${post.slug}`} target="_blank" title="View Live" className="cursor-pointer p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-lg transition-colors">
-                          <ExternalLink className="w-4 h-4" />
+                        <Link href={`/blog/${post.slug}`} target="_blank">
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            title="Preview Post"
+                            type="button"
+                          >
+                            <ExternalLink className="w-4 h-4 text-blue-500" />
+                          </Button>
                         </Link>
                       )}
-                      <Link href={`/admin/blogs/${post.id}`} title="Edit" className="cursor-pointer p-2 text-slate-400 hover:bg-[#F58220]/10 hover:text-[#F58220] rounded-lg transition-colors">
-                        <Edit2 className="w-4 h-4" />
+                      <Link href={`/admin/blogs/${post.id}`}>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          title="Edit"
+                          type="button"
+                        >
+                          <Edit2 className="w-4 h-4 text-gray-500" />
+                        </Button>
                       </Link>
-                      <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Move to Trash" className="cursor-pointer p-2 text-slate-400 hover:bg-red-50 hover:text-red-500 rounded-lg transition-colors">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleDelete(post.id, post.isDeleted)} 
+                        title="Delete"
+                        className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                      >
                         <Trash2 className="w-4 h-4" />
-                      </button>
+                      </Button>
                     </>
                   )}
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* ── Desktop: Table (hidden below lg) ── */}
-          <div className="hidden lg:block bg-surface border border-border rounded-2xl shadow-sm overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-gray-100">
-                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Date</th>
-                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Title</th>
-                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Category</th>
-                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Status</th>
-                    <th className="px-6 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50">
-                  {filteredPosts.map((post) => (
-                    <tr
-                      key={post.id}
-                      className="group border-b border-gray-50 hover:bg-[#F58220]/[0.03] transition-all duration-150 cursor-default"
-                    >
-                      <td className="px-6 py-4 text-center whitespace-nowrap">
-                        <div className="text-sm font-semibold text-slate-700">
-                          {new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })}
-                        </div>
-                        <div className="text-[11px] text-slate-400 mt-0.5 font-medium">
-                          {new Date(post.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <span className="font-semibold text-slate-800 group-hover:text-[#F58220] transition-colors duration-150 truncate block max-w-xs mx-auto" title={post.title}>
-                          {post.title}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-center whitespace-nowrap">
-                        {post.categories.length > 0
-                          ? <span className="text-sm text-slate-500 font-medium">{post.categories.map(c => c.name).join(', ')}</span>
-                          : <span className="text-slate-300">—</span>
-                        }
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        {post.isDeleted ? (
-                          <span className="text-xs font-semibold text-red-500">Trashed</span>
-                        ) : post.published ? (
-                          <span className="text-xs font-semibold text-emerald-600">Published</span>
-                        ) : (
-                          <span className="text-xs font-semibold text-amber-600">Draft</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center justify-center gap-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
-                          {post.isDeleted ? (
-                            <>
-                              <button onClick={() => handleRestore(post.id)} title="Restore" className="cursor-pointer p-2 text-slate-400 hover:bg-green-50 hover:text-green-600 rounded-lg transition-all duration-150">
-                                <RotateCcw className="w-4 h-4" />
-                              </button>
-                              <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Permanently Delete" className="cursor-pointer p-2 text-slate-400 hover:bg-red-50 hover:text-red-500 rounded-lg transition-all duration-150">
-                                <Trash2 className="w-4 h-4" />
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              {post.published && (
-                                <Link href={`/blog/${post.slug}`} target="_blank" title="View Live" className="cursor-pointer p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 rounded-lg transition-all duration-150">
-                                  <ExternalLink className="w-4 h-4" />
-                                </Link>
-                              )}
-                              <Link href={`/admin/blogs/${post.id}`} title="Edit" className="cursor-pointer p-2 text-slate-400 hover:bg-[#F58220]/10 hover:text-[#F58220] rounded-lg transition-all duration-150">
-                                <Edit2 className="w-4 h-4" />
-                              </Link>
-                              <button onClick={() => handleDelete(post.id, post.isDeleted)} title="Move to Trash" className="cursor-pointer p-2 text-slate-400 hover:bg-red-50 hover:text-red-500 rounded-lg transition-all duration-150">
-                                <Trash2 className="w-4 h-4" />
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
-          </div>
-        </>
+          ))}
+        </div>
       )}
     </div>
-  )
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function FileText(props: any) {
-  return (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" x2="8" y1="13" y2="13" />
-      <line x1="16" x2="8" y1="17" y2="17" />
-      <line x1="10" x2="8" y1="9" y2="9" />
-    </svg>
   )
 }

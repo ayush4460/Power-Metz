@@ -7,6 +7,7 @@ import { H3 } from '@/components/ui/typography'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, Save, Loader2, Image as ImageIcon, X } from 'lucide-react'
 import Link from 'next/link'
+import { PageHeader } from '@/components/ui/page-header'
 
 type Category = { id: string; name: string }
 
@@ -107,24 +108,16 @@ export function BlogEditorForm({ initialData = null }: { initialData?: any }) {
   return (
     <div className="w-full space-y-8">
       {/* ── Header ── */}
-      <div className="flex justify-between items-start">
-        <div className="flex items-center gap-3">
-          <Link href="/admin/blogs" className="p-2 hover:bg-muted rounded-full transition-colors text-muted-foreground">
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
-          <div>
-            <H3>{initialData ? 'Edit Blog Post' : 'Create New Blog Post'}</H3>
-            <p className="text-muted-foreground mt-1 text-sm">
-              {initialData ? 'Update the details for this post.' : 'Fill in the details to create and publish a new post.'}
-            </p>
+      <PageHeader 
+        title={
+          <div className="flex items-center gap-2">
+            <Link href="/admin/blogs" className="p-1 hover:bg-muted rounded-full transition-colors text-muted-foreground mr-1">
+              <ArrowLeft className="w-5 h-5" />
+            </Link>
+            {initialData ? 'Edit Blog Post' : 'Create New Blog Post'}
           </div>
-        </div>
-        <Link href="/admin/blogs">
-          <Button variant="outline" type="button" className="hidden sm:flex">
-            Back to Blogs
-          </Button>
-        </Link>
-      </div>
+        }
+      />
 
       <form onSubmit={handleSubmit}>
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-sm space-y-6">

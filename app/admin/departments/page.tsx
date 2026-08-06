@@ -3,6 +3,7 @@ import { H2 } from "@/components/ui/typography"
 import { DepartmentDialog } from "@/components/admin/department-dialog"
 import { DeleteDepartmentButton } from "@/components/admin/delete-department-button"
 import { Building2 } from "lucide-react"
+import { PageHeader } from "@/components/ui/page-header"
 
 export const dynamic = 'force-dynamic'
 
@@ -11,15 +12,10 @@ export default async function DepartmentsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <H2 className="text-2xl font-bold tracking-tight">Job Departments</H2>
-          <p className="text-muted-foreground mt-1 text-sm">
-            Manage the departments available for job openings.
-          </p>
-        </div>
-        <DepartmentDialog />
-      </div>
+      <PageHeader 
+        title="Job Departments"
+        actionButton={<DepartmentDialog />}
+      />
 
       {departments.length === 0 ? (
         <div className="bg-surface border border-dashed border-border rounded-xl p-12 flex flex-col items-center justify-center space-y-3 text-muted-foreground">

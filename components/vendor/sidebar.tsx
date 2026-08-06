@@ -1,14 +1,20 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, FileText, Settings, LogOut, Menu, X, User } from "lucide-react"
+import { LayoutDashboard, FileText, Settings, LogOut, Menu, X, User, ExternalLink } from "lucide-react"
 import { CompanyLogo } from "@/components/shared/utilities"
 
 export function VendorSidebar() {
   const pathname = usePathname()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  useEffect(() => {
+    const handleOpen = () => setIsSidebarOpen(true)
+    window.addEventListener('openSidebar', handleOpen)
+    return () => window.removeEventListener('openSidebar', handleOpen)
+  }, [])
 
   const navItems = [
     { name: 'Dashboard', href: '/vendor/dashboard', icon: LayoutDashboard },
@@ -83,7 +89,15 @@ export function VendorSidebar() {
           })}
         </nav>
 
-        <div className="p-4 border-t border-border">
+        <div className="p-4 border-t border-border space-y-2">
+          <Link
+            href="/"
+            target="_blank"
+            className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-muted-foreground hover:bg-muted/50 hover:text-foreground transition-colors cursor-pointer"
+          >
+            <ExternalLink className="w-5 h-5" />
+            View Website
+          </Link>
           <button 
             onClick={handleLogout}
             className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-muted-foreground hover:bg-red-500/10 hover:text-red-500 transition-colors cursor-pointer"
@@ -94,18 +108,6 @@ export function VendorSidebar() {
         </div>
       </aside>
 
-      {/* Mobile Header (To toggle sidebar) */}
-      <header className="lg:hidden bg-surface border-b border-border p-4 flex items-center justify-between absolute top-0 w-full z-30">
-        <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setIsSidebarOpen(true)}
-            className="text-muted-foreground p-1 hover:bg-muted rounded-md -ml-1"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-          <span className="font-bold">Vendor Portal</span>
-        </div>
-      </header>
     </>
   )
 }
