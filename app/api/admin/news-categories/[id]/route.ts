@@ -45,8 +45,8 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
       return NextResponse.json({ error: 'Category not found' }, { status: 404 })
     }
 
-    if (category._count.posts > 0) {
-      return NextResponse.json({ error: 'Cannot delete category with associated posts' }, { status: 400 })
+    if (category._count.news > 0) {
+      return NextResponse.json({ error: 'Cannot delete category with associated news' }, { status: 400 })
     }
 
     await prisma.newsCategory.delete({
