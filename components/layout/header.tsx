@@ -16,12 +16,13 @@ export const Header = () => {
   const pathname = usePathname()
   const isHome = pathname === "/"
   const isBlogPost = pathname.startsWith("/blog")
+  const isNewsPost = pathname.startsWith("/news")
   const isProjects = pathname.startsWith("/projects")
   const isVendor = pathname.startsWith("/vendor")
   const isCustomer = pathname.startsWith("/customer")
   const isCareer = pathname.startsWith("/career")
   const isReachUs = pathname.startsWith("/reach-us")
-  const isTransparentRoute = isHome || isBlogPost || isProjects || isVendor || isCustomer || isCareer || isReachUs
+  const isTransparentRoute = isHome || isBlogPost || isNewsPost || isProjects || isVendor || isCustomer || isCareer || isReachUs
   const { scrollY } = useScroll()
   const [scrollState, setScrollState] = useState<"transparent" | "glass" | "solid">("transparent")
 

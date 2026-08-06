@@ -49,7 +49,7 @@ export function PageHeader({ title, actionButton, onRefresh, isRefreshing }: Pag
           <span className="hidden sm:inline">{currentlyRefreshing ? 'Refreshing...' : 'Refresh'}</span>
         </button>
         {actionButton && (
-          <div className="flex-none scale-90 sm:scale-100 origin-right">
+          <div className="flex-none">
             {actionButton}
           </div>
         )}

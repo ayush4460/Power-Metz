@@ -94,3 +94,5 @@ Resume URL: ${resumeUrl}
     return NextResponse.json({ error: 'Failed to process application' }, { status: 500 });
   }
 }
+
+

@@ -41,6 +41,40 @@ model Category {
   posts     Post[]
 }
 
+// The core News model optimized for fast reads on the public site
+model News {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique // Indexed automatically for fast lookups
+  excerpt         String?
+  content         String   // HTML string from TipTap
+  coverImage      String?
+  
+  // Dedicated SEO Fields
+  seoTitle        String?
+  seoDescription  String?
+  seoKeywords     String?
+
+  published       Boolean  @default(false)
+  isDeleted       Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  publishedAt     DateTime?
+
+  // Relations
+  categories      NewsCategory[] // A news item can have multiple categories
+
+  @@index([published, publishedAt(sort: Desc)]) // Compound index for extremely fast sorting of published news
+}
+
+// Categories for News
+model NewsCategory {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  news      News[]
+}
+
 // Audit Log to track all Admin actions (Zero Downtime Tracking)
 model AuditLog {
   id        String   @id @default(cuid())

@@ -8,7 +8,7 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '9')
     const search = searchParams.get('search') || ''
-    const category = searchParams.get('category') || ''
+    const newsCategory = searchParams.get('newsCategory') || ''
 
     const skip = (page - 1) * limit
 
@@ -25,25 +25,25 @@ export async function GET(request: Request) {
       ]
     }
 
-    if (category) {
+    if (newsCategory) {
       where.categories = {
-        some: { slug: category }
+        some: { slug: newsCategory }
       }
     }
 
-    const [posts, total] = await Promise.all([
-      prisma.post.findMany({
+    const [news, total] = await Promise.all([
+      prisma.news.findMany({
         where,
         skip,
         take: limit,
         orderBy: { publishedAt: 'desc' },
         include: { categories: true }
       }),
-      prisma.post.count({ where })
+      prisma.news.count({ where })
     ])
 
     return NextResponse.json({
-      data: posts,
+      data: news,
       meta: {
         total,
         page,
@@ -55,5 +55,6 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 })
   }
 }
+
 
 

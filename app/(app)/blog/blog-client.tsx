@@ -32,7 +32,12 @@ type Category = {
   slug: string
 }
 
+import { useSearchParams } from 'next/navigation'
+
 export default function BlogClient() {
+  const searchParams = useSearchParams()
+  const initialTab = searchParams.get('tab') === 'news' ? 'news' : 'blogs'
+  const [activeTab, setActiveTab] = useState<'blogs' | 'news'>(initialTab)
   const [posts, setPosts] = useState<Post[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   
@@ -44,8 +49,18 @@ export default function BlogClient() {
   const [loading, setLoading] = useState(true)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
+  // Sync tab state with URL parameter changes
   useEffect(() => {
-    fetch('/api/categories')
+    const tabParam = searchParams.get('tab')
+    if (tabParam === 'news' || tabParam === 'blogs') {
+      setActiveTab(tabParam)
+    }
+  }, [searchParams])
+
+  // Fetch categories when tab changes
+  useEffect(() => {
+    const categoryEndpoint = activeTab === 'blogs' ? '/api/categories' : '/api/news-categories'
+    fetch(categoryEndpoint)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -55,7 +70,7 @@ export default function BlogClient() {
           setCategories([])
         }
       })
-  }, [])
+  }, [activeTab])
 
   // Debounce search
   useEffect(() => {
@@ -75,22 +90,29 @@ export default function BlogClient() {
           limit: '9'
         })
         if (debouncedSearch) params.append('search', debouncedSearch)
-        if (category) params.append('category', category)
+        if (category) {
+          if (activeTab === 'blogs') {
+            params.append('category', category)
+          } else {
+            params.append('newsCategory', category)
+          }
+        }
 
-        const res = await fetch(`/api/blogs?${params}`)
+        const endpoint = activeTab === 'blogs' ? '/api/blogs' : '/api/news'
+        const res = await fetch(`${endpoint}?${params}`)
         if (res.ok) {
           const data = await res.json()
           setPosts(data.data)
           setTotalPages(data.meta.totalPages)
         }
       } catch {
-        console.error('Failed to fetch blogs')
+        console.error('Failed to fetch posts')
       } finally {
         setLoading(false)
       }
     }
     fetchPosts()
-  }, [debouncedSearch, category, page])
+  }, [debouncedSearch, category, page, activeTab])
 
   const handleCategoryChange = (slug: string) => {
     setCategory(slug === category ? '' : slug)
@@ -123,6 +145,42 @@ export default function BlogClient() {
       </div>
 
       <Container>
+        {/* Tabs */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center p-1 bg-white border border-gray-200 rounded-full shadow-sm">
+            <button
+              onClick={() => {
+                setActiveTab('blogs')
+                setCategory('')
+                setSearch('')
+                setPage(1)
+              }}
+              className={`px-8 py-2.5 rounded-full text-sm font-medium transition-all ${
+                activeTab === 'blogs'
+                  ? 'bg-primary text-white shadow-md'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              Blogs & Articles
+            </button>
+            <button
+              onClick={() => {
+                setActiveTab('news')
+                setCategory('')
+                setSearch('')
+                setPage(1)
+              }}
+              className={`px-8 py-2.5 rounded-full text-sm font-medium transition-all ${
+                activeTab === 'news'
+                  ? 'bg-primary text-white shadow-md'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              News & Updates
+            </button>
+          </div>
+        </div>
+
         {/* Filters */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-12 bg-white px-6 py-5 rounded-2xl md:rounded-full border border-border shadow-sm w-full">
           {/* Search Bar */}
@@ -130,7 +188,7 @@ export default function BlogClient() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search blogs..."
+              placeholder={`Search ${activeTab}...`}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full h-11 pl-11 pr-4 bg-muted/30 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm placeholder:text-muted-foreground"
@@ -193,12 +251,12 @@ export default function BlogClient() {
           </div>
         ) : posts.length === 0 ? (
           <div className="text-center py-20 text-muted-foreground">
-            No blogs found matching your criteria.
+            No {activeTab === 'blogs' ? 'blogs' : 'news'} found matching your criteria.
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <Link key={post.id} href={`/blog/${post.slug}`} className="group flex flex-col bg-surface border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+              <Link key={post.id} href={`/${activeTab === 'blogs' ? 'blog' : 'news'}/${post.slug}`} className="group flex flex-col bg-surface border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
                 <div className="relative aspect-16/10 w-full bg-muted overflow-hidden">
                   {post.coverImage ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
@@ -222,24 +280,22 @@ export default function BlogClient() {
                     {post.title}
                   </H3>
                   
-                  <Paragraph className="text-muted-foreground line-clamp-3 mb-8 flex-1 text-[15px] leading-relaxed">
-                    {post.excerpt || post.content.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...'}
+
+                  <Paragraph className="text-muted-foreground mb-6 line-clamp-3 text-sm md:text-base leading-relaxed flex-grow">
+                    {post.excerpt || post.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...'}
                   </Paragraph>
-                  
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4" />
-                        {new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-4 h-4" />
-                        {calculateReadTime(post.content)} min read
-                      </div>
+
+                  <div className="mt-auto pt-6 border-t border-border/60 flex items-center justify-between relative z-20">
+                    <div className="flex items-center text-muted-foreground text-sm font-medium">
+                      <Clock className="w-4 h-4 mr-1.5 opacity-70" />
+                      {calculateReadTime(post.content)} min read
                     </div>
-                    <div className="font-medium text-primary group-hover:underline inline-flex items-center gap-1">
-                      Read &rarr;
-                    </div>
+                    <Link
+                      href={`/${activeTab === 'blogs' ? 'blog' : 'news'}/${post.slug}`}
+                      className="flex items-center text-primary font-semibold text-sm hover:underline"
+                    >
+                      Read {activeTab === 'blogs' ? 'Article' : 'News'} <ChevronRight className="w-4 h-4 ml-1" />
+                    </Link>
                   </div>
                 </div>
               </Link>

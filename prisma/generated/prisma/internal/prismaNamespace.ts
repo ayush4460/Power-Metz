@@ -399,6 +399,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Post: 'Post',
   Category: 'Category',
+  News: 'News',
+  NewsCategory: 'NewsCategory',
   AuditLog: 'AuditLog',
   JobDepartment: 'JobDepartment',
   JobOpening: 'JobOpening',
@@ -422,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "post" | "category" | "auditLog" | "jobDepartment" | "jobOpening" | "user" | "vendorSubmission" | "customerSubmission" | "jobApplication" | "reachUsSubmission"
+    modelProps: "post" | "category" | "news" | "newsCategory" | "auditLog" | "jobDepartment" | "jobOpening" | "user" | "vendorSubmission" | "customerSubmission" | "jobApplication" | "reachUsSubmission"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -571,6 +573,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CategoryCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CategoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    News: {
+      payload: Prisma.$NewsPayload<ExtArgs>
+      fields: Prisma.NewsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NewsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NewsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>
+        }
+        findFirst: {
+          args: Prisma.NewsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NewsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>
+        }
+        findMany: {
+          args: Prisma.NewsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>[]
+        }
+        create: {
+          args: Prisma.NewsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>
+        }
+        createMany: {
+          args: Prisma.NewsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NewsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>[]
+        }
+        delete: {
+          args: Prisma.NewsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>
+        }
+        update: {
+          args: Prisma.NewsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>
+        }
+        deleteMany: {
+          args: Prisma.NewsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NewsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NewsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>[]
+        }
+        upsert: {
+          args: Prisma.NewsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsPayload>
+        }
+        aggregate: {
+          args: Prisma.NewsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNews>
+        }
+        groupBy: {
+          args: Prisma.NewsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NewsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NewsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NewsCountAggregateOutputType> | number
+        }
+      }
+    }
+    NewsCategory: {
+      payload: Prisma.$NewsCategoryPayload<ExtArgs>
+      fields: Prisma.NewsCategoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NewsCategoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NewsCategoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>
+        }
+        findFirst: {
+          args: Prisma.NewsCategoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NewsCategoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>
+        }
+        findMany: {
+          args: Prisma.NewsCategoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>[]
+        }
+        create: {
+          args: Prisma.NewsCategoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>
+        }
+        createMany: {
+          args: Prisma.NewsCategoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NewsCategoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>[]
+        }
+        delete: {
+          args: Prisma.NewsCategoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>
+        }
+        update: {
+          args: Prisma.NewsCategoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.NewsCategoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NewsCategoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NewsCategoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.NewsCategoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NewsCategoryPayload>
+        }
+        aggregate: {
+          args: Prisma.NewsCategoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNewsCategory>
+        }
+        groupBy: {
+          args: Prisma.NewsCategoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NewsCategoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NewsCategoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NewsCategoryCountAggregateOutputType> | number
         }
       }
     }
@@ -1234,6 +1384,35 @@ export const CategoryScalarFieldEnum = {
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
+export const NewsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  excerpt: 'excerpt',
+  content: 'content',
+  coverImage: 'coverImage',
+  seoTitle: 'seoTitle',
+  seoDescription: 'seoDescription',
+  seoKeywords: 'seoKeywords',
+  published: 'published',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  publishedAt: 'publishedAt'
+} as const
+
+export type NewsScalarFieldEnum = (typeof NewsScalarFieldEnum)[keyof typeof NewsScalarFieldEnum]
+
+
+export const NewsCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+} as const
+
+export type NewsCategoryScalarFieldEnum = (typeof NewsCategoryScalarFieldEnum)[keyof typeof NewsCategoryScalarFieldEnum]
+
+
 export const AuditLogScalarFieldEnum = {
   id: 'id',
   action: 'action',
@@ -1593,6 +1772,8 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   post?: Prisma.PostOmit
   category?: Prisma.CategoryOmit
+  news?: Prisma.NewsOmit
+  newsCategory?: Prisma.NewsCategoryOmit
   auditLog?: Prisma.AuditLogOmit
   jobDepartment?: Prisma.JobDepartmentOmit
   jobOpening?: Prisma.JobOpeningOmit

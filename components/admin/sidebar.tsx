@@ -25,6 +25,8 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount, reach
   const navItems = [
     { name: 'Blogs', href: '/admin/blogs', icon: LayoutDashboard },
     { name: 'Blog Categories', href: '/admin/categories', icon: Tags },
+    { name: 'News', href: '/admin/news', icon: LayoutDashboard },
+    { name: 'News Categories', href: '/admin/news-categories', icon: Tags },
     { name: 'Job Departments', href: '/admin/departments', icon: Building2 },
     { name: 'Job Openings', href: '/admin/jobs', icon: Briefcase },
     { 
@@ -86,7 +88,7 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount, reach
         
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
           {navItems.map((item) => {
-            const isActive = pathname.startsWith(item.href)
+            const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
             const Icon = item.icon
             return (
               <Link

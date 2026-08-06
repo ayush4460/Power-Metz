@@ -52,6 +52,16 @@ export type Post = Prisma.PostModel
  */
 export type Category = Prisma.CategoryModel
 /**
+ * Model News
+ * 
+ */
+export type News = Prisma.NewsModel
+/**
+ * Model NewsCategory
+ * 
+ */
+export type NewsCategory = Prisma.NewsCategoryModel
+/**
  * Model AuditLog
  * 
  */

@@ -3,7 +3,7 @@ import prisma from '@/lib/prisma'
 
 export async function GET() {
   try {
-    const posts = await prisma.post.findMany({
+    const posts = await prisma.news.findMany({
       orderBy: { createdAt: 'desc' },
       include: { categories: true }
     })
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
 
-    const post = await prisma.post.create({
+    const post = await prisma.news.create({
       data: {
         title,
         slug,

@@ -10,6 +10,8 @@
  */
 export type * from './models/Post'
 export type * from './models/Category'
+export type * from './models/News'
+export type * from './models/NewsCategory'
 export type * from './models/AuditLog'
 export type * from './models/JobDepartment'
 export type * from './models/JobOpening'

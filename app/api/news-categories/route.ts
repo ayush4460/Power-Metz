@@ -3,7 +3,7 @@ import prisma from '@/lib/prisma'
 
 export async function GET() {
   try {
-    const categories = await prisma.category.findMany({
+    const categories = await prisma.newsCategory.findMany({
       orderBy: { name: 'asc' },
     })
     return NextResponse.json(categories)
@@ -11,5 +11,6 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to fetch categories' }, { status: 500 })
   }
 }
+
 
 

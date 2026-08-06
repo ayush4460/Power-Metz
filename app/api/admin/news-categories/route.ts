@@ -3,11 +3,11 @@ import prisma from '@/lib/prisma'
 
 export async function GET() {
   try {
-    const categories = await prisma.category.findMany({
+    const categories = await prisma.newsCategory.findMany({
       orderBy: { name: 'asc' },
       include: {
         _count: {
-          select: { posts: true }
+          select: { news: true }
         }
       }
     })
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
 
-    const category = await prisma.category.create({
+    const category = await prisma.newsCategory.create({
       data: { name, slug }
     })
 
