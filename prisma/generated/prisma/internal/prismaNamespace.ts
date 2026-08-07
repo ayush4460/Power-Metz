@@ -408,7 +408,8 @@ export const ModelName = {
   VendorSubmission: 'VendorSubmission',
   CustomerSubmission: 'CustomerSubmission',
   JobApplication: 'JobApplication',
-  ReachUsSubmission: 'ReachUsSubmission'
+  ReachUsSubmission: 'ReachUsSubmission',
+  Warranty: 'Warranty'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -424,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "post" | "category" | "news" | "newsCategory" | "auditLog" | "jobDepartment" | "jobOpening" | "user" | "vendorSubmission" | "customerSubmission" | "jobApplication" | "reachUsSubmission"
+    modelProps: "post" | "category" | "news" | "newsCategory" | "auditLog" | "jobDepartment" | "jobOpening" | "user" | "vendorSubmission" | "customerSubmission" | "jobApplication" | "reachUsSubmission" | "warranty"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1316,6 +1317,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Warranty: {
+      payload: Prisma.$WarrantyPayload<ExtArgs>
+      fields: Prisma.WarrantyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WarrantyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WarrantyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>
+        }
+        findFirst: {
+          args: Prisma.WarrantyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WarrantyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>
+        }
+        findMany: {
+          args: Prisma.WarrantyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>[]
+        }
+        create: {
+          args: Prisma.WarrantyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>
+        }
+        createMany: {
+          args: Prisma.WarrantyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WarrantyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>[]
+        }
+        delete: {
+          args: Prisma.WarrantyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>
+        }
+        update: {
+          args: Prisma.WarrantyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>
+        }
+        deleteMany: {
+          args: Prisma.WarrantyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WarrantyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WarrantyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>[]
+        }
+        upsert: {
+          args: Prisma.WarrantyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarrantyPayload>
+        }
+        aggregate: {
+          args: Prisma.WarrantyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWarranty>
+        }
+        groupBy: {
+          args: Prisma.WarrantyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WarrantyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WarrantyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WarrantyCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1525,6 +1600,30 @@ export const ReachUsSubmissionScalarFieldEnum = {
 } as const
 
 export type ReachUsSubmissionScalarFieldEnum = (typeof ReachUsSubmissionScalarFieldEnum)[keyof typeof ReachUsSubmissionScalarFieldEnum]
+
+
+export const WarrantyScalarFieldEnum = {
+  id: 'id',
+  warrantyId: 'warrantyId',
+  serialNumber: 'serialNumber',
+  productCategory: 'productCategory',
+  productModel: 'productModel',
+  status: 'status',
+  warrantyPlan: 'warrantyPlan',
+  installDate: 'installDate',
+  expiryDate: 'expiryDate',
+  customerName: 'customerName',
+  customerPhone: 'customerPhone',
+  customerEmail: 'customerEmail',
+  customerLocation: 'customerLocation',
+  installerName: 'installerName',
+  extensionPending: 'extensionPending',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WarrantyScalarFieldEnum = (typeof WarrantyScalarFieldEnum)[keyof typeof WarrantyScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1782,6 +1881,7 @@ export type GlobalOmitConfig = {
   customerSubmission?: Prisma.CustomerSubmissionOmit
   jobApplication?: Prisma.JobApplicationOmit
   reachUsSubmission?: Prisma.ReachUsSubmissionOmit
+  warranty?: Prisma.WarrantyOmit
 }
 
 /* Types for Logging */

@@ -133,6 +133,7 @@ model User {
   updatedAt          DateTime @updatedAt
   
   submission         VendorSubmission? @relation(fields: [vendorSubmissionId], references: [id])
+  warranties         Warranty[]
 }
 
 model VendorSubmission {
@@ -185,4 +186,32 @@ model ReachUsSubmission {
   message   String
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+model Warranty {
+  id               String   @id @default(cuid())
+  warrantyId       String   @unique // e.g., PM-2026-123456
+  serialNumber     String
+  
+  productCategory  String   
+  productModel     String   
+  
+  status           String   
+  warrantyPlan     String   
+  installDate      DateTime?
+  expiryDate       DateTime?
+
+  customerName     String
+  customerPhone    String
+  customerEmail    String?
+  customerLocation String?
+  installerName    String?
+  
+  extensionPending Boolean  @default(false)
+
+  createdById      String?
+  createdBy        User?    @relation(fields: [createdById], references: [id])
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Tags, LogOut, Briefcase, Inbox, Building2, Menu, X, Users, Store, ExternalLink } from "lucide-react"
+import { LayoutDashboard, Tags, LogOut, Briefcase, Inbox, Building2, Menu, X, Users, Store, ExternalLink, ShieldCheck } from "lucide-react"
 
 type SidebarProps = {
   vendorsCount: number
@@ -29,6 +29,7 @@ export function AdminSidebar({ vendorsCount, customersCount, careersCount, reach
     { name: 'News Categories', href: '/admin/news-categories', icon: Tags },
     { name: 'Job Departments', href: '/admin/departments', icon: Building2 },
     { name: 'Job Openings', href: '/admin/jobs', icon: Briefcase },
+    { name: 'Warranties', href: '/admin/warranties', icon: ShieldCheck },
     { 
       name: 'Reach Us Submissions', 
       href: '/admin/submissions/reach-us', 

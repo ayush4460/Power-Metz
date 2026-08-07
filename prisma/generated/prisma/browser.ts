@@ -77,3 +77,8 @@ export type JobApplication = Prisma.JobApplicationModel
  * 
  */
 export type ReachUsSubmission = Prisma.ReachUsSubmissionModel
+/**
+ * Model Warranty
+ * 
+ */
+export type Warranty = Prisma.WarrantyModel

@@ -231,6 +231,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   submission?: Prisma.XOR<Prisma.VendorSubmissionNullableScalarRelationFilter, Prisma.VendorSubmissionWhereInput> | null
+  warranties?: Prisma.WarrantyListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -246,6 +247,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   submission?: Prisma.VendorSubmissionOrderByWithRelationInput
+  warranties?: Prisma.WarrantyOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -264,6 +266,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   submission?: Prisma.XOR<Prisma.VendorSubmissionNullableScalarRelationFilter, Prisma.VendorSubmissionWhereInput> | null
+  warranties?: Prisma.WarrantyListRelationFilter
 }, "id" | "email" | "vendorSubmissionId" | "setupToken" | "resetToken">
 
 export type UserOrderByWithAggregationInput = {
@@ -312,6 +315,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   submission?: Prisma.VendorSubmissionCreateNestedOneWithoutUserInput
+  warranties?: Prisma.WarrantyCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -326,6 +330,7 @@ export type UserUncheckedCreateInput = {
   resetTokenExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  warranties?: Prisma.WarrantyUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -340,6 +345,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submission?: Prisma.VendorSubmissionUpdateOneWithoutUserNestedInput
+  warranties?: Prisma.WarrantyUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -354,6 +360,7 @@ export type UserUncheckedUpdateInput = {
   resetTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  warranties?: Prisma.WarrantyUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -480,6 +487,22 @@ export type UserUncheckedUpdateOneWithoutSubmissionNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubmissionInput, Prisma.UserUpdateWithoutSubmissionInput>, Prisma.UserUncheckedUpdateWithoutSubmissionInput>
 }
 
+export type UserCreateNestedOneWithoutWarrantiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWarrantiesInput, Prisma.UserUncheckedCreateWithoutWarrantiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWarrantiesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutWarrantiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWarrantiesInput, Prisma.UserUncheckedCreateWithoutWarrantiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWarrantiesInput
+  upsert?: Prisma.UserUpsertWithoutWarrantiesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWarrantiesInput, Prisma.UserUpdateWithoutWarrantiesInput>, Prisma.UserUncheckedUpdateWithoutWarrantiesInput>
+}
+
 export type UserCreateWithoutSubmissionInput = {
   id?: string
   email: string
@@ -491,6 +514,7 @@ export type UserCreateWithoutSubmissionInput = {
   resetTokenExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  warranties?: Prisma.WarrantyCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutSubmissionInput = {
@@ -504,6 +528,7 @@ export type UserUncheckedCreateWithoutSubmissionInput = {
   resetTokenExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  warranties?: Prisma.WarrantyUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutSubmissionInput = {
@@ -533,6 +558,7 @@ export type UserUpdateWithoutSubmissionInput = {
   resetTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  warranties?: Prisma.WarrantyUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSubmissionInput = {
@@ -546,8 +572,110 @@ export type UserUncheckedUpdateWithoutSubmissionInput = {
   resetTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  warranties?: Prisma.WarrantyUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
+export type UserCreateWithoutWarrantiesInput = {
+  id?: string
+  email: string
+  passwordHash?: string | null
+  role?: $Enums.Role
+  setupToken?: string | null
+  setupTokenExpiresAt?: Date | string | null
+  resetToken?: string | null
+  resetTokenExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  submission?: Prisma.VendorSubmissionCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutWarrantiesInput = {
+  id?: string
+  email: string
+  passwordHash?: string | null
+  role?: $Enums.Role
+  vendorSubmissionId?: string | null
+  setupToken?: string | null
+  setupTokenExpiresAt?: Date | string | null
+  resetToken?: string | null
+  resetTokenExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserCreateOrConnectWithoutWarrantiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutWarrantiesInput, Prisma.UserUncheckedCreateWithoutWarrantiesInput>
+}
+
+export type UserUpsertWithoutWarrantiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutWarrantiesInput, Prisma.UserUncheckedUpdateWithoutWarrantiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutWarrantiesInput, Prisma.UserUncheckedCreateWithoutWarrantiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutWarrantiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutWarrantiesInput, Prisma.UserUncheckedUpdateWithoutWarrantiesInput>
+}
+
+export type UserUpdateWithoutWarrantiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  setupToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setupTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submission?: Prisma.VendorSubmissionUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutWarrantiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  vendorSubmissionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setupToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  setupTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  warranties: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  warranties?: boolean | UserCountOutputTypeCountWarrantiesArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountWarrantiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WarrantyWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -563,6 +691,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   submission?: boolean | Prisma.User$submissionArgs<ExtArgs>
+  warranties?: boolean | Prisma.User$warrantiesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -612,6 +742,8 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "role" | "vendorSubmissionId" | "setupToken" | "setupTokenExpiresAt" | "resetToken" | "resetTokenExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   submission?: boolean | Prisma.User$submissionArgs<ExtArgs>
+  warranties?: boolean | Prisma.User$warrantiesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   submission?: boolean | Prisma.User$submissionArgs<ExtArgs>
@@ -624,6 +756,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     submission: Prisma.$VendorSubmissionPayload<ExtArgs> | null
+    warranties: Prisma.$WarrantyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1032,6 +1165,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   submission<T extends Prisma.User$submissionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$submissionArgs<ExtArgs>>): Prisma.Prisma__VendorSubmissionClient<runtime.Types.Result.GetResult<Prisma.$VendorSubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  warranties<T extends Prisma.User$warrantiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$warrantiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WarrantyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1489,6 +1623,30 @@ export type User$submissionArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   include?: Prisma.VendorSubmissionInclude<ExtArgs> | null
   where?: Prisma.VendorSubmissionWhereInput
+}
+
+/**
+ * User.warranties
+ */
+export type User$warrantiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Warranty
+   */
+  select?: Prisma.WarrantySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Warranty
+   */
+  omit?: Prisma.WarrantyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WarrantyInclude<ExtArgs> | null
+  where?: Prisma.WarrantyWhereInput
+  orderBy?: Prisma.WarrantyOrderByWithRelationInput | Prisma.WarrantyOrderByWithRelationInput[]
+  cursor?: Prisma.WarrantyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WarrantyScalarFieldEnum | Prisma.WarrantyScalarFieldEnum[]
 }
 
 /**

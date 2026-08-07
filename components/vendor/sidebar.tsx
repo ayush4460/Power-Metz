@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, FileText, Settings, LogOut, Menu, X, User, ExternalLink } from "lucide-react"
+import { LayoutDashboard, FileText, Settings, LogOut, Menu, X, User, ExternalLink, ShieldCheck } from "lucide-react"
 import { CompanyLogo } from "@/components/shared/utilities"
 
 export function VendorSidebar() {
@@ -18,6 +18,7 @@ export function VendorSidebar() {
 
   const navItems = [
     { name: 'Dashboard', href: '/vendor/dashboard', icon: LayoutDashboard },
+    { name: 'Warranties', href: '/vendor/dashboard/warranties', icon: ShieldCheck },
     { name: 'My Profile', href: '/vendor/dashboard/profile', icon: User },
     { name: 'Documents', href: '/vendor/dashboard/documents', icon: FileText },
     { name: 'Settings', href: '/vendor/dashboard/settings', icon: Settings },

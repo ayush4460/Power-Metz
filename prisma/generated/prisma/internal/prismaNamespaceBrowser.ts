@@ -62,7 +62,8 @@ export const ModelName = {
   VendorSubmission: 'VendorSubmission',
   CustomerSubmission: 'CustomerSubmission',
   JobApplication: 'JobApplication',
-  ReachUsSubmission: 'ReachUsSubmission'
+  ReachUsSubmission: 'ReachUsSubmission',
+  Warranty: 'Warranty'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -251,6 +252,30 @@ export const ReachUsSubmissionScalarFieldEnum = {
 } as const
 
 export type ReachUsSubmissionScalarFieldEnum = (typeof ReachUsSubmissionScalarFieldEnum)[keyof typeof ReachUsSubmissionScalarFieldEnum]
+
+
+export const WarrantyScalarFieldEnum = {
+  id: 'id',
+  warrantyId: 'warrantyId',
+  serialNumber: 'serialNumber',
+  productCategory: 'productCategory',
+  productModel: 'productModel',
+  status: 'status',
+  warrantyPlan: 'warrantyPlan',
+  installDate: 'installDate',
+  expiryDate: 'expiryDate',
+  customerName: 'customerName',
+  customerPhone: 'customerPhone',
+  customerEmail: 'customerEmail',
+  customerLocation: 'customerLocation',
+  installerName: 'installerName',
+  extensionPending: 'extensionPending',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WarrantyScalarFieldEnum = (typeof WarrantyScalarFieldEnum)[keyof typeof WarrantyScalarFieldEnum]
 
 
 export const SortOrder = {
