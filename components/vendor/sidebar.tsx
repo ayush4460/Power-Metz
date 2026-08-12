@@ -17,11 +17,7 @@ export function VendorSidebar() {
   }, [])
 
   const navItems = [
-    { name: 'Dashboard', href: '/vendor/dashboard', icon: LayoutDashboard },
     { name: 'Warranties', href: '/vendor/dashboard/warranties', icon: ShieldCheck },
-    { name: 'My Profile', href: '/vendor/dashboard/profile', icon: User },
-    { name: 'Documents', href: '/vendor/dashboard/documents', icon: FileText },
-    { name: 'Settings', href: '/vendor/dashboard/settings', icon: Settings },
   ]
 
   const handleLogout = async () => {
@@ -52,7 +48,7 @@ export function VendorSidebar() {
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="p-6 border-b border-border flex items-center justify-between">
-          <Link href="/vendor/dashboard" className="flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
+          <Link href="/vendor/dashboard/warranties" className="flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
             <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center shrink-0">
               <CompanyLogo className="h-full w-full" />
             </div>
@@ -68,7 +64,7 @@ export function VendorSidebar() {
         
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/vendor/dashboard')
+            const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`)
             const Icon = item.icon
             return (
               <Link

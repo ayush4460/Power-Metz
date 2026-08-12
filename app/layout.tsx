@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth overflow-x-hidden">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth overflow-x-hidden" data-scroll-behavior="smooth">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden flex flex-col min-h-screen`}>
         <Providers>
           <Background noise />

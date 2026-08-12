@@ -30,7 +30,7 @@ export function VendorLoginForm() {
           setIsPending(false)
         } else {
           // Success! Next.js middleware handles cookie check, so we can just redirect
-          window.location.href = '/vendor/dashboard'
+          window.location.href = '/vendor/dashboard/warranties'
         }
       } else {
         const data = await res.json()
