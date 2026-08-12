@@ -6,7 +6,7 @@ import { CertificationsSection } from "@/components/about/certifications-section
 import { WhyChoose } from "@/components/about/why-choose";
 import { OurJourneyVision } from "@/components/about/our-journey-vision";
 import { FounderSection } from "@/components/about/founder-section";
-import { MissionVision } from "@/components/about/mission-vision";
+import { AboutVideo } from "@/components/about/about-video";
 import { CTASection } from "@/components/about/cta-section";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function AboutPage() {
       <WhyChoose />
       <OurJourneyVision />
       <FounderSection />
-      <MissionVision />
+      <AboutVideo />
       <CertificationsSection />
       <CTASection />
     </main>

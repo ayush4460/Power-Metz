@@ -6,17 +6,36 @@ import { Reveal } from "@/components/motion";
 import Image from "next/image";
 
 const certLogos = [
-  { src: "/quality.png", alt: "Quality", name: "Quality", imageClass: "p-4 group-hover:scale-105" },
-  { src: "/trust.png", alt: "Trust", name: "Trust", imageClass: "p-2 scale-125 group-hover:scale-[1.3]" },
-  { src: "/ISO.png", alt: "ISO", name: "ISO Certified", imageClass: "p-4 group-hover:scale-105" },
-  { src: "/BIS.png", alt: "BIS", name: "BIS Certified", imageClass: "p-4 group-hover:scale-105" },
+  {
+    src: "/quality.jpg",
+    alt: "Quality",
+    name: "Quality",
+    imageClass: "p-2 scale-[1.75] group-hover:scale-[1.9]",
+  },
+  {
+    src: "/Trust.jpg",
+    alt: "Trust",
+    name: "Trust",
+    imageClass: "p-2 scale-125 group-hover:scale-[1.3]",
+  },
+  {
+    src: "/ISO.png",
+    alt: "ISO",
+    name: "ISO Certified",
+    imageClass: "p-4 group-hover:scale-105",
+  },
+  {
+    src: "/BIS.png",
+    alt: "BIS",
+    name: "BIS Certified",
+    imageClass: "p-4 group-hover:scale-105",
+  },
 ];
 
 export const CertificationsSection = () => {
   return (
     <Section className="py-12 lg:py-16 bg-background overflow-hidden">
       <Container>
-
         {/* Section header */}
         <Reveal direction="up" duration={0.8}>
           <div className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
@@ -27,7 +46,9 @@ export const CertificationsSection = () => {
               Quality & Trust
             </h2>
             <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light">
-              We are proudly certified by international and national standards, ensuring the highest quality, safety, and reliability in every product.
+              We are proudly certified by international and national standards,
+              ensuring the highest quality, safety, and reliability in every
+              product.
             </p>
           </div>
         </Reveal>
@@ -58,7 +79,6 @@ export const CertificationsSection = () => {
             </motion.div>
           ))}
         </div>
-
       </Container>
     </Section>
   );
