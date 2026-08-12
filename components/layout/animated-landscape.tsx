@@ -35,9 +35,63 @@ export const AnimatedLandscape = ({ className }: { className?: string }) => {
             transform-origin: 1220px 105px;
             animation: spin 10s linear infinite;
           }
+          
+          /* Truck Sequence */
           .pm-anim-truck {
-            animation: drive 25s linear infinite;
+            animation: drive 30s linear infinite;
           }
+          @keyframes drive {
+            0% { transform: translateX(-200px); }
+            15% { transform: translateX(450px); }
+            75% { transform: translateX(450px); }
+            90% { transform: translateX(1600px); }
+            100% { transform: translateX(1600px); }
+          }
+
+          /* Operator Sequence */
+          .pm-anim-operator {
+            animation: operatorFade 30s linear infinite;
+          }
+          @keyframes operatorFade {
+            0%, 15% { opacity: 0; }
+            20%, 70% { opacity: 1; }
+            75%, 100% { opacity: 0; }
+          }
+
+          /* Cable Sequence */
+          .pm-anim-cable {
+            animation: cableFade 30s linear infinite;
+          }
+          @keyframes cableFade {
+            0%, 25% { opacity: 0; }
+            30%, 65% { opacity: 1; }
+            70%, 100% { opacity: 0; }
+          }
+          .pm-anim-cable-flow {
+            stroke-dasharray: 4 4;
+            animation: powerFlow 1s linear infinite;
+          }
+          @keyframes powerFlow {
+            100% { stroke-dashoffset: -20; }
+          }
+
+          /* Battery Indicator Sequence */
+          .pm-anim-battery-container {
+            animation: batteryFade 30s linear infinite;
+          }
+          @keyframes batteryFade {
+            0%, 28% { opacity: 0; }
+            31%, 65% { opacity: 1; }
+            68%, 100% { opacity: 0; }
+          }
+          .pm-anim-battery-fill {
+            animation: chargeFill 30s linear infinite;
+          }
+          @keyframes chargeFill {
+            0%, 30% { width: 0; }
+            65%, 100% { width: 16px; }
+          }
+
           .pm-anim-bird1 {
             animation: fly 15s linear infinite;
           }
@@ -50,10 +104,6 @@ export const AnimatedLandscape = ({ className }: { className?: string }) => {
 
           @keyframes spin {
             100% { transform: rotate(360deg); }
-          }
-          @keyframes drive {
-            0% { transform: translateX(-200px); }
-            100% { transform: translateX(1600px); }
           }
           @keyframes fly {
             0% { transform: translate(-50px, 80px) scale(0.6); }
@@ -592,6 +642,39 @@ export const AnimatedLandscape = ({ className }: { className?: string }) => {
           {/* Cab Wheels */}
           <circle cx="75" cy="210" r="6" fill="#020617" />
           <circle cx="75" cy="210" r="3" fill="#64748B" />
+
+          {/* Battery Indicator (Hidden by default, shown during charge) */}
+          <g className="pm-anim-battery-container" transform="translate(15, 150)">
+            {/* Battery Body */}
+            <rect x="0" y="0" width="20" height="10" rx="1" fill="#1E293B" stroke="#475569" strokeWidth="1" />
+            <rect x="20" y="3" width="2" height="4" fill="#475569" />
+            <rect x="2" y="2" width="16" height="6" fill="#0F172A" /> {/* Background track */}
+            {/* Battery Fill (Animates width) */}
+            <rect className="pm-anim-battery-fill" x="2" y="2" width="0" height="6" fill="#10B981" />
+            {/* Lightning Bolt */}
+            <path d="M9 3 L7 6 L10 6 L9 9 L13 5 L10 5 Z" fill="#FCD34D" opacity="0.8" />
+          </g>
+        </g>
+
+        {/* ── CHARGING STATION CABLE ── */}
+        <g className="pm-anim-cable">
+          <path d="M 565 160 Q 530 215 512 200" fill="none" stroke="#0F172A" strokeWidth="3" />
+          <path className="pm-anim-cable-flow" d="M 565 160 Q 530 215 512 200" fill="none" stroke="#10B981" strokeWidth="1.5" />
+        </g>
+
+        {/* ── OPERATOR (Man connecting battery) ── */}
+        <g className="pm-anim-operator">
+           <g transform="translate(525, 195)">
+             {/* Legs */}
+             <path d="M0 0 L -2 15 M 5 0 L 7 15" stroke="#1E293B" strokeWidth="2.5" strokeLinecap="round" />
+             {/* Body */}
+             <rect x="-3" y="-12" width="10" height="12" rx="2" fill="#3B82F6" />
+             <rect x="-3" y="-6" width="10" height="2" fill="#FEF08A" opacity="0.8" /> {/* Reflective strip */}
+             {/* Head */}
+             <circle cx="2" cy="-16" r="3.5" fill="#FCD34D" /> {/* Hard hat */}
+             {/* Arm connecting to cable */}
+             <path d="M0 -8 L -10 5" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+           </g>
         </g>
       </svg>
     </div>
