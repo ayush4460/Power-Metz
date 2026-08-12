@@ -53,7 +53,7 @@ export function DownloadCertificateButton({ warranty }: { warranty: WarrantyData
       <button 
         onClick={handleDownload}
         disabled={isGenerating}
-        className="flex items-center space-x-2 bg-[#F58220] text-white px-4 py-2 rounded-md hover:bg-[#F58220]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+        className="flex items-center space-x-2 bg-[#F58220] text-white px-4 py-2 rounded-md hover:bg-[#F58220]/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
       >
         <Printer className="w-4 h-4" />
         <span>{isGenerating ? 'Generating...' : 'Download Certificate'}</span>

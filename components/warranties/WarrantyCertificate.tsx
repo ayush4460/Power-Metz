@@ -160,18 +160,16 @@ export const WarrantyCertificate = forwardRef<HTMLDivElement, WarrantyCertificat
               </div>
             </div>
 
-            {/* Signature / Footer */}
-            <div style={{ marginTop: '60px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-              <div style={{ fontSize: '12px', color: '#64748b', maxWidth: '300px' }}>
-                <p style={{ margin: '0 0 4px 0' }}>PowerMetz Energy Solutions</p>
-                <p style={{ margin: '0 0 4px 0' }}>www.powermetz.com</p>
-                <p style={{ margin: 0 }}>support@powermetz.com</p>
-              </div>
-              <div style={{ textAlign: 'center', width: '250px' }}>
-                <div style={{ borderBottom: '1px solid #94a3b8', height: '40px', marginBottom: '8px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: '"Brush Script MT", cursive', fontSize: '28px', color: '#0f172a' }}>Authorized Signatory</span>
-                </div>
-                <p style={{ margin: 0, fontSize: '14px', fontWeight: 600, color: '#475569' }}>Authorized PowerMetz Representative</p>
+            {/* Footer */}
+            <div style={{ marginTop: '60px', borderTop: '1px solid #e2e8f0', paddingTop: '24px' }}>
+              <div style={{ fontSize: '12px', color: '#64748b', maxWidth: '100%' }}>
+                <p style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 'bold', color: '#1e293b' }}>
+                  Power<span style={{ color: '#F58220' }}>Metz</span>
+                </p>
+                <p style={{ margin: '0 0 4px 0' }}>+91 7041647216 | business@metzbattery.in</p>
+                <p style={{ margin: 0, lineHeight: '1.5' }}>
+                  NH48, Block No. 28, Powermetz Energy Pvt Ltd, Mercury EV Tech Pvt Ltd, Village - Manglej, Taluka - Karjan, Vadodara, Gujarat - 391243, India
+                </p>
               </div>
             </div>
             
