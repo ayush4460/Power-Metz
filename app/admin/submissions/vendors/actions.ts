@@ -1,5 +1,7 @@
 "use server"
 
+import { headers } from "next/headers"
+
 import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import crypto from "crypto"
@@ -38,7 +40,10 @@ export async function updateVendorStatus(id: string, status: "APPROVED" | "REJEC
       })
 
       // 3. Send email
-      const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+      const headersList = await headers()
+      const host = headersList.get('host') || 'localhost:3000'
+      const protocol = host.includes('localhost') ? 'http' : 'https'
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL || `${protocol}://${host}`
       const setupLink = `${appUrl}/vendor/setup?token=${token}`
       
       const html = getVendorWelcomeEmailHtml(submission.companyName, setupLink)

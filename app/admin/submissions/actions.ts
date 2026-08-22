@@ -1,5 +1,7 @@
 "use server"
 
+import { headers } from "next/headers"
+
 import prisma from "@/lib/prisma"
 
 
@@ -47,6 +49,11 @@ export async function approveVendor(id: string) {
     })
   ])
 
+  const headersList = await headers()
+  const host = headersList.get('host') || 'localhost:3000'
+  const protocol = host.includes('localhost') ? 'http' : 'https'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || `${protocol}://${host}`
+
   // Send approval email with credentials
   const mailOptions = {
     from: process.env.SMTP_USER,
@@ -57,7 +64,7 @@ export async function approveVendor(id: string) {
 Your vendor application has been approved! 
 You can now log in to the PowerMetz Vendor Portal.
 
-Login URL: ${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/vendor/login
+Login URL: ${siteUrl}/vendor/login
 Email: ${vendor.email}
 Password: ${password}
 

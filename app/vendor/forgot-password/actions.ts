@@ -1,5 +1,7 @@
 "use server"
 
+import { headers } from "next/headers"
+
 import prisma from "@/lib/prisma"
 import crypto from "crypto"
 import nodemailer from "nodemailer"
@@ -50,7 +52,11 @@ export async function requestPasswordReset(email: string) {
     })
 
     // Prepare email
-    const resetLink = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/vendor/reset-password?token=${token}`
+    const headersList = await headers()
+    const host = headersList.get('host') || 'localhost:3000'
+    const protocol = host.includes('localhost') ? 'http' : 'https'
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || `${protocol}://${host}`
+    const resetLink = `${baseUrl}/vendor/reset-password?token=${token}`
 
     const mailOptions = {
       from: process.env.SMTP_USER,
